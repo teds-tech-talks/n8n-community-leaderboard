@@ -1,0 +1,99 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+// Override header colors
+$header-bg-color: #ea4b71;
+$header-bg-color-secondary: #6e72e0;
+
+// Override variables
+
+.main-content {
+  @media screen and (min-width: 64em) {
+    max-width: 80rem;
+    padding: 2rem 4rem;
+  }
+  
+// Image styling
+  img {
+    max-width: min(100%, 960px); // Set maximum width
+    width: auto; // Ensure it's responsive
+    height: auto; // Maintain aspect ratio
+    display: block; // Remove any inline spacing
+    margin-left: auto; // Center the image
+    margin-right: auto;
+  }
+
+}
+
+
+.page-header {
+  background-color: $header-bg-color;
+  background-image: linear-gradient(120deg, $header-bg-color, $header-bg-color-secondary);
+}
+
+.main-content h1 {
+	color: #101330;
+}
+
+.main-content h2 {
+	color: #1c9985;
+}
+
+
+// Table styles
+.user-avatar {
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.dt-body-center {
+    text-align: center;
+}
+
+.number-column {
+    width: 30px;
+}
+
+#stats-table {
+    border-collapse: collapse;
+}
+
+#stats-table thead th {
+    text-align: left;
+    background-color: #484C99;
+    color: #FCFCFD;
+    font-weight: bold;
+    padding: 10px;
+}
+
+#stats-table th, #stats-table td {
+    border: none;
+    border-bottom: 1px solid #E4E6EC;
+	padding: 3px 10px;
+}
+
+#stats-table th {
+    border-bottom: 1px solid #707183;
+}
+
+.creator-link {
+    text-decoration: none;
+    color: #6E72E0;
+}
+
+.creator-link:hover {
+    text-decoration: underline;
+	text-decoration-style: dotted;
+	text-underline-offset: 0.2rem;
+}
+
+.external-link {
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.external-link:hover {
+    text-decoration: none;
+}

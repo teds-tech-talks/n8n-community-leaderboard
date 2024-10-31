@@ -1,0 +1,24 @@
+# Jekyll build output
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Bundler config
+.bundle/
+vendor/
+
+# macOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+
+# Ruby environment file
+.ruby-version
+
+# Environment normalization
+/.bundle/
+/vendor/bundle
+/lib/bundler/man/
+
