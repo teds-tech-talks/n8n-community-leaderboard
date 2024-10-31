@@ -1,5 +1,5 @@
 theme: jekyll-theme-cayman
-baseurl: "/caymantest.github.io"
+baseurl: "/n8n-community-leaderboard"
 
 # Custom settings for Cayman theme
 title: n8n Creators Leaderboard
@@ -10,10 +10,10 @@ github:
   is_project_page: true
 custom_buttons:
   - text: Workflow ratings
-    url: /caymantest.github.io/workflows
+    url: /n8n-community-leaderboard/workflows
   - text: Templates gallery
     url: https://n8n.partnerlinks.io/n8n-workflows
   - text: What is this?
-    url: /caymantest.github.io/about
+    url: /n8n-community-leaderboard/about
   - text: What is n8n?
-    url: /caymantest.github.io/n8n
+    url: /n8n-community-leaderboard/n8n

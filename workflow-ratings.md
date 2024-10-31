@@ -6,6 +6,8 @@ permalink: /workflows/
 
 # Workflow Ratings
 
+<p id="last-updated" class="text-muted"></p>
+
 <table id="stats-table" class="display">
     <thead>
         <tr>

@@ -6,7 +6,7 @@ permalink: /n8n/
 
 # What is n8n?
 
-n8n is a powerful and flexible automation platform. It allows you to connect various applications, services, and APIs to create automated workflows. It's designed to be a versatile tool for both technical and non-technical users. The visual interface is suitable for creating even complex integrations and automations.
+[n8n](https://n8n.partnerlinks.io/xrtl7yst4s97) is a powerful and flexible automation platform. It allows you to connect various applications, services, and APIs to create automated workflows. It's designed to be a versatile tool for both technical and non-technical users. The visual interface is suitable for creating even complex integrations and automations.
 
 ![n8n Overview](https://n8n.io/_nuxt/image/bf4fe9.png)
 
@@ -26,7 +26,7 @@ With n8n, non-technical users can automate repetitive tasks, connect different t
 
 ### Affordable Pricing
 
-n8n offers a [cost-effective cloud solution](https://n8n.io/pricing/) that's significantly cheaper compared to competitors like Zapier and Make. The pricing model is based on workflow runs rather than individual tasks, providing better value for your automation needs.
+n8n offers a [cost-effective cloud solution](https://n8n.partnerlinks.io/n8n-pricing) that's significantly cheaper compared to competitors like Zapier and Make. The pricing model is based on workflow runs rather than individual tasks, providing better value for your automation needs.
 
 ![Pricing Comparison](https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-stage/assets/price_comparison3_a73575928a.jpg)
 
@@ -69,7 +69,7 @@ For managers and team leaders, n8n offers:
 
 ### Advanced Enterprise Options
 
-For larger organizations, n8n provides [advanced enterprise features](https://n8n.io/enterprise/):
+For larger organizations, n8n provides [advanced enterprise features](https://n8n.partnerlinks.io/n8n-enterprise):
 
 - Single Sign-On (SSO) integration
 - Role-Based Access Control (RBAC) for fine-grained permissions
@@ -77,5 +77,3 @@ For larger organizations, n8n provides [advanced enterprise features](https://n8
 - Custom onboarding and training programs
 - Advanced analytics and reporting tools
 - High availability and disaster recovery options
-
-[Get Started with n8n](https://app.n8n.cloud/register)

@@ -4,6 +4,8 @@ layout: default
 
 # Creators Leaderboard
 
+<p id="last-updated" class="text-muted"></p>
+
 <table id="stats-table" class="display">
     <thead>
         <tr>

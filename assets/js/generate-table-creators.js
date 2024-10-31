@@ -1,5 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('/caymantest.github.io/stats_aggregate_creators.json')
+    const jsonUrl = '/n8n-community-leaderboard/stats_aggregate_creators.json';
+
+    // Function to fetch and display the last modified date
+    function fetchLastModified() {
+        fetch(jsonUrl, { method: 'HEAD' })
+            .then(response => {
+                const lastModified = new Date(response.headers.get('Last-Modified'));
+                const formattedDate = lastModified.toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                document.getElementById('last-updated').innerHTML = `<i>Last updated: ${formattedDate}</i>`;
+            })
+            .catch(error => console.error('Error fetching last modified date:', error));
+    }
+
+    // Fetch and display the last modified date
+    fetchLastModified();
+
+    // Fetch and process the JSON data
+    fetch(jsonUrl)	
         .then(response => response.json())
         .then(data => {
             let tableData = data.map(item => {
