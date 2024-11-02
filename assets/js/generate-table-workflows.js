@@ -36,6 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     `<a href="${item.template_url}" target="_blank">${item.wf_detais.name}</a>`,
                     item.unique_visitors || 0,
                     item.unique_inserters || 0,
+                    item.unique_monthly_visitors || 0,
+                    item.unique_monthly_inserters || 0,
+                    item.unique_weekly_visitors || 0,
+                    item.unique_weekly_inserters || 0,
                     item.wf_detais.createdAt.split('T')[0]
                 ];
             });
@@ -47,38 +51,47 @@ document.addEventListener('DOMContentLoaded', function() {
                     { title: "", orderable: false, searchable: false },
                     { title: "Creator" },
                     { title: "Workflow Name" },
-                    { title: "Unique Views" },
-                    { title: "Unique Inserters" },
+                    { title: "Total<br/>Views" },
+                    { title: "Total<br/>Inserters" },
+                    { title: "Monthly<br/>Views", visible: false },
+                    { title: "Monthly<br/>Inserters", visible: false },
+                    { title: "Weekly<br/>Views", visible: false },
+                    { title: "Weekly<br/>Inserters", visible: false },
                     { title: "Creation Date" }
                 ],
-                order: [[4, 'desc']], // Sort by Unique Views by default
+                order: [[4, 'desc']],
                 pageLength: 50,
-                bFilter: true,
+				bFilter: true,
                 responsive: true,
                 columnDefs: [
-                    {
-                        targets: 0,
-                        className: 'dt-body-center number'			
-                    },
-                    {
-                        targets: 1,
-                        className: 'dt-body-center',
-                        width: "64px"
-                    },
-                    {
-                        targets: 2,
-                        className: 'dt-body-left creator-column'
-                    },
-                    {
-                        targets: 3,
-                        className: 'dt-body-left'
-                    },
-                    {
-                        targets: [4, 5, 6],
-                        className: 'dt-body-center'			
-                    }
+                    { targets: 0, className: 'dt-body-center number' },
+                    { targets: 1, className: 'dt-body-center', width: "64px" },
+                    { targets: 2, className: 'dt-body-left creator-column' },
+                    { targets: [4,5,6,7,8,9,10], className: 'dt-body-center' }
                 ],
-                deferRender: true
+                deferRender: true,
+                dom: '<"table-controls-wrapper"lBf>rtip',
+                lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]], // Length menu options
+                buttons: [
+                    {
+                        extend: 'colvisGroup',
+                        text: 'Total Stats',
+                        show: [0,1,2,3,4,5,10],
+                        hide: [6,7,8,9]
+                    },
+                    {
+                        extend: 'colvisGroup',
+                        text: 'Monthly Stats',
+                        show: [0,1,2,3,6,7,10],
+                        hide: [4,5,8,9]
+                    },
+                    {
+                        extend: 'colvisGroup',
+                        text: 'Weekly Stats',
+                        show: [0,1,2,3,8,9,10],
+                        hide: [4,5,6,7]
+                    },
+                ]
             });
 
             table.on('draw.dt', function () {
