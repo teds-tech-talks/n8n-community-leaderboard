@@ -102,3 +102,28 @@ $header-bg-color-secondary: #6e72e0;
 .external-link:hover {
     text-decoration: none;
 }
+
+
+    .table-controls-wrapper {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5em;
+    }
+    .table-controls-wrapper .dt-length {
+        margin-right: 20px; /* Space between length menu and buttons */
+        margin-bottom: 0em;
+    }
+    .table-controls-wrapper .dt-buttons {
+        display: flex; /* Make buttons flex container */
+    }
+    .table-controls-wrapper .dt-buttons .dt-button {
+        margin-right: 5px; /* Space between buttons */
+        margin-bottom: 0em;
+    }
+
+    .table-controls-wrapper .dt-search {
+        margin-left: auto; /* Push search to the right */
+    }
+    .table-controls-wrapper .dt-search input {
+        margin-left: 0.5em; /* Add some space before the input */
+    }

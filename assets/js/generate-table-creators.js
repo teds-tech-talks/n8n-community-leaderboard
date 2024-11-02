@@ -35,6 +35,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     item.user.name,
                     item.sum_unique_visitors,
 					item.sum_unique_inserters,
+                    item.sum_unique_monthly_visitors,
+                    item.sum_unique_monthly_inserters,
+                    item.sum_unique_weekly_visitors,
+                    item.sum_unique_weekly_inserters,
                     item.unique_count_template_url,
                     item.min_earliest_wf.split('T')[0]
                 ];
@@ -47,8 +51,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     { title: "", orderable: false, searchable: false },
                     { title: "Creator" },
                     { title: "Name" },
-                    { title: "Unique<br/>Views" },
-					{ title: "Unique<br/>Inserters" },
+                    { title: "Total<br/>Views" },
+                    { title: "Total<br/>Inserters" },
+                    { title: "Monthly<br/>Views", visible: false },
+                    { title: "Monthly<br/>Inserters", visible: false },
+                    { title: "Weekly<br/>Views", visible: false },
+                    { title: "Weekly<br/>Inserters", visible: false },
                     { title: "Template<br/>count" },
                     { title: "Earliest<br/>Workflow" }
                 ],
@@ -57,37 +65,36 @@ document.addEventListener('DOMContentLoaded', function() {
 				bFilter: false,
                 responsive: true,
                 columnDefs: [
-                    {
-                        targets: 0,
-                        className: 'dt-body-center number'			
-                    },
-                    {
-                        targets: 1,
-                        className: 'dt-body-center',
-						width: "64px"
-                    },
-                    {
-                        targets: 2,
-						className: 'dt-body-left creator-column'
-                    },
-                    {
-                        targets: 4,
-                        className: 'dt-body-center'			
-                    },
-                    {
-                        targets: 5,
-                        className: 'dt-body-center'			
-                    },
-                    {
-                        targets: 6,
-                        className: 'dt-body-center'			
-                    },
-                    {
-                        targets: 7,
-                        className: 'dt-body-center'			
-                    }
+                    { targets: 0, className: 'dt-body-center number' },
+                    { targets: 1, className: 'dt-body-center', width: "64px" },
+                    { targets: 2, className: 'dt-body-left creator-column' },
+                    { targets: [4,5,6,7,8,9,10], className: 'dt-body-center' },
+                    { targets: 11, className: 'dt-body-center' }
                 ],
-                deferRender: true
+                deferRender: true,
+                dom: '<"table-controls-wrapper"lB>frtip',
+                lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]], // Length menu options
+                buttons: [
+                    {
+                        extend: 'colvisGroup',
+                        text: 'Total Stats',
+                        show: [0,1,2,3,4,5,10,11],
+                        hide: [6,7,8,9]
+                    },
+                    {
+                        extend: 'colvisGroup',
+                        text: 'Monthly Stats',
+                        show: [0,1,2,3,6,7,10,11],
+                        hide: [4,5,8,9]
+                    },
+                    {
+                        extend: 'colvisGroup',
+                        text: 'Weekly Stats',
+                        show: [0,1,2,3,8,9,10,11],
+                        hide: [4,5,6,7]
+                    },
+                ]
+				
 				/*,
                 drawCallback: function(settings) {
                     this.api().column(0, {search:'applied', order:'applied'}).nodes().each(function(cell, i) {
