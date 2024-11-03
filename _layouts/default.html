@@ -21,11 +21,11 @@
 	    <a href="{{ site.baseurl }}/" class="btn">🏠</a>
       {% if site.custom_buttons %}
         {% for button in site.custom_buttons %}
-          <a href="{{ button.url }}" class="btn">{{ button.text }}</a>
+          <a href="{{ button.url }}" class="btn" data-umami-event="Custom button">{{ button.text }}</a>
         {% endfor %}
       {% endif %}
       {% if site.github.is_project_page %}
-        <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
+        <a href="{{ site.github.repository_url }}" class="btn" data-umami-event="View on GitHub">View on GitHub</a>
       {% endif %}
       {% if site.show_downloads %}
         <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
