@@ -23,3 +23,6 @@ Thumbs.db
 /lib/bundler/man/
 
 ssa
+
+# Ignore backup files and directory
+backup/
