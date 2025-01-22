@@ -1,4 +1,10 @@
-document.addEventListener('DOMContentLoaded', function() {
+// Wait for both DOM and chart.xkcd to be ready
+function initChart() {
+    if (typeof chartXkcd === 'undefined') {
+        setTimeout(initChart, 100);
+        return;
+    }
+
     // Get modal elements
     const modal = document.getElementById('chartModal');
     const btn = document.getElementById('showChartBtn');
@@ -83,4 +89,6 @@ document.addEventListener('DOMContentLoaded', function() {
     toggle.addEventListener('change', function() {
         updateChart(this.checked);
     });
-});
+}
+
+document.addEventListener('DOMContentLoaded', initChart);
