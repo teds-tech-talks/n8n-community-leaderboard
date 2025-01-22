@@ -102,6 +102,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         show: [0,1,2,3,4,9,10,11],
                         hide: [5,6,7,8]
                     },
+                    {
+                        text: '📊',
+                        titleAttr: 'View growth comparison chart',
+                        action: function () {
+                            document.getElementById('chartModal').style.display = 'block';
+                            document.getElementById('dayCountToggle').checked = false;
+                            document.querySelector('.line-chart').innerHTML = '';
+                            initChart();
+                        }
+                    }
                 ]
             });
 

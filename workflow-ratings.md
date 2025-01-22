@@ -38,9 +38,6 @@ permalink: /workflows/
             <th>Weekly Unique Views</th>
             <th>Weekly Unique Inserters</th>
             <th>Creation Date</th>
-            <th>
-                <button id="showChartBtn" class="btn btn-primary" title="View growth comparison chart">📊</button>
-            </th>
         </tr>
     </thead>
     <tbody>
