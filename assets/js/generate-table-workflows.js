@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     creatorLink += `<a href="${item.user.links[0]}" class="external-link" target="_blank">🌐</a>`;
                 }
                 return [
+                    null, // For checkbox column
                     "",
                     `<img src="${item.user.avatar}" alt="${item.user.username}" class="user-avatar" width="128">`,
                     creatorLink,
@@ -47,6 +48,10 @@ document.addEventListener('DOMContentLoaded', function() {
             let table = $('#stats-table').DataTable({
                 data: tableData,
                 columns: [
+                    {
+                        data: null,
+                        render: DataTable.render.select()
+                    },
                     { title: "", searchable: false, orderable: false },
                     { title: "", orderable: false, searchable: false },
                     { title: "Creator" },
@@ -59,16 +64,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     { title: "Weekly<br/>Inserters", visible: false },
                     { title: "Creation Date" }
                 ],
-                order: [[4, 'desc']],
+                order: [[5, 'desc']],
                 pageLength: 50,
 				bFilter: true,
                 responsive: true,
                 columnDefs: [
-                    { targets: 0, className: 'dt-body-center number' },
-                    { targets: 1, className: 'dt-body-center', width: "64px" },
-                    { targets: 2, className: 'dt-body-left creator-column' },
-                    { targets: [4,5,6,7,8,9,10], className: 'dt-body-center' }
+                    { targets: 0, className: 'dt-body-center' },
+                    { targets: 1, className: 'dt-body-center number' },
+                    { targets: 2, className: 'dt-body-center', width: "64px" },
+                    { targets: 3, className: 'dt-body-left creator-column' },
+                    { targets: [5,6,7,8,9,10,11], className: 'dt-body-center' }
                 ],
+                select: {
+                    style: 'multi',
+                    selector: 'td:first-child',
+                    headerCheckbox: ''
+                },
                 deferRender: true,
                 dom: '<"table-controls-wrapper"lBf>rtip',
                 lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]], // Length menu options
@@ -76,27 +87,27 @@ document.addEventListener('DOMContentLoaded', function() {
                     {
                         extend: 'colvisGroup',
                         text: 'Total Stats',
-                        show: [0,1,2,3,4,5,10],
-                        hide: [6,7,8,9]
+                        show: [0,1,2,3,4,5,6,11],
+                        hide: [7,8,9,10]
                     },
                     {
                         extend: 'colvisGroup',
                         text: 'Monthly Stats',
-                        show: [0,1,2,3,6,7,10],
-                        hide: [4,5,8,9]
+                        show: [0,1,2,3,4,7,8,11],
+                        hide: [5,6,9,10]
                     },
                     {
                         extend: 'colvisGroup',
                         text: 'Weekly Stats',
-                        show: [0,1,2,3,8,9,10],
-                        hide: [4,5,6,7]
+                        show: [0,1,2,3,4,9,10,11],
+                        hide: [5,6,7,8]
                     },
                 ]
             });
 
             table.on('draw.dt', function () {
                 var pageInfo = table.page.info();
-                table.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                table.column(1, { page: 'current' }).nodes().each(function (cell, i) {
                     cell.innerHTML = i + 1 + pageInfo.start;
                 });
             });
