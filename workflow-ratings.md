@@ -16,7 +16,14 @@ permalink: /workflows/
 <div id="chartModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <div id="chart-container"></div>
+        <div id="chart-container">
+            <svg class="line-chart"></svg>
+            <div class="toggle-container">
+                <label>
+                    <input type="checkbox" id="dayCountToggle"> Show Aligned Growth
+                </label>
+            </div>
+        </div>
     </div>
 </div>
 
