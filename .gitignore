@@ -26,3 +26,9 @@ ssa
 
 # Ignore backup files and directory
 backup/
+
+# Aider files
+.aider*
+.aider.chat.history.md
+.aider.input.history
+.aider.tags.cache.v3/
