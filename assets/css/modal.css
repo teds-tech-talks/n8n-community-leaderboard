@@ -52,7 +52,14 @@
 }
 
 #showChartBtn {
-    margin: 10px 0;
-    padding: 5px 15px;
+    padding: 5px 10px;
     cursor: pointer;
+    border: none;
+    background: transparent;
+    font-size: 1.2em;
+}
+
+#showChartBtn:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s;
 }

@@ -8,9 +8,6 @@ permalink: /workflows/
 
 <p id="last-updated" class="text-muted"></p>
 
-<div id="table-controls">
-    <button id="showChartBtn" class="btn btn-primary">📊 Show Chart</button>
-</div>
 
 <!-- Modal for the chart -->
 <div id="chartModal" class="modal">
@@ -41,6 +38,9 @@ permalink: /workflows/
             <th>Weekly Unique Views</th>
             <th>Weekly Unique Inserters</th>
             <th>Creation Date</th>
+            <th>
+                <button id="showChartBtn" class="btn btn-primary" title="View growth comparison chart">📊</button>
+            </th>
         </tr>
     </thead>
     <tbody>
