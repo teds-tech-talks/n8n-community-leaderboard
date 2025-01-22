@@ -48,5 +48,6 @@ permalink: /workflows/
 </table>
 
 <link rel="stylesheet" href="{{ '/assets/css/modal.css' | relative_url }}">
+<script src="https://cdn.jsdelivr.net/npm/chart.xkcd@1.1.13/dist/chart.xkcd.min.js"></script>
 <script src="{{ '/assets/js/generate-table-workflows.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/workflow-chart.js' | relative_url }}"></script>
