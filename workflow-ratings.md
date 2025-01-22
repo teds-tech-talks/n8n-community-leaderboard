@@ -8,7 +8,18 @@ permalink: /workflows/
 
 <p id="last-updated" class="text-muted"></p>
 
-<div id="table-controls"></div>
+<div id="table-controls">
+    <button id="showChartBtn" class="btn btn-primary">📊 Show Chart</button>
+</div>
+
+<!-- Modal for the chart -->
+<div id="chartModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="chart-container"></div>
+    </div>
+</div>
+
 <table id="stats-table" class="display compact">
     <thead>
         <tr>
@@ -29,4 +40,6 @@ permalink: /workflows/
     </tbody>
 </table>
 
+<link rel="stylesheet" href="{{ '/assets/css/modal.css' | relative_url }}">
 <script src="{{ '/assets/js/generate-table-workflows.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/workflow-chart.js' | relative_url }}"></script>
