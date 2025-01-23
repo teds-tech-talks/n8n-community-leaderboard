@@ -100,6 +100,17 @@ function initChart() {
     toggle.addEventListener('change', async function() {
         await window.updateChart(this.checked);
     });
+
+    // Add resize handler with debounce
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(async function() {
+            if (modal.style.display === 'block') {  // Only redraw if modal is visible
+                await window.updateChart(toggle.checked);
+            }
+        }, 250);  // Wait 250ms after resize ends before redrawing
+    });
 }
 
 document.addEventListener('DOMContentLoaded', initChart);
