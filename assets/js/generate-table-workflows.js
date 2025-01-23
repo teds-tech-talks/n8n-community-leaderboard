@@ -50,7 +50,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 columns: [
                     {
                         data: null,
+<<<<<<< Updated upstream
                         render: DataTable.render.select()
+=======
+                        render: DataTable.render.select(),
+						searchable: false,
+						orderable: true
+>>>>>>> Stashed changes
                     },
                     { title: "", searchable: false, orderable: false },
                     { title: "", orderable: false, searchable: false },
