@@ -57,7 +57,7 @@ function initChart() {
                 legendPosition: chartXkcd.config.positionType.upLeft,
                 showLine: true,
                 dotSize: 0.5,
-                timeFormat: useAlignedGrowth ? undefined : 'YYYY-MM',
+                timeFormat: useAlignedGrowth ? undefined : 'YYYY-MM-DD',
                 strokeColor: '#333',
                 backgroundColor: '#fff',
                 showLegend: true,
