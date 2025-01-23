@@ -16,7 +16,7 @@ function initChart() {
     // Fetch historic data
     async function fetchHistoricData() {
         if (historicData === null) {
-            const response = await fetch('/n8n-community-leaderboard/stats_historic.json');
+            const response = await fetch('/n8n-community-leaderboard/stats_aggregate_chart.json');
             historicData = await response.json();
         }
         return historicData;
@@ -77,27 +77,6 @@ function initChart() {
         });
     }
 
-    function updateChart(useAlignedGrowth) {
-        const chartData = useAlignedGrowth ? alignedDayCount(dateData) : dateData;
-        svg.innerHTML = ''; // Clear previous chart
-        
-        new chartXkcd.XY(svg, {
-            title: 'Workflow Growth Comparison',
-            xLabel: useAlignedGrowth ? 'Days Since Start' : 'Date',
-            yLabel: useAlignedGrowth ? 'Views Gained' : 'Total Views',
-            data: {
-                datasets: chartData
-            },
-            options: {
-                xTickCount: 5,
-                yTickCount: 5,
-                legendPosition: chartXkcd.config.positionType.upLeft,
-                showLine: true,
-                dotSize: 0.5,
-                timeFormat: useAlignedGrowth ? undefined : 'MM-YYYY',
-            }
-        });
-    }
 
 
     // Close button handler
@@ -113,8 +92,8 @@ function initChart() {
     }
 
     // Toggle handler
-    toggle.addEventListener('change', function() {
-        updateChart(this.checked);
+    toggle.addEventListener('change', async function() {
+        await window.updateChart(this.checked);
     });
 }
 
