@@ -24,9 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             let tableData = data.map(item => {
-                let creatorLink = `<a href="https://n8n.io/creators/${item.user.username}" class="creator-link" target="_blank" data-umami-event="creator" data-umami-event-username="${item.user.username}">${item.user.username}</a>`;
+                let creatorLink = `<a href="https://n8n.io/creators/${item.user.username}" class="creator-link" target="_blank" data-umami-event-creator="profile">${item.user.username}</a>`;
                 if (item?.user?.links[0]) {
-                    creatorLink += `<a href="${item.user.links[0]}" class="external-link" target="_blank" data-umami-event="creator" data-umami-event-username="${item.user.username}">🌐</a>`;
+                    creatorLink += `<a href="${item.user.links[0]}" class="external-link" target="_blank" data-umami-event-creator="external">🌐</a>`;
                 }
                 return [
                     null, // For checkbox column
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     `<img src="${item.user.avatar}" alt="${item.user.username}" class="user-avatar" width="128">`,
                     creatorLink,
                     //item.wf_detais.id,
-                    `<a href="${item.template_url}" target="_blank" data-umami-event="workflow" data-umami-event-id="${item.wf_detais.id}">${item.wf_detais.name}</a>`,
+                    `<a href="${item.template_url}" target="_blank" data-umami-event-workflow="view">${item.wf_detais.name}</a>`,
                     item.unique_visitors || 0,
                     item.unique_inserters || 0,
                     item.unique_monthly_visitors || 0,
@@ -92,8 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         show: [0,1,2,3,4,5,6,11],
                         hide: [7,8,9,10],
                         attr: {
-                            'data-umami-event': 'table',
-                            'data-umami-event-view': 'total'
+                            'data-umami-event-table': 'total'
                         }
                     },
                     {
@@ -102,8 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         show: [0,1,2,3,4,7,8,11],
                         hide: [5,6,9,10],
                         attr: {
-                            'data-umami-event': 'table',
-                            'data-umami-event-view': 'monthly'
+                            'data-umami-event-table': 'monthly'
                         }
                     },
                     {
@@ -112,8 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         show: [0,1,2,3,4,9,10,11],
                         hide: [5,6,7,8],
                         attr: {
-                            'data-umami-event': 'table',
-                            'data-umami-event-view': 'weekly'
+                            'data-umami-event-table': 'weekly'
                         }
                     },
                     {
@@ -127,8 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             await window.updateChart(false);
                         },
                         attr: {
-                            'data-umami-event': 'chart',
-                            'data-umami-event-action': 'open'
+                            'data-umami-event-chart': 'open'
                         }
                     }
                 ]
