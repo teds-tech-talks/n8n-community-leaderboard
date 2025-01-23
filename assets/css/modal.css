@@ -63,3 +63,12 @@
     transform: scale(1.1);
     transition: transform 0.2s;
 }
+
+.chart-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+}
+
+.chart-btn.disabled:hover {
+    transform: none !important;
+}

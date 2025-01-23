@@ -105,6 +105,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     {
                         text: '📊',
                         titleAttr: 'View growth comparison chart',
+                        className: 'chart-btn disabled',
+                        enabled: false,
                         action: function () {
                             document.getElementById('chartModal').style.display = 'block';
                             document.getElementById('dayCountToggle').checked = false;
@@ -119,6 +121,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 table.column(1, { page: 'current' }).nodes().each(function (cell, i) {
                     cell.innerHTML = i + 1 + pageInfo.start;
                 });
+            });
+
+            // Handle selection changes
+            table.on('select deselect', function () {
+                const selectedRows = table.rows({ selected: true }).count();
+                const chartBtn = document.querySelector('.chart-btn');
+                if (selectedRows > 0) {
+                    chartBtn.classList.remove('disabled');
+                    table.button('.chart-btn').enable();
+                } else {
+                    chartBtn.classList.add('disabled');
+                    table.button('.chart-btn').disable();
+                }
             });
 
             table.draw();
