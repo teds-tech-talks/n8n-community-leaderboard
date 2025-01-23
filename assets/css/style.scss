@@ -131,12 +131,14 @@ $header-bg-color-secondary: #6e72e0;
     /* DataTables selection styling */
     table.dataTable.compact tbody tr.selected,
     table.dataTable.compact tbody tr.selected > td {
-        background-color: rgba(250, 225, 102, 0.2) !important; /* Corporate yellow with opacity */
+        background-color: rgba(250, 225, 102, 0.35) !important; /* Corporate yellow with increased opacity */
         box-shadow: none !important;
+        color: #000 !important;
     }
 
     table.dataTable.compact tbody tr.selected:hover,
     table.dataTable.compact tbody tr.selected:hover > td {
-        background-color: rgba(250, 225, 102, 0.3) !important; /* Slightly darker on hover */
+        background-color: rgba(250, 225, 102, 0.45) !important; /* Slightly darker on hover */
         box-shadow: none !important;
+        color: #000 !important;
     }
