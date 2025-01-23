@@ -54,9 +54,9 @@ function initChart() {
             options: {
                 xTickCount: 6,
                 yTickCount: 6,
-                legendPosition: chartXkcd.config.positionType.upRight,
+                legendPosition: chartXkcd.config.positionType.upLeft,
                 showLine: true,
-                dotSize: 0.8,
+                dotSize: 0.5,
                 timeFormat: useAlignedGrowth ? undefined : 'YYYY-MM',
                 strokeColor: '#333',
                 backgroundColor: '#fff',
