@@ -52,14 +52,17 @@ function initChart() {
                 datasets: chartData
             },
             options: {
-                xTickCount: 5,
-                yTickCount: 5,
-                legendPosition: chartXkcd.config.positionType.upLeft,
+                xTickCount: 6,
+                yTickCount: 6,
+                legendPosition: chartXkcd.config.positionType.upRight,
                 showLine: true,
-                dotSize: 0.5,
-                timeFormat: useAlignedGrowth ? undefined : 'MM-YYYY',
-                responsive: true,
-                aspectRatio: 16/9
+                dotSize: 0.8,
+                timeFormat: useAlignedGrowth ? undefined : 'YYYY-MM',
+                strokeColor: '#333',
+                backgroundColor: '#fff',
+                showLegend: true,
+                unxkcdify: false,
+                fontFamily: 'xkcd'
             }
         });
     };
