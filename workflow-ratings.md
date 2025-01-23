@@ -8,7 +8,22 @@ permalink: /workflows/
 
 <p id="last-updated" class="text-muted"></p>
 
-<div id="table-controls"></div>
+
+<!-- Modal for the chart -->
+<div id="chartModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="chart-container">
+            <svg class="line-chart"></svg>
+            <div class="toggle-container">
+                <label>
+                    <input type="checkbox" id="dayCountToggle"> Show Aligned Growth
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
 <table id="stats-table" class="display compact">
     <thead>
         <tr>
@@ -29,4 +44,7 @@ permalink: /workflows/
     </tbody>
 </table>
 
+<link rel="stylesheet" href="{{ '/assets/css/modal.css' | relative_url }}">
+<script src="https://cdn.jsdelivr.net/npm/chart.xkcd@1.1.13/dist/chart.xkcd.min.js"></script>
 <script src="{{ '/assets/js/generate-table-workflows.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/workflow-chart.js' | relative_url }}"></script>

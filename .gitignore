@@ -22,7 +22,5 @@ Thumbs.db
 /vendor/bundle
 /lib/bundler/man/
 
-ssa
+.aider*
 
-# Ignore backup files and directory
-backup/
