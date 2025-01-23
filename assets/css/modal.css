@@ -11,18 +11,17 @@
 
 .modal-content {
     background-color: #fefefe;
-    margin: 5vh auto;
+    margin: 3vh auto;
     padding: 25px;
     border: 1px solid #888;
-    border-radius: 8px;
-    width: 90%;
+    border-radius: 12px;
+    width: min(90vw, calc(95vh * 4/3));  /* maintain 4:3 ratio, max 90% of viewport width */
     max-width: 1200px;
     min-width: 320px;
     height: auto;
-    max-height: 80vh;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .close {
@@ -31,6 +30,7 @@
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .close:hover,
@@ -46,12 +46,14 @@
     align-items: center;
     width: 100%;
     position: relative;
-    padding: 10px 0 40px 0;
+    aspect-ratio: 4/3;
+    padding: 0;
+    margin-bottom: 20px;
 }
 
 .toggle-container {
     position: relative;
-    margin: 20px 0 0 0;
+    margin: 0;
     padding: 8px 16px;
     background: #f5f5f5;
     border-radius: 4px;
@@ -60,9 +62,7 @@
 
 .line-chart {
     width: 100%;
-    height: calc(70vh - 150px);
-    min-height: 400px;
-    max-height: 600px;
+    height: 100%;
 }
 
 #showChartBtn {
