@@ -7,10 +7,32 @@ function initChart() {
 
     // Get modal elements
     const modal = document.getElementById('chartModal');
-    const btn = document.getElementById('showChartBtn');
     const span = document.getElementsByClassName('close')[0];
     const svg = document.querySelector('.line-chart');
     const toggle = document.getElementById('dayCountToggle');
+
+    // Make updateChart function globally available
+    window.updateChart = function(useAlignedGrowth) {
+        const chartData = useAlignedGrowth ? alignedDayCount(dateData) : dateData;
+        svg.innerHTML = ''; // Clear previous chart
+        
+        new chartXkcd.XY(svg, {
+            title: 'Workflow Growth Comparison',
+            xLabel: useAlignedGrowth ? 'Days Since Start' : 'Date',
+            yLabel: useAlignedGrowth ? 'Views Gained' : 'Total Views',
+            data: {
+                datasets: chartData
+            },
+            options: {
+                xTickCount: 5,
+                yTickCount: 5,
+                legendPosition: chartXkcd.config.positionType.upLeft,
+                showLine: true,
+                dotSize: 0.5,
+                timeFormat: useAlignedGrowth ? undefined : 'MM-YYYY',
+            }
+        });
+    };
 
     // Sample data - we'll replace this with real data later
     const dateData = [{
@@ -67,11 +89,6 @@ function initChart() {
         });
     }
 
-    // Button click handler
-    btn.onclick = function() {
-        modal.style.display = 'block';
-        updateChart(toggle.checked);
-    }
 
     // Close button handler
     span.onclick = function() {

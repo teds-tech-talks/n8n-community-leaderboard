@@ -108,8 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         action: function () {
                             document.getElementById('chartModal').style.display = 'block';
                             document.getElementById('dayCountToggle').checked = false;
-                            document.querySelector('.line-chart').innerHTML = '';
-                            initChart();
+                            window.updateChart(false);
                         }
                     }
                 ]
