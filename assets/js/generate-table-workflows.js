@@ -107,10 +107,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         titleAttr: 'View growth comparison chart',
                         className: 'chart-btn disabled',
                         enabled: false,
-                        action: function () {
+                        action: async function () {
                             document.getElementById('chartModal').style.display = 'block';
                             document.getElementById('dayCountToggle').checked = false;
-                            window.updateChart(false);
+                            await window.updateChart(false);
                         }
                     }
                 ]

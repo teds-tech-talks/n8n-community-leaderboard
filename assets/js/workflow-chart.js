@@ -11,9 +11,37 @@ function initChart() {
     const svg = document.querySelector('.line-chart');
     const toggle = document.getElementById('dayCountToggle');
 
+    let historicData = null;
+
+    // Fetch historic data
+    async function fetchHistoricData() {
+        if (historicData === null) {
+            const response = await fetch('/n8n-community-leaderboard/stats_historic.json');
+            historicData = await response.json();
+        }
+        return historicData;
+    }
+
     // Make updateChart function globally available
-    window.updateChart = function(useAlignedGrowth) {
-        const chartData = useAlignedGrowth ? alignedDayCount(dateData) : dateData;
+    window.updateChart = async function(useAlignedGrowth) {
+        const historic = await fetchHistoricData();
+        const table = $('#stats-table').DataTable();
+        const selectedRows = table.rows({ selected: true }).data();
+        
+        // Get selected workflow data
+        const selectedData = [];
+        selectedRows.each(function(row) {
+            const workflowName = row[4].match(/>([^<]+)</)[1]; // Extract name from anchor tag
+            const matchingData = historic.find(h => h.wf_name === workflowName);
+            if (matchingData) {
+                selectedData.push({
+                    label: matchingData.label,
+                    data: matchingData.data
+                });
+            }
+        });
+
+        const chartData = useAlignedGrowth ? alignedDayCount(selectedData) : selectedData;
         svg.innerHTML = ''; // Clear previous chart
         
         new chartXkcd.XY(svg, {
@@ -34,24 +62,6 @@ function initChart() {
         });
     };
 
-    // Sample data - we'll replace this with real data later
-    const dateData = [{
-        label: 'Popular Workflow',
-        data: [
-            { x: '2023-01-01', y: 10 },
-            { x: '2023-02-01', y: 50 },
-            { x: '2023-03-01', y: 100 },
-            { x: '2023-04-01', y: 200 },
-            { x: '2023-05-01', y: 350 },
-        ],
-    }, {
-        label: 'New Workflow',
-        data: [
-            { x: '2023-03-01', y: 0 },
-            { x: '2023-04-01', y: 100 },
-            { x: '2023-05-01', y: 500 },
-        ],
-    }];
 
     function alignedDayCount(datasets) {
         return datasets.map(dataset => {
