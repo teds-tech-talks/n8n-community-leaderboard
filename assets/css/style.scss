@@ -130,13 +130,9 @@ $header-bg-color-secondary: #6e72e0;
 
     /* DataTables selection styling */
     table.dataTable tbody tr.selected {
-        background-color: rgba(110, 114, 224, 0.1) !important; /* Using #6e72e0 with opacity */
-    }
-
-    table.dataTable tbody tr.selected td {
-        color: #484C99 !important; /* Darker shade of the header color */
+        background-color: rgba(250, 225, 102, 0.2) !important; /* Corporate yellow with opacity */
     }
 
     table.dataTable tbody tr.selected:hover {
-        background-color: rgba(110, 114, 224, 0.2) !important;
+        background-color: rgba(250, 225, 102, 0.3) !important; /* Slightly darker on hover */
     }
