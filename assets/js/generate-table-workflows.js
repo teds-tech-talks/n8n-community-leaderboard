@@ -49,9 +49,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 data: tableData,
                 columns: [
                     {
-                        data: null,
-<<<<<<< Updated upstream
-                        render: DataTable.render.select()
+                        render: DataTable.render.select(),
+						searchable: false,
+						orderable: true
+>>>>>>> Stashed changes
 =======
                         render: DataTable.render.select(),
 						searchable: false,

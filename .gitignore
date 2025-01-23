@@ -25,14 +25,8 @@ Thumbs.db
 ssa
 
 # Ignore backup files and directory
-backup/
-<<<<<<< Updated upstream
-
-# Aider files
 .aider*
-.aider.chat.history.md
-.aider.input.history
-.aider.tags.cache.v3/
+>>>>>>> Stashed changes
 =======
 .aider*
 >>>>>>> Stashed changes
