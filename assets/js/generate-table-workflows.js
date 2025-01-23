@@ -24,9 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             let tableData = data.map(item => {
-                let creatorLink = `<a href="https://n8n.io/creators/${item.user.username}" class="creator-link" target="_blank">${item.user.username}</a>`;
+                let creatorLink = `<a href="https://n8n.io/creators/${item.user.username}" class="creator-link" target="_blank" data-umami-event="Creator Profile Click" data-umami-event-creator="${item.user.username}">${item.user.username}</a>`;
                 if (item?.user?.links[0]) {
-                    creatorLink += `<a href="${item.user.links[0]}" class="external-link" target="_blank">🌐</a>`;
+                    creatorLink += `<a href="${item.user.links[0]}" class="external-link" target="_blank" data-umami-event="Creator External Link Click" data-umami-event-creator="${item.user.username}">🌐</a>`;
                 }
                 return [
                     null, // For checkbox column
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     `<img src="${item.user.avatar}" alt="${item.user.username}" class="user-avatar" width="128">`,
                     creatorLink,
                     //item.wf_detais.id,
-                    `<a href="${item.template_url}" target="_blank">${item.wf_detais.name}</a>`,
+                    `<a href="${item.template_url}" target="_blank" data-umami-event="Workflow Click" data-umami-event-workflow="${item.wf_detais.name}">${item.wf_detais.name}</a>`,
                     item.unique_visitors || 0,
                     item.unique_inserters || 0,
                     item.unique_monthly_visitors || 0,
@@ -90,19 +90,28 @@ document.addEventListener('DOMContentLoaded', function() {
                         extend: 'colvisGroup',
                         text: 'Total Stats',
                         show: [0,1,2,3,4,5,6,11],
-                        hide: [7,8,9,10]
+                        hide: [7,8,9,10],
+                        attr: {
+                            'data-umami-event': 'View Total Stats'
+                        }
                     },
                     {
                         extend: 'colvisGroup',
                         text: 'Monthly Stats',
                         show: [0,1,2,3,4,7,8,11],
-                        hide: [5,6,9,10]
+                        hide: [5,6,9,10],
+                        attr: {
+                            'data-umami-event': 'View Monthly Stats'
+                        }
                     },
                     {
                         extend: 'colvisGroup',
                         text: 'Weekly Stats',
                         show: [0,1,2,3,4,9,10,11],
-                        hide: [5,6,7,8]
+                        hide: [5,6,7,8],
+                        attr: {
+                            'data-umami-event': 'View Weekly Stats'
+                        }
                     },
                     {
                         text: '📊',
@@ -113,6 +122,10 @@ document.addEventListener('DOMContentLoaded', function() {
                             document.getElementById('chartModal').style.display = 'block';
                             document.getElementById('dayCountToggle').checked = false;
                             await window.updateChart(false);
+                        },
+                        attr: {
+                            'data-umami-event': 'Open Growth Chart'
+                        }
                         }
                     }
                 ]
