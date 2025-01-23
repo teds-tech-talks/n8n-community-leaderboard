@@ -58,6 +58,8 @@ function initChart() {
                 showLine: true,
                 dotSize: 0.5,
                 timeFormat: useAlignedGrowth ? undefined : 'MM-YYYY',
+                responsive: true,
+                aspectRatio: 16/9
             }
         });
     };
