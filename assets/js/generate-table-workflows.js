@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     {
                         text: '📊',
-                        titleAttr: 'View growth comparison chart',
+                        titleAttr: 'Select 1-9 workflows to compare growth',
                         className: 'chart-btn disabled',
                         enabled: false,
                         action: async function () {
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
             table.on('select deselect', function () {
                 const selectedRows = table.rows({ selected: true }).count();
                 const chartBtn = document.querySelector('.chart-btn');
-                if (selectedRows > 0) {
+                if (selectedRows > 0 && selectedRows <= 9) {
                     chartBtn.classList.remove('disabled');
                     table.button('.chart-btn').enable();
                 } else {
