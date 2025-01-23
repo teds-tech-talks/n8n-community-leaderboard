@@ -129,10 +129,12 @@ $header-bg-color-secondary: #6e72e0;
     }
 
     /* DataTables selection styling */
-    table.dataTable tbody tr.selected {
+    table.dataTable tbody tr.selected,
+    table.dataTable tbody tr.selected td {
         background-color: rgba(250, 225, 102, 0.2) !important; /* Corporate yellow with opacity */
     }
 
-    table.dataTable tbody tr.selected:hover {
+    table.dataTable tbody tr.selected:hover,
+    table.dataTable tbody tr.selected:hover td {
         background-color: rgba(250, 225, 102, 0.3) !important; /* Slightly darker on hover */
     }
