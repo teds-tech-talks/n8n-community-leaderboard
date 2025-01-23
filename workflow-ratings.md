@@ -17,7 +17,7 @@ permalink: /workflows/
             <svg class="line-chart"></svg>
             <div class="toggle-container">
                 <label>
-                    <input type="checkbox" id="dayCountToggle"> Show Aligned Growth
+                    <input type="checkbox" id="dayCountToggle" data-umami-event="table_chart" data-umami-event-table="align"> Show Aligned Growth
                 </label>
             </div>
         </div>

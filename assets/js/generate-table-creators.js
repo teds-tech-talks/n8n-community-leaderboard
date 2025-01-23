@@ -24,9 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             let tableData = data.map(item => {
-                let creatorLink = `<a href="https://n8n.io/creators/${item.user.username}" class="creator-link" target="_blank">${item.user.username}</a>`;
+                let creatorLink = `<a href="https://n8n.io/creators/${item.user.username}" class="creator-link" target="_blank" data-umami-event="creator_profile" data-umami-event-creator="${item.user.username}">${item.user.username}</a>`;
                 if (item?.user?.links[0]) {
-                    creatorLink += `<a href="${item.user.links[0]}" class="external-link" target="_blank">🌐</a>`;
+                    creatorLink += `<a href="${item.user.links[0]}" class="external-link" target="_blank" data-umami-event="creator_external" data-umami-event-creator="${item.user.username}" data-umami-event-url="${item.user.links[0]}">🌐</a>`;
                 }
                 return [
                     "",
@@ -79,19 +79,31 @@ document.addEventListener('DOMContentLoaded', function() {
                         extend: 'colvisGroup',
                         text: 'Total Stats',
                         show: [0,1,2,3,4,5,10,11],
-                        hide: [6,7,8,9]
+                        hide: [6,7,8,9],
+                        attr: {
+                            'data-umami-event': 'table_button',
+                            'data-umami-event-table': 'total'
+                        }
                     },
                     {
                         extend: 'colvisGroup',
                         text: 'Monthly Stats',
                         show: [0,1,2,3,6,7,10,11],
-                        hide: [4,5,8,9]
+                        hide: [4,5,8,9],
+                        attr: {
+                            'data-umami-event': 'table_button',
+                            'data-umami-event-table': 'monthly'
+                        }
                     },
                     {
                         extend: 'colvisGroup',
                         text: 'Weekly Stats',
                         show: [0,1,2,3,8,9,10,11],
-                        hide: [4,5,6,7]
+                        hide: [4,5,6,7],
+                        attr: {
+                            'data-umami-event': 'table_button',
+                            'data-umami-event-table': 'weekly'
+                        }
                     },
                 ]
 				
