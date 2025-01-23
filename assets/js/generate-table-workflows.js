@@ -126,7 +126,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         attr: {
                             'data-umami-event': 'Open Growth Chart'
                         }
-                        }
                     }
                 ]
             });
