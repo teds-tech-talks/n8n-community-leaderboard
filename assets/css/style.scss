@@ -132,9 +132,11 @@ $header-bg-color-secondary: #6e72e0;
     table.dataTable.compact tbody tr.selected,
     table.dataTable.compact tbody tr.selected > td {
         background-color: rgba(250, 225, 102, 0.2) !important; /* Corporate yellow with opacity */
+        box-shadow: none !important;
     }
 
     table.dataTable.compact tbody tr.selected:hover,
     table.dataTable.compact tbody tr.selected:hover > td {
         background-color: rgba(250, 225, 102, 0.3) !important; /* Slightly darker on hover */
+        box-shadow: none !important;
     }
