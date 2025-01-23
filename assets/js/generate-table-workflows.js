@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         show: [0,1,2,3,4,5,6,11],
                         hide: [7,8,9,10],
                         attr: {
-                            'data-umami-event': 'table',
+                            'data-umami-event': 'table_button',
                             'data-umami-event-table': 'total'
                         }
                     },
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         show: [0,1,2,3,4,7,8,11],
                         hide: [5,6,9,10],
                         attr: {
-                            'data-umami-event': 'table',
+                            'data-umami-event': 'table_button',
                             'data-umami-event-table': 'monthly'
                         }
                     },
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         show: [0,1,2,3,4,9,10,11],
                         hide: [5,6,7,8],
                         attr: {
-                            'data-umami-event': 'table',
+                            'data-umami-event': 'table_button',
                             'data-umami-event-table': 'weekly'
                         }
                     },
@@ -127,8 +127,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             await window.updateChart(false);
                         },
                         attr: {
-                            'data-umami-event': 'table',
-                            'data-umami-event-table': 'chart'
+                            'data-umami-event': 'table_chart',
+                            'data-umami-event-table': 'open'
                         }
                     }
                 ]
