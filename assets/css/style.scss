@@ -31,6 +31,7 @@ $header-bg-color-secondary: #6e72e0;
 .page-header {
   background-color: $header-bg-color;
   background-image: linear-gradient(120deg, $header-bg-color, $header-bg-color-secondary);
+  padding-top: 2rem;  /* Reduce top padding */
 }
 
 .header-buttons-row {
@@ -41,8 +42,18 @@ $header-bg-color-secondary: #6e72e0;
   margin-top: 20px;
 }
 
+.header-buttons-row:last-child {
+  margin-bottom: 5px;  /* Reduce bottom margin of the second row */
+}
+
 .header-buttons-row .btn {
   margin: 0.5rem 0.5rem;
+}
+
+@media screen and (min-width: 64em) {
+  .page-header {
+    padding-bottom: 2rem;  /* Reduce bottom padding on wide screens */
+  }
 }
 
 .main-content h1 {
