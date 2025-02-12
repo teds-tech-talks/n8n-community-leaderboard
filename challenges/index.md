@@ -33,29 +33,32 @@ title: n8n Monthly Challenges
 // Load data once and use it for all functions
 let challengeData = null;
 
-async function loadData() {
-    try {
-        const response = await fetch('/n8n-community-leaderboard/challenges/challenge.json');
-        challengeData = await response.json();
-        
-        if (!challengeData) {
-            throw new Error('Invalid challenge data format');
-        }
-
-        await Promise.all([
-            loadChallengeData(),
-            loadCreatorsData(),
-            loadWorkflowsData()
-        ]);
-    } catch (error) {
-        console.error('Error loading data:', error);
+// Load all data when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    loadData().catch(error => {
+        console.error('Error in main data loading:', error);
         document.querySelector('h1.challenge-title').textContent = 'Challenge';
         document.getElementById('current-challenge').innerHTML = '<p>Error loading challenge data</p>';
-    }
-}
+    });
+});
 
-// Load all data when the page loads
-document.addEventListener('DOMContentLoaded', loadData);
+async function loadData() {
+    const response = await fetch('/n8n-community-leaderboard/challenges/challenge.json');
+    challengeData = await response.json();
+    
+    if (!challengeData || !challengeData.header_stats || !challengeData.header_stats.curmonth) {
+        throw new Error('Invalid challenge data format');
+    }
+
+    // Load challenge data first since it sets up the page structure
+    await loadChallengeData();
+    
+    // Then load the tables in parallel
+    await Promise.all([
+        loadCreatorsData(),
+        loadWorkflowsData()
+    ]);
+}
 
 async function loadCreatorsData() {
     try {
