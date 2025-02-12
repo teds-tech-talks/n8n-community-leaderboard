@@ -43,11 +43,15 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function loadData() {
-    console.log('Starting data load...');
+    //console.log('Starting data load...');
     const response = await fetch('/n8n-community-leaderboard/challenges/challenge.json');
-    console.log('Fetch response:', response.status, response.statusText);
-    challengeData = await response.json();
-    console.log('Parsed JSON data:', challengeData);
+    //console.log('Fetch response:', response.status, response.statusText);
+    const jsonData = await response.json();
+    //console.log('Parsed JSON data:', jsonData);
+    
+    // Handle both array and object formats
+    challengeData = Array.isArray(jsonData) ? jsonData[0] : jsonData;
+    //console.log('Challenge data to use:', challengeData);
     
     if (!challengeData) {
         console.error('challengeData is null or undefined');
@@ -63,7 +67,7 @@ async function loadData() {
     }
 
     // Load challenge data first since it sets up the page structure
-    console.log('Loading challenge data...');
+    //console.log('Loading challenge data...');
     await loadChallengeData();
     
     // Then load the tables in parallel
