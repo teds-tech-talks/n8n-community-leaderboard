@@ -4,6 +4,8 @@ title: n8n Monthly Challenges
 ---
 <link rel="stylesheet" href="{{ '/assets/css/challenge.css' | relative_url }}">
 
+<h1 class="challenge-title"></h1>
+
 <div id="current-challenge">
     <!-- Current challenge stats will be loaded here via JS -->
 </div>
@@ -46,6 +48,7 @@ async function loadChallengeData() {
 
         // Update page title
         document.querySelector('h1.project-name').textContent = `${monthName} ${year} Challenge`;
+        document.querySelector('h1.challenge-title').textContent = `${monthName} ${year} Challenge`;
 
         // Create current challenge section
         const currentChallenge = document.getElementById('current-challenge');
