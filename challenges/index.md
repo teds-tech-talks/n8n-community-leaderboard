@@ -87,9 +87,16 @@ async function loadCreatorsData() {
     }
 }
 
-// Load the creators data when the page loads
+// Load all data when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    loadCreatorsData();
+    // Initialize all data loading
+    Promise.all([
+        loadChallengeData(),
+        loadCreatorsData(),
+        loadWorkflowsData()
+    ]).catch(error => {
+        console.error('Error loading data:', error);
+    });
 });
 </script>
 
@@ -176,12 +183,6 @@ async function loadWorkflowsData() {
     }
 }
 
-// Add loadWorkflowsData to the DOMContentLoaded event listener
-document.addEventListener('DOMContentLoaded', () => {
-    loadChallengeData();
-    loadCreatorsData();
-    loadWorkflowsData();
-});
 </script>
 
 <h2>Past Challenges</h2>
@@ -262,6 +263,4 @@ async function loadChallengeData() {
     }
 }
 
-// Load the challenge data when the page loads
-document.addEventListener('DOMContentLoaded', loadChallengeData);
 </script>
