@@ -15,8 +15,8 @@ title: n8n Monthly Challenges
     <table id="creators-table" class="display compact">
         <thead>
             <tr>
-                <th class="number-column"></th> <!-- Index column -->
-                <th></th> <!-- Avatar column -->
+                <th class="number-column"></th>
+                <th></th>
                 <th>Username</th>
                 <th>Name</th>
                 <th>Templates</th>
@@ -77,8 +77,8 @@ async function loadCreatorsData() {
                 orderable: false,
                 targets: 0
             }],
-            dom: '<"table-controls-wrapper"lBf>rtip',
-            buttons: ['selectAll', 'selectNone']
+            dom: 'rt<"bottom"p>', // Only show table and pagination
+            searching: false // Disable search
         });
 
         // Add row numbers
