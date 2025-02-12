@@ -12,7 +12,22 @@ title: n8n Monthly Challenges
 
 <h2>Past Challenges</h2>
 <div id="past-challenges">
-    <!-- Past challenges will be loaded here via JS -->
+    <div class="challenge-stats">
+    {% assign challenge_dirs = site.pages | where_exp: "item", "item.path contains 'challenges/'" | where_exp: "item", "item.path contains '/index.md'" | sort: "path" | reverse %}
+    {% for page in challenge_dirs %}
+        {% assign path_parts = page.path | split: '/' %}
+        {% if path_parts.size == 3 %}
+            {% assign year_month = path_parts[1] | split: '-' %}
+            {% assign month_num = year_month[1] | plus: 0 %}
+            {% assign month_name = site.data.months[month_num] %}
+            {% assign year = year_month[0] %}
+            <a href="{{ site.baseurl }}/challenges/{{ path_parts[1] }}" class="stat-button">
+                <div class="stat-value">{{ month_name }}</div>
+                <div class="stat-label">{{ year }}</div>
+            </a>
+        {% endif %}
+    {% endfor %}
+    </div>
 </div>
 
 <script>
