@@ -38,7 +38,7 @@ async function loadData() {
         const response = await fetch('/n8n-community-leaderboard/challenges/challenge.json');
         challengeData = await response.json();
         
-        if (!challengeData || !challengeData.header_stats || !challengeData.header_stats.curmonth) {
+        if (!challengeData) {
             throw new Error('Invalid challenge data format');
         }
 
