@@ -42,3 +42,50 @@
     font-size: 1rem;
     opacity: 0.9;
 }
+
+/* Table styles */
+#creators-table {
+    border-collapse: collapse;
+}
+
+#creators-table thead th {
+    text-align: left;
+    background-color: #484C99;
+    color: #FCFCFD;
+    font-weight: bold;
+    padding: 10px;
+}
+
+#creators-table th, #creators-table td {
+    border: none;
+    border-bottom: 1px solid #E4E6EC;
+    padding: 3px 10px;
+}
+
+#creators-table th {
+    border-bottom: 1px solid #707183;
+}
+
+.creator-link {
+    text-decoration: none;
+    color: #6E72E0;
+}
+
+.creator-link:hover {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 0.2rem;
+}
+
+.user-avatar {
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.dt-body-center {
+    text-align: center;
+}
+
+.number-column {
+    width: 30px;
+}
