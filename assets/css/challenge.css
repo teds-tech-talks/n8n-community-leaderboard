@@ -123,3 +123,9 @@
 #workflows-table th {
     border-bottom: 1px solid #707183;
 }
+
+.dataTables_info {
+    padding-top: 0.85em;
+    font-size: 0.9em;
+    color: #666;
+}
