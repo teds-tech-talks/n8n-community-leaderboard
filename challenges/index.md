@@ -10,12 +10,12 @@ Welcome to our monthly community challenges! Here you'll find current and past c
 ## Past Challenges
 
 {% assign challenge_pages = site.pages | where_exp: "item", "item.path contains 'challenges'" | sort: 'path' | reverse %}
-{% for page in challenge_pages %}
-  {% if page.path contains '/index.md' and page.path != 'challenges/index.md' %}
-    {% assign folder_name = page.path | split: '/' | slice: 1 %}
-    {% assign year = folder_name[0] | split: '-' | first %}
-    {% assign month = folder_name[0] | split: '-' | last %}
-    {% assign month_name = site.data.months[month] | default: month %}
-    - [{{ month_name }} {{ year }}]({{ site.baseurl }}/{{ page.path | remove: 'index.md' }})
-  {% endif %}
-{% endfor %}
+{%- for page in challenge_pages -%}
+  {%- if page.path contains '/index.md' and page.path != 'challenges/index.md' -%}
+    {%- assign folder_name = page.path | split: '/' | slice: 1 -%}
+    {%- assign year = folder_name[0] | split: '-' | first -%}
+    {%- assign month = folder_name[0] | split: '-' | last -%}
+    {%- assign month_name = site.data.months[month] | default: month -%}
+* [{{ month_name }} {{ year }}]({{ site.baseurl }}/{{ page.path | remove: 'index.md' }})
+  {%- endif -%}
+{%- endfor -%}
