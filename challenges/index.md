@@ -49,7 +49,8 @@ async function loadCreatorsData() {
 
         const table = $('#creators-table').DataTable({
             data: tableData,
-            pageLength: 25,
+            pageLength: 10,
+            lengthMenu: [[10, 25, 50], [10, 25, 50]],
             order: [[6, 'desc']], // Sort by total inserts by default
             columns: [
                 { title: "", searchable: false, orderable: false },
@@ -66,7 +67,7 @@ async function loadCreatorsData() {
                 { targets: 2, className: 'dt-body-left creator-column' },
                 { targets: [4,5,6], className: 'dt-body-center' }
             ],
-            dom: 'rt<"bottom"p>',
+            dom: '<"table-controls-wrapper"l>rt<"bottom"p>',
             searching: false,
             responsive: true,
             deferRender: true
@@ -139,7 +140,8 @@ async function loadWorkflowsData() {
 
         const table = $('#workflows-table').DataTable({
             data: tableData,
-            pageLength: 10,
+            pageLength: 25,
+            lengthMenu: [[10, 25, 50], [10, 25, 50]],
             order: [[6, 'desc']], // Sort by inserts by default
             columns: [
                 { title: "", searchable: false, orderable: false },
@@ -158,7 +160,7 @@ async function loadWorkflowsData() {
                 { targets: 4, className: 'dt-body-center', width: "130px" },  // date column
                 { targets: [5,6], className: 'dt-body-center' }
             ],
-            dom: 'rt<"bottom"p>',
+            dom: '<"table-controls-wrapper"l>rt<"bottom"p>',
             searching: false,
             responsive: true,
             deferRender: true
