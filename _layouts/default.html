@@ -18,7 +18,9 @@
     <header class="page-header" role="banner">
       <h1 class="project-name">{{ site.title | default: site.github.repository_name }}</h1>
       <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
-	    <a href="{{ site.baseurl }}/" class="btn">🏠</a>
+	    <a href="{{ site.baseurl }}/" class="btn">🎨 Creators</a>
+	    <a href="{{ site.baseurl }}/n8n" class="btn">📊 Workflows</a>
+	    <a href="{{ site.baseurl }}/challenges" class="btn">🏆 Challenge</a>
       {% if site.custom_buttons %}
         {% for button in site.custom_buttons %}
           <a href="{{ button.url }}" class="btn" data-umami-event="Custom button">{{ button.text }}</a>
