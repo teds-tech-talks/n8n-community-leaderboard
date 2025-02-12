@@ -4,19 +4,80 @@ title: n8n Monthly Challenges
 ---
 <link rel="stylesheet" href="{{ '/assets/css/challenge.css' | relative_url }}">
 
-# n8n Monthly Challenges
+<h1 class="challenge-title">n8n Monthly Challenges</h1>
 
-Welcome to our monthly community challenges! Here you'll find current and past challenges that bring the n8n community together to create innovative workflows.
+<div id="current-challenge">
+    <!-- Current challenge stats will be loaded here via JS -->
+</div>
 
-## Past Challenges
+<h2>Past Challenges</h2>
+<div id="past-challenges">
+    <!-- Past challenges will be loaded here via JS -->
+</div>
 
-{% assign challenge_pages = site.pages | where_exp: "item", "item.path contains 'challenges'" | sort: 'path' | reverse %}
-{%- for page in challenge_pages -%}
-  {%- if page.path contains '/index.md' and page.path != 'challenges/index.md' -%}
-    {%- assign folder_name = page.path | split: '/' | slice: 1 -%}
-    {%- assign year = folder_name[0] | split: '-' | first -%}
-    {%- assign month = folder_name[0] | split: '-' | last -%}
-    {%- assign month_name = site.data.months[month] | default: month -%}
-* [{{ month_name }} {{ year }}]({{ site.baseurl }}/{{ page.path | remove: 'index.md' }})
-  {%- endif -%}
-{%- endfor -%}
+<script>
+async function loadChallengeData() {
+    try {
+        const response = await fetch('/n8n-community-leaderboard/challenges/challenge.json');
+        const data = await response.json();
+        
+        // Format the current month challenge
+        const curDate = new Date(data.header_stats.curmonth);
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"];
+        const monthName = monthNames[curDate.getMonth()];
+        const year = curDate.getFullYear();
+
+        // Create current challenge section
+        const currentChallenge = document.getElementById('current-challenge');
+        currentChallenge.innerHTML = `
+            <h2>${monthName} ${year} Challenge</h2>
+            <div class="countdown-container">
+                <p id="countdown" class="countdown"></p>
+            </div>
+            <div class="challenge-stats">
+                <div class="stat-button">
+                    <div class="stat-value">${data.header_stats.new_templates}</div>
+                    <div class="stat-label">New Templates</div>
+                </div>
+                <div class="stat-button">
+                    <div class="stat-value">${data.header_stats.active_creators}</div>
+                    <div class="stat-label">Active Creators</div>
+                </div>
+                <div class="stat-button">
+                    <div class="stat-value">${data.header_stats.total_inserts}</div>
+                    <div class="stat-label">Total Inserts</div>
+                </div>
+            </div>
+        `;
+
+        // Set up countdown
+        const lastDay = new Date(curDate.getFullYear(), curDate.getMonth() + 1, 0);
+        const countDownDate = new Date(lastDay.setHours(23, 59, 59)).getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("countdown").innerHTML = 
+                `${days}d ${hours}h ${minutes}m ${seconds}s remaining`;
+            
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "Challenge has ended";
+            }
+        }, 1000);
+
+    } catch (error) {
+        console.error('Error loading challenge data:', error);
+    }
+}
+
+// Load the challenge data when the page loads
+document.addEventListener('DOMContentLoaded', loadChallengeData);
+</script>
