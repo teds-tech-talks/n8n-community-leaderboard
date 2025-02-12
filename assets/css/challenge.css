@@ -22,8 +22,8 @@
 }
 
 .stat-button {
-    background: linear-gradient(120deg, #ea4b71, #6e72e0);
-    color: white;
+    background-color: #f5f5f5;  /* light gray background */
+    color: inherit;  /* use default text color */
     padding: 1.5rem;
     border-radius: 10px;
     text-align: center;
