@@ -12,8 +12,92 @@ title: n8n Monthly Challenges
 
 <h2>Top Creators</h2>
 <div id="top-creators">
-    <!-- Top creators will be loaded here -->
+    <table id="creators-table" class="display compact">
+        <thead>
+            <tr>
+                <th class="number-column"></th> <!-- Index column -->
+                <th></th> <!-- Avatar column -->
+                <th>Username</th>
+                <th>Name</th>
+                <th>Templates</th>
+                <th>Total Views</th>
+                <th>Total Inserts</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
 </div>
+
+<script>
+async function loadCreatorsData() {
+    try {
+        const response = await fetch('/n8n-community-leaderboard/challenges/challenge.json');
+        const data = await response.json();
+        
+        const table = $('#creators-table').DataTable({
+            data: data.creators,
+            pageLength: 10,
+            order: [[6, 'desc']], // Sort by total inserts by default
+            columns: [
+                { 
+                    data: null,
+                    className: 'dt-body-center',
+                    orderable: false
+                },
+                {
+                    data: 'avatar',
+                    orderable: false,
+                    render: function(data) {
+                        return `<img src="${data}" class="user-avatar" width="40" height="40">`;
+                    }
+                },
+                {
+                    data: 'username',
+                    render: function(data, type, row) {
+                        return `<a href="${row.profile_url}" class="creator-link" target="_blank">${data}</a>`;
+                    }
+                },
+                { data: 'name' },
+                { 
+                    data: 'template_count',
+                    className: 'dt-body-center'
+                },
+                { 
+                    data: 'total_views',
+                    className: 'dt-body-center'
+                },
+                { 
+                    data: 'total_inserts',
+                    className: 'dt-body-center'
+                }
+            ],
+            columnDefs: [{
+                searchable: false,
+                orderable: false,
+                targets: 0
+            }],
+            dom: '<"table-controls-wrapper"lBf>rtip',
+            buttons: ['selectAll', 'selectNone']
+        });
+
+        // Add row numbers
+        table.on('order.dt search.dt', function () {
+            table.column(0, {search:'applied', order:'applied'}).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+
+    } catch (error) {
+        console.error('Error loading creators data:', error);
+    }
+}
+
+// Load the creators data when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    loadCreatorsData();
+});
+</script>
 
 <h2>Featured Workflows</h2>
 <div id="featured-workflows">
