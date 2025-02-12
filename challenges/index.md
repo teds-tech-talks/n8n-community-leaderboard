@@ -4,10 +4,18 @@ title: n8n Monthly Challenges
 ---
 <link rel="stylesheet" href="{{ '/assets/css/challenge.css' | relative_url }}">
 
-<h1 class="challenge-title">n8n Monthly Challenges</h1>
-
 <div id="current-challenge">
     <!-- Current challenge stats will be loaded here via JS -->
+</div>
+
+<h2>Top Creators</h2>
+<div id="top-creators">
+    <!-- Top creators will be loaded here -->
+</div>
+
+<h2>Featured Workflows</h2>
+<div id="featured-workflows">
+    <!-- Featured workflows will be loaded here -->
 </div>
 
 <h2>Past Challenges</h2>
@@ -23,7 +31,6 @@ title: n8n Monthly Challenges
         {% endif %}
     {% endfor %}
 
-
 <script>
 async function loadChallengeData() {
     try {
@@ -37,10 +44,12 @@ async function loadChallengeData() {
         const monthName = monthNames[curDate.getMonth()];
         const year = curDate.getFullYear();
 
+        // Update page title
+        document.querySelector('h1.project-name').textContent = `${monthName} ${year} Challenge`;
+
         // Create current challenge section
         const currentChallenge = document.getElementById('current-challenge');
         currentChallenge.innerHTML = `
-            <h2>${monthName} ${year} Challenge</h2>
             <div class="countdown-container">
                 <p id="countdown" class="countdown"></p>
             </div>
