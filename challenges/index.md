@@ -11,8 +11,6 @@ title: n8n Monthly Challenges
 </div>
 
 <h2>Past Challenges</h2>
-<div id="past-challenges">
-    <div class="challenge-stats">
     {% assign challenge_dirs = site.pages | where_exp: "item", "item.path contains 'challenges/'" | where_exp: "item", "item.path contains '/index.md'" | sort: "path" | reverse %}
     {% for page in challenge_dirs %}
         {% assign path_parts = page.path | split: '/' %}
@@ -21,14 +19,10 @@ title: n8n Monthly Challenges
             {% assign month_num = year_month[1] %}
             {% assign month_name = site.data.months[month_num] %}
             {% assign year = year_month[0] %}
-            <a href="{{ site.baseurl }}/challenges/{{ path_parts[1] }}" class="stat-button">
-                <div class="stat-value">{{ site.data.months[month_num] }}</div>
-                <div class="stat-label">{{ year }}</div>
-            </a>
+* [{{ site.data.months[month_num] }} {{ year }}]({{ site.baseurl }}/challenges/{{ path_parts[1] }})
         {% endif %}
     {% endfor %}
-    </div>
-</div>
+
 
 <script>
 async function loadChallengeData() {
