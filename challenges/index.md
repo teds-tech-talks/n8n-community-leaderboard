@@ -30,12 +30,36 @@ title: n8n Monthly Challenges
 </div>
 
 <script>
-async function loadCreatorsData() {
+// Load data once and use it for all functions
+let challengeData = null;
+
+async function loadData() {
     try {
         const response = await fetch('/n8n-community-leaderboard/challenges/challenge.json');
-        const data = await response.json();
+        challengeData = await response.json();
         
-        let tableData = data.creators.map(item => {
+        if (!challengeData || !challengeData.header_stats || !challengeData.header_stats.curmonth) {
+            throw new Error('Invalid challenge data format');
+        }
+
+        await Promise.all([
+            loadChallengeData(),
+            loadCreatorsData(),
+            loadWorkflowsData()
+        ]);
+    } catch (error) {
+        console.error('Error loading data:', error);
+        document.querySelector('h1.challenge-title').textContent = 'Challenge';
+        document.getElementById('current-challenge').innerHTML = '<p>Error loading challenge data</p>';
+    }
+}
+
+// Load all data when the page loads
+document.addEventListener('DOMContentLoaded', loadData);
+
+async function loadCreatorsData() {
+    try {
+        let tableData = challengeData.creators.map(item => {
             return [
                 "",
                 `<img src="${item.avatar}" alt="${item.username}" class="user-avatar" width="40">`,
@@ -87,18 +111,6 @@ async function loadCreatorsData() {
         console.error('Error loading creators data:', error);
     }
 }
-
-// Load all data when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize all data loading
-    Promise.all([
-        loadChallengeData(),
-        loadCreatorsData(),
-        loadWorkflowsData()
-    ]).catch(error => {
-        console.error('Error loading data:', error);
-    });
-});
 </script>
 
 <h2>Featured Workflows</h2>
@@ -123,10 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <script>
 async function loadWorkflowsData() {
     try {
-        const response = await fetch('/n8n-community-leaderboard/challenges/challenge.json');
-        const data = await response.json();
-        
-        let tableData = data.workflows.map(item => {
+        let tableData = challengeData.workflows.map(item => {
             return [
                 "",
                 `<img src="${item.creator_avatar}" alt="${item.creator_username}" class="user-avatar" width="40">`,
@@ -199,11 +208,8 @@ async function loadWorkflowsData() {
 <script>
 async function loadChallengeData() {
     try {
-        const response = await fetch('/n8n-community-leaderboard/challenges/challenge.json');
-        const data = await response.json();
-        
         // Format the current month challenge
-        const curDate = new Date(data.header_stats.curmonth);
+        const curDate = new Date(challengeData.header_stats.curmonth);
         const monthNames = ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"];
         const monthName = monthNames[curDate.getMonth()];
@@ -220,15 +226,15 @@ async function loadChallengeData() {
             </div>
             <div class="challenge-stats">
                 <div class="stat-button">
-                    <div class="stat-value">${data.header_stats.new_templates}</div>
+                    <div class="stat-value">${challengeData.header_stats.new_templates}</div>
                     <div class="stat-label">New Templates</div>
                 </div>
                 <div class="stat-button">
-                    <div class="stat-value">${data.header_stats.active_creators}</div>
+                    <div class="stat-value">${challengeData.header_stats.active_creators}</div>
                     <div class="stat-label">Active Creators</div>
                 </div>
                 <div class="stat-button">
-                    <div class="stat-value">${data.header_stats.total_inserts}</div>
+                    <div class="stat-value">${challengeData.header_stats.total_inserts}</div>
                     <div class="stat-label">Total Inserts</div>
                 </div>
             </div>
@@ -258,6 +264,8 @@ async function loadChallengeData() {
 
     } catch (error) {
         console.error('Error loading challenge data:', error);
+        document.querySelector('h1.challenge-title').textContent = 'Challenge';
+        document.getElementById('current-challenge').innerHTML = '<p>Error loading challenge data</p>';
     }
 }
 
