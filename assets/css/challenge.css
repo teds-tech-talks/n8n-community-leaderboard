@@ -89,3 +89,37 @@
 .number-column {
     width: 30px;
 }
+
+/* Workflow table specific styles */
+.workflow-link {
+    text-decoration: none;
+    color: #6E72E0;
+}
+
+.workflow-link:hover {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 0.2rem;
+}
+
+#workflows-table {
+    border-collapse: collapse;
+}
+
+#workflows-table thead th {
+    text-align: left;
+    background-color: #484C99;
+    color: #FCFCFD;
+    font-weight: bold;
+    padding: 10px;
+}
+
+#workflows-table th, #workflows-table td {
+    border: none;
+    border-bottom: 1px solid #E4E6EC;
+    padding: 3px 10px;
+}
+
+#workflows-table th {
+    border-bottom: 1px solid #707183;
+}

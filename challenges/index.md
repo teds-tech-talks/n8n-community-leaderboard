@@ -98,6 +98,92 @@ document.addEventListener('DOMContentLoaded', () => {
     <!-- Featured workflows will be loaded here -->
 </div>
 
+<h2>Featured Workflows</h2>
+<div id="featured-workflows">
+    <table id="workflows-table" class="display compact">
+        <thead>
+            <tr>
+                <th class="number-column"></th>
+                <th></th>
+                <th>Creator</th>
+                <th>Workflow</th>
+                <th>Created</th>
+                <th>Views</th>
+                <th>Inserts</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<script>
+async function loadWorkflowsData() {
+    try {
+        const response = await fetch('/n8n-community-leaderboard/challenges/challenge.json');
+        const data = await response.json();
+        
+        let tableData = data.workflows.map(item => {
+            return [
+                "",
+                `<img src="${item.creator_avatar}" alt="${item.creator_username}" class="user-avatar" width="40">`,
+                `<a href="${item.creator_url}" class="creator-link" target="_blank" data-umami-event="creator_profile" data-umami-event-creator="${item.creator_username}">${item.creator_username}</a>`,
+                `<a href="${item.workflow_url}" class="workflow-link" target="_blank" data-umami-event="workflow_view" data-umami-event-workflow="${item.workflow_name}">${item.workflow_name}</a>`,
+                item.created_at,
+                item.views,
+                item.inserts
+            ];
+        });
+
+        const table = $('#workflows-table').DataTable({
+            data: tableData,
+            pageLength: 10,
+            order: [[6, 'desc']], // Sort by inserts by default
+            columns: [
+                { title: "", searchable: false, orderable: false },
+                { title: "", orderable: false, searchable: false },
+                { title: "Creator" },
+                { title: "Workflow" },
+                { title: "Created" },
+                { title: "Views" },
+                { title: "Inserts" }
+            ],
+            columnDefs: [
+                { targets: 0, className: 'dt-body-center number' },
+                { targets: 1, className: 'dt-body-center', width: "64px" },
+                { targets: 2, className: 'dt-body-left creator-column' },
+                { targets: [5,6], className: 'dt-body-center' },
+                { targets: 4, className: 'dt-body-center' }
+            ],
+            dom: 'rt<"bottom"p>',
+            searching: false,
+            responsive: true,
+            deferRender: true
+        });
+
+        // Add row numbers
+        table.on('draw.dt', function () {
+            var pageInfo = table.page.info();
+            table.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1 + pageInfo.start;
+            });
+        });
+
+        table.draw();
+
+    } catch (error) {
+        console.error('Error loading workflows data:', error);
+    }
+}
+
+// Add loadWorkflowsData to the DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', () => {
+    loadChallengeData();
+    loadCreatorsData();
+    loadWorkflowsData();
+});
+</script>
+
 <h2>Past Challenges</h2>
     {% assign challenge_dirs = site.pages | where_exp: "item", "item.path contains 'challenges/'" | where_exp: "item", "item.path contains '/index.md'" | sort: "path" | reverse %}
     {% for page in challenge_dirs %}
