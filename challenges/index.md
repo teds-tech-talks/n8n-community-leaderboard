@@ -102,11 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <h2>Featured Workflows</h2>
 <div id="featured-workflows">
-    <!-- Featured workflows will be loaded here -->
-</div>
-
-<h2>Featured Workflows</h2>
-<div id="featured-workflows">
     <table id="workflows-table" class="display compact">
         <thead>
             <tr>
@@ -160,7 +155,7 @@ async function loadWorkflowsData() {
                 { targets: 1, className: 'dt-body-center', width: "64px" },
                 { targets: 2, className: 'dt-body-left creator-column' },
                 { targets: 3, className: 'dt-body-left' },  // workflow name column
-                { targets: 4, className: 'dt-body-center', width: "100px" },  // date column
+                { targets: 4, className: 'dt-body-center', width: "130px" },  // date column
                 { targets: [5,6], className: 'dt-body-center' }
             ],
             dom: 'rt<"bottom"p>',
