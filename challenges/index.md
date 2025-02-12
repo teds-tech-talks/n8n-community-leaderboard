@@ -159,8 +159,9 @@ async function loadWorkflowsData() {
                 { targets: 0, className: 'dt-body-center number' },
                 { targets: 1, className: 'dt-body-center', width: "64px" },
                 { targets: 2, className: 'dt-body-left creator-column' },
-                { targets: [5,6], className: 'dt-body-center' },
-                { targets: 4, className: 'dt-body-center' }
+                { targets: 3, className: 'dt-body-left' },  // workflow name column
+                { targets: 4, className: 'dt-body-center', width: "100px" },  // date column
+                { targets: [5,6], className: 'dt-body-center' }
             ],
             dom: 'rt<"bottom"p>',
             searching: false,
