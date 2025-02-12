@@ -19,9 +19,9 @@
       <h1 class="project-name">{{ site.title | default: site.github.repository_name }}</h1>
       <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
       <div class="header-buttons-row">
-        <a href="{{ site.baseurl }}/" class="btn">👥 Creators</a>
-        <a href="{{ site.baseurl }}/workflows" class="btn">📊 Workflows</a>
-        <a href="{{ site.baseurl }}/challenges" class="btn">🏆 Challenges</a>
+        <a href="{{ site.baseurl }}/" class="btn" data-umami-event="bnt_creators">👥 Creators</a>
+        <a href="{{ site.baseurl }}/workflows" class="btn" data-umami-event="bnt_workflows">📊 Workflows</a>
+        <a href="{{ site.baseurl }}/challenges" class="btn" data-umami-event="bnt_challenges">🏆 Challenges</a>
       </div>
       <div class="header-buttons-row">
         {% if site.custom_buttons %}
