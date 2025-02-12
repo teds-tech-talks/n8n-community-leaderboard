@@ -46,8 +46,7 @@ async function loadChallengeData() {
         const monthName = monthNames[curDate.getMonth()];
         const year = curDate.getFullYear();
 
-        // Update page title
-        document.querySelector('h1.project-name').textContent = `${monthName} ${year} Challenge`;
+        // Update page title - only update the h1.challenge-title, not the header title
         document.querySelector('h1.challenge-title').textContent = `${monthName} ${year} Challenge`;
 
         // Create current challenge section
