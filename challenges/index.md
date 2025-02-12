@@ -7,7 +7,12 @@ title: n8n Monthly Challenges
 <h1 class="challenge-title"></h1>
 
 <div id="current-challenge">
-    <!-- Current challenge stats will be loaded here via JS -->
+    <div class="countdown-container">
+        <p id="countdown" class="countdown">Loading...</p>
+    </div>
+    <div class="challenge-stats">
+        <!-- Challenge stats will be loaded here via JS -->
+    </div>
 </div>
 
 <h2>Top Creators</h2>
@@ -27,6 +32,7 @@ title: n8n Monthly Challenges
         <tbody>
         </tbody>
     </table>
+    <div id="creators-table_info" class="dataTables_info"></div>
 </div>
 
 <script>
@@ -111,7 +117,7 @@ async function loadCreatorsData() {
                 { targets: 2, className: 'dt-body-left creator-column' },
                 { targets: [4,5,6], className: 'dt-body-center' }
             ],
-            dom: '<"table-controls-wrapper"l>rt<"bottom"p>',
+            dom: 'rti<"table-controls-wrapper"lp>',
             searching: false,
             responsive: true,
             deferRender: true
@@ -150,6 +156,7 @@ async function loadCreatorsData() {
         <tbody>
         </tbody>
     </table>
+    <div id="workflows-table_info" class="dataTables_info"></div>
 </div>
 
 <script>
@@ -189,7 +196,7 @@ async function loadWorkflowsData() {
                 { targets: 4, className: 'dt-body-center', width: "130px" },  // date column
                 { targets: [5,6], className: 'dt-body-center' }
             ],
-            dom: '<"table-controls-wrapper"l>rt<"bottom"p>',
+            dom: 'rti<"table-controls-wrapper"lp>',
             searching: false,
             responsive: true,
             deferRender: true
@@ -238,25 +245,19 @@ async function loadChallengeData() {
         // Update page title - only update the h1.challenge-title, not the header title
         document.querySelector('h1.challenge-title').textContent = `${monthName} ${year} Challenge`;
 
-        // Create current challenge section
-        const currentChallenge = document.getElementById('current-challenge');
-        currentChallenge.innerHTML = `
-            <div class="countdown-container">
-                <p id="countdown" class="countdown"></p>
+        // Update challenge stats
+        document.querySelector('.challenge-stats').innerHTML = `
+            <div class="stat-button">
+                <div class="stat-value">${challengeData.header_stats.new_templates}</div>
+                <div class="stat-label">New Templates</div>
             </div>
-            <div class="challenge-stats">
-                <div class="stat-button">
-                    <div class="stat-value">${challengeData.header_stats.new_templates}</div>
-                    <div class="stat-label">New Templates</div>
-                </div>
-                <div class="stat-button">
-                    <div class="stat-value">${challengeData.header_stats.active_creators}</div>
-                    <div class="stat-label">Active Creators</div>
-                </div>
-                <div class="stat-button">
-                    <div class="stat-value">${challengeData.header_stats.total_inserts}</div>
-                    <div class="stat-label">Total Inserts</div>
-                </div>
+            <div class="stat-button">
+                <div class="stat-value">${challengeData.header_stats.active_creators}</div>
+                <div class="stat-label">Active Creators</div>
+            </div>
+            <div class="stat-button">
+                <div class="stat-value">${challengeData.header_stats.total_inserts}</div>
+                <div class="stat-label">Total Inserts</div>
             </div>
         `;
 
