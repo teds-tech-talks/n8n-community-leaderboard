@@ -117,7 +117,7 @@ async function loadCreatorsData() {
                 { targets: 2, className: 'dt-body-left creator-column' },
                 { targets: [4,5,6], className: 'dt-body-center' }
             ],
-            dom: 'rti<"table-controls-wrapper"lp>',
+            dom: '<"table-controls-wrapper"lB>frtip',
             searching: false,
             responsive: true,
             deferRender: true
@@ -196,7 +196,7 @@ async function loadWorkflowsData() {
                 { targets: 4, className: 'dt-body-center', width: "130px" },  // date column
                 { targets: [5,6], className: 'dt-body-center' }
             ],
-            dom: 'rti<"table-controls-wrapper"lp>',
+            dom: '<"table-controls-wrapper"lB>frtip',
             searching: false,
             responsive: true,
             deferRender: true
