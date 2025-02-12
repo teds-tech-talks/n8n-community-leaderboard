@@ -22,14 +22,14 @@
 }
 
 .stat-button {
-    background-color: #f5f5f5;  /* light gray background */
-    color: inherit;  /* use default text color */
+    background-color: #f5f8ff;  /* very light blue background */
+    color: inherit;
     padding: 1.5rem;
     border-radius: 10px;
     text-align: center;
     min-width: 200px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e0e0e0;  /* Add subtle border */
+    border: 1px solid #e6e9f5;  /* slightly darker blue-tinted border */
 }
 
 .stat-value {
