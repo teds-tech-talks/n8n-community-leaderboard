@@ -9,8 +9,6 @@ description: A community-led website with creator ratings and workflow template 
 github:
   is_project_page: true
 custom_buttons:
-  - text: Workflow ratings
-    url: /n8n-community-leaderboard/workflows
   - text: Templates gallery
     url: https://n8n.partnerlinks.io/n8n-workflows
   - text: What is this?
