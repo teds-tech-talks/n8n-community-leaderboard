@@ -1,0 +1,43 @@
+.challenge-title {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.countdown-container {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.countdown {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #6e72e0;
+}
+
+.challenge-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.stat-button {
+    background: linear-gradient(120deg, #ea4b71, #6e72e0);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 1rem;
+    opacity: 0.9;
+}

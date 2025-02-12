@@ -2,6 +2,7 @@
 layout: default
 title: n8n Monthly Challenges
 ---
+<link rel="stylesheet" href="{{ '/assets/css/challenge.css' | relative_url }}">
 
 # n8n Monthly Challenges
 
