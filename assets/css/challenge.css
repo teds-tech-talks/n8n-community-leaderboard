@@ -11,7 +11,7 @@
 .countdown {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #6e72e0;
+    color: #101330;  /* Changed from #6e72e0 to match h1 color */
 }
 
 .challenge-stats {
