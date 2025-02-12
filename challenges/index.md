@@ -43,14 +43,27 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function loadData() {
+    console.log('Starting data load...');
     const response = await fetch('/n8n-community-leaderboard/challenges/challenge.json');
+    console.log('Fetch response:', response.status, response.statusText);
     challengeData = await response.json();
+    console.log('Parsed JSON data:', challengeData);
     
-    if (!challengeData || !challengeData.header_stats || !challengeData.header_stats.curmonth) {
-        throw new Error('Invalid challenge data format');
+    if (!challengeData) {
+        console.error('challengeData is null or undefined');
+        throw new Error('Invalid challenge data format - data is null');
+    }
+    if (!challengeData.header_stats) {
+        console.error('header_stats is missing:', challengeData);
+        throw new Error('Invalid challenge data format - missing header_stats');
+    }
+    if (!challengeData.header_stats.curmonth) {
+        console.error('curmonth is missing:', challengeData.header_stats);
+        throw new Error('Invalid challenge data format - missing curmonth');
     }
 
     // Load challenge data first since it sets up the page structure
+    console.log('Loading challenge data...');
     await loadChallengeData();
     
     // Then load the tables in parallel
