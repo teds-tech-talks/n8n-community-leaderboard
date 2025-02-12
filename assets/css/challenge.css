@@ -11,7 +11,7 @@
 .countdown {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #101330;  /* Changed from #6e72e0 to match h1 color */
+    color: #6e72e0;  /* Change back to original blue color */
 }
 
 .challenge-stats {
@@ -23,7 +23,7 @@
 
 .stat-button {
     background-color: #f5f8ff;  /* very light blue background */
-    color: inherit;
+    color: #101330;  /* Add heading color for better contrast */
     padding: 1.5rem;
     border-radius: 10px;
     text-align: center;
