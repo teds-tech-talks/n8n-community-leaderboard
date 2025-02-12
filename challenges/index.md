@@ -35,58 +35,52 @@ async function loadCreatorsData() {
         const response = await fetch('/n8n-community-leaderboard/challenges/challenge.json');
         const data = await response.json();
         
+        let tableData = data.creators.map(item => {
+            return [
+                "",
+                `<img src="${item.avatar}" alt="${item.username}" class="user-avatar" width="40">`,
+                `<a href="${item.profile_url}" class="creator-link" target="_blank" data-umami-event="creator_profile" data-umami-event-creator="${item.username}">${item.username}</a>`,
+                item.name,
+                item.template_count,
+                item.total_views,
+                item.total_inserts
+            ];
+        });
+
         const table = $('#creators-table').DataTable({
-            data: data.creators,
-            pageLength: 10,
+            data: tableData,
+            pageLength: 25,
             order: [[6, 'desc']], // Sort by total inserts by default
             columns: [
-                { 
-                    data: null,
-                    className: 'dt-body-center',
-                    orderable: false
-                },
-                {
-                    data: 'avatar',
-                    orderable: false,
-                    render: function(data) {
-                        return `<img src="${data}" class="user-avatar" width="40" height="40">`;
-                    }
-                },
-                {
-                    data: 'username',
-                    render: function(data, type, row) {
-                        return `<a href="${row.profile_url}" class="creator-link" target="_blank">${data}</a>`;
-                    }
-                },
-                { data: 'name' },
-                { 
-                    data: 'template_count',
-                    className: 'dt-body-center'
-                },
-                { 
-                    data: 'total_views',
-                    className: 'dt-body-center'
-                },
-                { 
-                    data: 'total_inserts',
-                    className: 'dt-body-center'
-                }
+                { title: "", searchable: false, orderable: false },
+                { title: "", orderable: false, searchable: false },
+                { title: "Creator" },
+                { title: "Name" },
+                { title: "Templates" },
+                { title: "Total Views" },
+                { title: "Total Inserts" }
             ],
-            columnDefs: [{
-                searchable: false,
-                orderable: false,
-                targets: 0
-            }],
-            dom: 'rt<"bottom"p>', // Only show table and pagination
-            searching: false // Disable search
+            columnDefs: [
+                { targets: 0, className: 'dt-body-center number' },
+                { targets: 1, className: 'dt-body-center', width: "64px" },
+                { targets: 2, className: 'dt-body-left creator-column' },
+                { targets: [4,5,6], className: 'dt-body-center' }
+            ],
+            dom: 'rt<"bottom"p>',
+            searching: false,
+            responsive: true,
+            deferRender: true
         });
 
         // Add row numbers
-        table.on('order.dt search.dt', function () {
-            table.column(0, {search:'applied', order:'applied'}).nodes().each(function (cell, i) {
-                cell.innerHTML = i + 1;
+        table.on('draw.dt', function () {
+            var pageInfo = table.page.info();
+            table.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1 + pageInfo.start;
             });
-        }).draw();
+        });
+
+        table.draw();
 
     } catch (error) {
         console.error('Error loading creators data:', error);
