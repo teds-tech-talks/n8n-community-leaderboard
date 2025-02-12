@@ -18,11 +18,11 @@ title: n8n Monthly Challenges
         {% assign path_parts = page.path | split: '/' %}
         {% if path_parts.size == 3 %}
             {% assign year_month = path_parts[1] | split: '-' %}
-            {% assign month_num = year_month[1] | plus: 0 %}
+            {% assign month_num = year_month[1] %}
             {% assign month_name = site.data.months[month_num] %}
             {% assign year = year_month[0] %}
             <a href="{{ site.baseurl }}/challenges/{{ path_parts[1] }}" class="stat-button">
-                <div class="stat-value">{{ month_name }}</div>
+                <div class="stat-value">{{ site.data.months[month_num] }}</div>
                 <div class="stat-label">{{ year }}</div>
             </a>
         {% endif %}
