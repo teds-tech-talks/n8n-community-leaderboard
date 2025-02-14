@@ -112,10 +112,12 @@ async function loadCreatorsData() {
                 { title: "Total Inserts" }
             ],
             columnDefs: [
-                { targets: 0, className: 'dt-body-center number' },
-                { targets: 1, className: 'dt-body-center', width: "64px" },
-                { targets: 2, className: 'dt-body-left creator-column' },
-                { targets: [4,5,6], className: 'dt-body-center' }
+                { targets: 0, className: 'dt-body-center number', responsivePriority: 1 },
+                { targets: 1, className: 'dt-body-center', width: "64px", responsivePriority: 1 },
+                { targets: 2, className: 'dt-body-left creator-column', responsivePriority: 2 },
+                { targets: 3, className: 'dt-body-left creator-column', responsivePriority: 10001 },
+                { targets: [4,5], className: 'dt-body-center', responsivePriority: 4 },
+                { targets: [6], className: 'dt-body-center', responsivePriority: 3 }
             ],
             dom: '<"table-controls-wrapper"lB>frtip',
             searching: false,
@@ -189,12 +191,13 @@ async function loadWorkflowsData() {
                 { title: "Inserts" }
             ],
             columnDefs: [
-                { targets: 0, className: 'dt-body-center number' },
-                { targets: 1, className: 'dt-body-center', width: "64px" },
-                { targets: 2, className: 'dt-body-left creator-column' },
-                { targets: 3, className: 'dt-body-left' },  // workflow name column
-                { targets: 4, className: 'dt-body-center', width: "130px" },  // date column
-                { targets: [5,6], className: 'dt-body-center' }
+                { targets: 0, className: 'dt-body-center number', responsivePriority: 1 },
+                { targets: 1, className: 'dt-body-center', width: "64px", responsivePriority: 1 },
+                { targets: 2, className: 'dt-body-left creator-column', responsivePriority: 10001 },
+                { targets: 3, className: 'dt-body-left', responsivePriority: 2 },  // workflow name column
+                { targets: 4, className: 'dt-body-center', width: "130px", responsivePriority: 5 },  // date column
+                { targets: 5, className: 'dt-body-center', responsivePriority: 5 },
+                { targets: 6, className: 'dt-body-center', responsivePriority: 4 }
             ],
             dom: '<"table-controls-wrapper"lB>frtip',
             searching: false,
