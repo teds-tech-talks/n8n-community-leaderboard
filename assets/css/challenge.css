@@ -19,6 +19,7 @@
     justify-content: center;
     gap: 2rem;
     margin: 2rem 0;
+    flex-wrap: wrap;
 }
 
 .stat-button {
@@ -28,6 +29,8 @@
     border-radius: 10px;
     text-align: center;
     min-width: 200px;
+    flex: 1 1 200px;
+    max-width: 250px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border: 1px solid #d0d4e7;  /* darker blue-tinted border for better contrast */
 }

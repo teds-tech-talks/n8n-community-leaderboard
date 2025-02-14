@@ -47,12 +47,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
             let table = $('#stats-table').DataTable({
                 data: tableData,
+                dom: '<"table-controls-wrapper"<"table-control-section"l><"table-control-section"B><"table-control-section"f>>rtip',
                 columns: [
                     {
                         data: null,
 						render: DataTable.render.select(),
 						searchable: false,
-						orderable: true
+						orderable: true,
+                        responsivePriority: 10001
                     },
                     { title: "", searchable: false, orderable: false },
                     { title: "", orderable: false, searchable: false },
@@ -69,13 +71,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 order: [[5, 'desc']],
                 pageLength: 50,
 				bFilter: true,
-                responsive: true,
+                responsive: {
+                    details: {
+                        renderer: function ( api, rowIdx, columns ) {
+                            var data = $.map( columns, function ( col, i ) {
+                                // Skip the checkbox column (index 0)
+                                if (col.columnIndex === 0) {
+                                    return '';
+                                }
+                                return col.hidden ?
+                                    '<tr data-dt-row="'+col.rowIndex+'" data-dt-column="'+col.columnIndex+'">'+
+                                        '<td>'+col.title+':'+'</td> '+
+                                        '<td>'+col.data+'</td>'+
+                                    '</tr>' :
+                                    '';
+                            } ).join('');
+ 
+                            return data ?
+                                $('<table/>').append( data ) :
+                                false;
+                        }
+                    }
+                },
                 columnDefs: [
-                    { targets: 0, className: 'dt-body-center' },
-                    { targets: 1, className: 'dt-body-center number' },
-                    { targets: 2, className: 'dt-body-center', width: "64px" },
-                    { targets: 3, className: 'dt-body-left creator-column' },
-                    { targets: [5,6,7,8,9,10,11], className: 'dt-body-center' }
+                    { targets: 0, className: 'dt-body-center', responsivePriority: 10001 },  // Checkbox - hide first
+                    { targets: 1, className: 'dt-body-center number', responsivePriority: 1 },  // Number
+                    { targets: 2, className: 'dt-body-center', width: "64px", responsivePriority: 1 },  // Avatar
+                    { targets: 3, className: 'dt-body-left creator-column', responsivePriority: 3 },  // Creator
+                    { targets: 4, className: 'dt-body-left', responsivePriority: 2 },  // Workflow Name
+                    { targets: [5,6,7,8,9,10,11], className: 'dt-body-center' }  // Other columns - default priority
                 ],
                 select: {
                     style: 'multi',
@@ -83,7 +107,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     headerCheckbox: ''
                 },
                 deferRender: true,
-                dom: '<"table-controls-wrapper"lBf>rtip',
                 lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]], // Length menu options
                 buttons: [
                     {

@@ -65,14 +65,17 @@ document.addEventListener('DOMContentLoaded', function() {
 				bFilter: false,
                 responsive: true,
                 columnDefs: [
-                    { targets: 0, className: 'dt-body-center number' },
-                    { targets: 1, className: 'dt-body-center', width: "64px" },
-                    { targets: 2, className: 'dt-body-left creator-column' },
-                    { targets: [4,5,6,7,8,9,10], className: 'dt-body-center' },
+                    { targets: 0, className: 'dt-body-center number', responsivePriority: 1 },
+                    { targets: 1, className: 'dt-body-center', width: "64px", responsivePriority: 1 },
+                    { targets: 2, className: 'dt-body-left creator-column', responsivePriority: 2 },
+                    { targets: 3, className: 'dt-body-left', responsivePriority: 2 },
+                    { targets: [4,5], className: 'dt-body-center' },
+                    { targets: [6,7,8,9], className: 'dt-body-center' },
+                    { targets: 10, className: 'dt-body-center' },
                     { targets: 11, className: 'dt-body-center' }
                 ],
                 deferRender: true,
-                dom: '<"table-controls-wrapper"lB>frtip',
+                dom: '<"table-controls-wrapper"<"table-control-section"l><"table-control-section"B><"table-control-section spacer">>rtip',
                 lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]], // Length menu options
                 buttons: [
                     {
@@ -104,15 +107,13 @@ document.addEventListener('DOMContentLoaded', function() {
                             'data-umami-event': 'table_button',
                             'data-umami-event-table': 'weekly'
                         }
-                    },
-                ]
-				
-				/*,
+                    }
+                ],
                 drawCallback: function(settings) {
                     this.api().column(0, {search:'applied', order:'applied'}).nodes().each(function(cell, i) {
                         cell.innerHTML = i + 1;
                     });
-                }*/
+                }
             });
 
             table.on('draw.dt', function () {
