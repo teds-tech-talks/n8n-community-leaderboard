@@ -65,18 +65,9 @@ $header-bg-color-secondary: #6e72e0;
 }
 
 .header-buttons-row {
-  margin: 0.5rem 0;  /* Reduce vertical spacing between button rows */
-  
-  &:first-child {
-    margin-top: 0.75rem;  /* Slightly more space after tagline */
-  }
-  
-  &:last-child {
-    margin-bottom: 0;  /* Remove bottom margin on last row */
-  }
   
   .btn {
-    margin: 0.25rem 0.5rem;  /* Reduce button spacing */
+    margin: 0.25rem 0.0rem;  /* Reduce button spacing */
     padding: 0.5rem 0.75rem;  /* Make buttons slightly more compact */
     
     @media screen and (max-width: 42em) {
