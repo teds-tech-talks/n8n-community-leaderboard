@@ -89,11 +89,11 @@ async function loadChallengeData() {
         document.querySelector('.challenge-stats').innerHTML = `
             <div class="stat-button">
                 <div class="stat-value">${challengeData.header_stats.new_templates}</div>
-                <div class="stat-label">New Templates</div>
+                <div class="stat-label">Eligible Templates</div>
             </div>
             <div class="stat-button">
                 <div class="stat-value">${challengeData.header_stats.active_creators}</div>
-                <div class="stat-label">Active Creators</div>
+                <div class="stat-label">Creators Participated</div>
             </div>
             <div class="stat-button">
                 <div class="stat-value">${challengeData.header_stats.total_inserts}</div>
