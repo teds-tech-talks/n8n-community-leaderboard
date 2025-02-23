@@ -186,6 +186,23 @@ async function loadCreatorsData() {
     <div id="workflows-table_info" class="dataTables_info"></div>
 </div>
 
+<div id="challenge-dates"></div>
+
+<h2>Past Challenges</h2>
+    {% assign challenge_dirs = site.pages | where_exp: "item", "item.path contains 'challenges/'" | where_exp: "item", "item.path contains '/index.md'" | sort: "path" | reverse %}
+    {% for page in challenge_dirs %}
+        {% assign path_parts = page.path | split: '/' %}
+        {% if path_parts.size == 3 %}
+            {% assign year_month = path_parts[1] | split: '-' %}
+            {% assign month_num = year_month[1] %}
+            {% assign month_name = site.data.months[month_num] %}
+            {% assign year = year_month[0] %}
+* [{{ site.data.months[month_num] }} {{ year }}]({{ site.baseurl }}/challenges/{{ path_parts[1] }})
+        {% endif %}
+    {% endfor %}
+
+<p><i>Learn more about <a href="{{ site.baseurl }}/about/#monthly-challenges">how monthly challenges work</a>.</i></p>
+
 <script>
 async function loadWorkflowsData() {
     try {
@@ -245,8 +262,6 @@ async function loadWorkflowsData() {
     }
 }
 </script>
-
-<div id="challenge-dates"></div>
 
 <script>
     // Format the dates for the footer

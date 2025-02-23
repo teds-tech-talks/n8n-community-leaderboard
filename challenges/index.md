@@ -6,8 +6,6 @@ title: n8n Monthly Challenges
 
 <h1 class="challenge-title"></h1>
 
-<p><i>Learn more about how monthly challenges work in our <a href="{{ site.baseurl }}/about/#monthly-challenges">documentation</a>.</i></p>
-
 <div id="current-challenge">
     <div class="countdown-container">
         <p id="countdown" class="countdown">Loading...</p>
@@ -236,6 +234,8 @@ async function loadWorkflowsData() {
 * [{{ site.data.months[month_num] }} {{ year }}]({{ site.baseurl }}/challenges/{{ path_parts[1] }})
         {% endif %}
     {% endfor %}
+
+<p><i>Learn more about <a href="{{ site.baseurl }}/about/#monthly-challenges">how monthly challenges work</a>.</i></p>
 
 <script>
 async function loadChallengeData() {
