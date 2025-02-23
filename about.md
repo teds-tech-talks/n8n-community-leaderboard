@@ -55,6 +55,11 @@ We run monthly challenges to encourage both new and existing creators to contrib
 - For each creator, we sum the inserts of all their eligible workflows
 - Creators are ranked based on their total inserts during the challenge period
 
+### Statistics Updates
+- For the current month's challenge, statistics are calculated and updated daily
+- Past month results are calculated on the first day of the following month
+- Once calculated, past challenge results are fixed and will not change
+
 This extended eligibility window serves two main purposes:
 1. Encourages new participants to join the n8n community
 2. Gives creators enough time to develop and refine quality workflows
