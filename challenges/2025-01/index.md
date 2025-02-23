@@ -8,6 +8,9 @@ challenge_date: 2025-01
 <h1 class="challenge-title"></h1>
 
 <div id="current-challenge">
+    <div class="countdown-container">
+        <p class="countdown">🏆 Congratulations to all winners and thank you to everyone who participated in the January 2025 Challenge! 🎉</p>
+    </div>
     <div class="challenge-stats">
         <!-- Challenge stats will be loaded here via JS -->
     </div>
