@@ -266,7 +266,7 @@ async function loadWorkflowsData() {
         document.getElementById('challenge-dates').innerHTML = `
             <hr>
             <p><i>This challenge ran from ${startDate} to ${endDate}.<br>
-            Workflows created after ${cutoffDateStr} were eligible for the challenge.</i></p>
+            Only workflows created between ${cutoffDateStr} and ${endDate} were eligible for the challenge.</i></p>
         `;
     }
     
