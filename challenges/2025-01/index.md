@@ -246,5 +246,36 @@ async function loadWorkflowsData() {
 }
 </script>
 
----
-*This challenge ran from January 1-31, 2025*
+<div id="challenge-dates"></div>
+
+<script>
+    // Format the dates for the footer
+    function formatDateRange() {
+        if (!challengeData || !challengeData.header_stats) return;
+        
+        const curDate = new Date(challengeData.header_stats.curmonth);
+        const firstDay = new Date(curDate.getFullYear(), curDate.getMonth(), 1);
+        const lastDay = new Date(curDate.getFullYear(), curDate.getMonth() + 1, 0);
+        
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const startDate = firstDay.toLocaleDateString('en-US', options);
+        const endDate = lastDay.toLocaleDateString('en-US', options);
+        
+        const cutoffDate = new Date(lastDay);
+        cutoffDate.setDate(cutoffDate.getDate() + 7); // 7 days after month end
+        const cutoffDateStr = cutoffDate.toLocaleDateString('en-US', options);
+        
+        document.getElementById('challenge-dates').innerHTML = `
+            <hr>
+            <p><i>This challenge ran from ${startDate} to ${endDate}.<br>
+            Workflows created up until ${cutoffDateStr} were eligible for the challenge.</i></p>
+        `;
+    }
+    
+    // Add the date formatting to the existing loadChallengeData function
+    const originalLoadChallengeData = loadChallengeData;
+    loadChallengeData = async function() {
+        await originalLoadChallengeData();
+        formatDateRange();
+    };
+</script>
