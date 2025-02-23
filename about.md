@@ -42,13 +42,13 @@ The website contains affiliate links. This means that, at no additional cost to 
 We run monthly challenges to encourage both new and existing creators to contribute quality workflows to the n8n community. Here's how they work:
 
 ### Challenge Period and Eligibility
-- Each challenge runs from the first to the last day of a month
+- Each monthly challenge runs from the first to the last day of a month
 - Eligible workflows include those created within a 2-month window:
   - From the first day of the month before the challenge
   - Until the last day of the challenge month
 - For example, for the January 2025 challenge:
   - Challenge period: January 1-31, 2025
-  - Eligible workflows: Created between December 1, 2024, and January 31, 2025
+  - Eligible workflows: Created from December 1, 2024, and up to January 31, 2025
 
 ### Scoring and Rankings
 - The primary metric for rankings is the number of workflow inserts (actual usage) rather than views
