@@ -63,6 +63,11 @@ We run monthly challenges to encourage both new and existing creators to contrib
 - Past month results are calculated on the first day of the following month
 - Once calculated, past challenge results are fixed and will not change
 
+### Important Notes
+- The date of workflow creation may differ from its publication date
+- We rely on data provided by n8n and cannot guarantee that new data is updated without delay
+- We strive to ensure the most accurate results possible based on the available data
+
 ## Community-Led Initiative
 
 The n8n Creators Leaderboard is a community-led project. We strive to maintain transparency, fairness, and accuracy in our rankings and presentations. If you have any questions, suggestions, or concerns, please don't hesitate to reach out.
