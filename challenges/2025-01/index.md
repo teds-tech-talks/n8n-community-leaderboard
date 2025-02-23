@@ -256,19 +256,17 @@ async function loadWorkflowsData() {
         const curDate = new Date(challengeData.header_stats.curmonth);
         const firstDay = new Date(curDate.getFullYear(), curDate.getMonth(), 1);
         const lastDay = new Date(curDate.getFullYear(), curDate.getMonth() + 1, 0);
+        const cutoffDate = new Date(challengeData.header_stats.cutoff);
         
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         const startDate = firstDay.toLocaleDateString('en-US', options);
         const endDate = lastDay.toLocaleDateString('en-US', options);
-        
-        const cutoffDate = new Date(lastDay);
-        cutoffDate.setDate(cutoffDate.getDate() + 7); // 7 days after month end
         const cutoffDateStr = cutoffDate.toLocaleDateString('en-US', options);
         
         document.getElementById('challenge-dates').innerHTML = `
             <hr>
             <p><i>This challenge ran from ${startDate} to ${endDate}.<br>
-            Workflows created up until ${cutoffDateStr} were eligible for the challenge.</i></p>
+            Workflows created after ${cutoffDateStr} were eligible for the challenge.</i></p>
         `;
     }
     
