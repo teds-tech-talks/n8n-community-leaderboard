@@ -2,8 +2,6 @@
 layout: default
 title: n8n Monthly Challenges
 ---
-<link rel="stylesheet" href="{{ '/assets/css/challenge.css' | relative_url }}">
-
 <h1 class="challenge-title"></h1>
 
 <div id="current-challenge">
@@ -234,6 +232,8 @@ async function loadWorkflowsData() {
 * [{{ site.data.months[month_num] }} {{ year }}]({{ site.baseurl }}/challenges/{{ path_parts[1] }})
         {% endif %}
     {% endfor %}
+
+<p><i>Learn more about <a href="{{ site.baseurl }}/about/#monthly-challenges">how monthly challenges work</a>.</i></p>
 
 <script>
 async function loadChallengeData() {

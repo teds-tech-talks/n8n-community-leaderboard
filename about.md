@@ -37,6 +37,37 @@ Your updated information will be reflected in the leaderboard during the next up
 
 The website contains affiliate links. This means that, at no additional cost to you, we may earn a small commission if you click through and sign up for n8n cloud. Some creators may also receive bonuses through this affiliate program, further encouraging their participation. These commissions help incentivize creators to produce more high-quality workflow templates and contribute to the n8n community. Rest assured, this does not influence our rankings or evaluations.
 
+## Monthly Challenges
+
+We run monthly challenges to encourage both new and existing creators to contribute quality workflows to the n8n community. Here's how they work:
+
+### Challenge Period and Eligibility
+- Each monthly challenge runs from the first to the last day of a month
+- Eligible workflows include those created within a 2-month window:
+  - From the first day of the month before the challenge
+  - Until the last day of the challenge month
+- For example, for the January 2025 challenge:
+  - Challenge period: January 1-31, 2025
+  - Eligible workflows: Created from December 1, 2024, and up to January 31, 2025
+- This extended eligibility window serves two main purposes
+  - Encourages new participants to join the n8n community
+  - Gives creators enough time to develop and refine quality workflows
+
+### Scoring and Rankings
+- The primary metric for rankings is the number of workflow inserts (actual usage) rather than views
+- For each creator, we sum the inserts of all their eligible workflows
+- Creators are ranked based on their total inserts during the challenge period
+
+### Statistics Updates
+- For the current month's challenge, statistics are calculated and updated daily
+- Past month results are calculated on the first day of the following month
+- Once calculated, past challenge results are fixed and will not change
+
+### ⚠️ Important Notes
+- The date of workflow creation may differ from its publication date
+- We rely on data provided by n8n and cannot guarantee that new data is updated without delay
+- We strive to ensure the most accurate results possible based on the available data
+
 ## Community-Led Initiative
 
 The n8n Creators Leaderboard is a community-led project. We strive to maintain transparency, fairness, and accuracy in our rankings and presentations. If you have any questions, suggestions, or concerns, please don't hesitate to reach out.
