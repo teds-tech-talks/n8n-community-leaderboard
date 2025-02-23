@@ -49,6 +49,9 @@ We run monthly challenges to encourage both new and existing creators to contrib
 - For example, for the January 2025 challenge:
   - Challenge period: January 1-31, 2025
   - Eligible workflows: Created from December 1, 2024, and up to January 31, 2025
+- This extended eligibility window serves two main purposes
+  - Encourages new participants to join the n8n community
+  - Gives creators enough time to develop and refine quality workflows
 
 ### Scoring and Rankings
 - The primary metric for rankings is the number of workflow inserts (actual usage) rather than views
@@ -59,10 +62,6 @@ We run monthly challenges to encourage both new and existing creators to contrib
 - For the current month's challenge, statistics are calculated and updated daily
 - Past month results are calculated on the first day of the following month
 - Once calculated, past challenge results are fixed and will not change
-
-This extended eligibility window serves two main purposes:
-1. Encourages new participants to join the n8n community
-2. Gives creators enough time to develop and refine quality workflows
 
 ## Community-Led Initiative
 
