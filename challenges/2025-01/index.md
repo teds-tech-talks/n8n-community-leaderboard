@@ -3,8 +3,6 @@ layout: default
 title: "January 2025 Challenge"
 challenge_date: 2025-01
 ---
-<link rel="stylesheet" href="{{ '/assets/css/challenge.css' | relative_url }}">
-
 <h1 class="challenge-title"></h1>
 
 <div id="current-challenge">
