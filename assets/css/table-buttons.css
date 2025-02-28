@@ -111,6 +111,7 @@
     display: flex !important;
     gap: 5px !important;
     margin-top: 15px !important;
+    align-items: center !important;
 }
 
 .dt-paging .dt-paging-button {
@@ -133,7 +134,7 @@
 
 .dt-paging .dt-paging-button.current {
     background-color: #d0d0d0 !important;
-    font-weight: bold !important;
+    font-weight: normal !important;
 }
 
 .dt-paging .dt-paging-button.disabled {
