@@ -290,3 +290,42 @@ async function loadWorkflowsData() {
         formatDateRange();
     };
 </script>
+---
+layout: content
+title: January 2025 Challenge
+description: n8n Monthly Challenge for January 2025
+---
+
+<div class="countdown-container">
+    <p id="countdown" class="countdown">Loading...</p>
+</div>
+
+<div class="challenge-stats">
+    <!-- Challenge stats will be loaded here via JS -->
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Set up countdown
+    const lastDay = new Date(2025, 0, 31); // January 31, 2025
+    const countDownDate = new Date(lastDay.setHours(23, 59, 59)).getTime();
+
+    const x = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = countDownDate - now;
+        
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        document.getElementById("countdown").innerHTML = 
+            `${days}d ${hours}h ${minutes}m ${seconds}s remaining`;
+        
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "Challenge has ended";
+        }
+    }, 1000);
+});
+</script>
