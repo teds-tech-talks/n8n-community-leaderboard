@@ -10,7 +10,7 @@
 .table-controls-wrapper {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     gap: 10px;
     flex-wrap: wrap;
 }

@@ -1,10 +1,8 @@
 ---
-layout: default
-title: About
+layout: content
+title: About the n8n Creators Leaderboard
 permalink: /about/
 ---
-
-# About the n8n Creators Leaderboard
 
 Welcome to the n8n Creators Leaderboard, a community-led initiative showcasing the top creators and their workflow templates.
 

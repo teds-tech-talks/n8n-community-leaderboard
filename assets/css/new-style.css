@@ -237,7 +237,6 @@ body {
 .section-title {
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 1.5rem;
     color: #111827;
     margin: 0;
 }
@@ -254,7 +253,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
 }
 
 /* Footer styling */
@@ -295,7 +293,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 /* DataTables styling */
@@ -621,7 +619,6 @@ input:checked + .toggle-slider:before {
     }
     
     .challenge-stats {
-        flex-direction: column;
         align-items: center;
     }
     
