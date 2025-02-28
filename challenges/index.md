@@ -2,9 +2,12 @@
 layout: default
 title: n8n Monthly Challenges
 ---
-<h1 class="challenge-title"></h1>
+<div class="content-container">
+  <div class="content-header">
+    <h1 class="challenge-title section-title"></h1>
+  </div>
 
-<div id="current-challenge">
+  <div id="current-challenge">
     <div class="countdown-container">
         <p id="countdown" class="countdown">Loading...</p>
     </div>
@@ -13,8 +16,14 @@ title: n8n Monthly Challenges
     </div>
 </div>
 
-<h2>Top Creators</h2>
-<div id="top-creators">
+</div>
+
+<div class="content-container">
+  <div class="content-header">
+    <h2 class="section-title">Top Creators</h2>
+  </div>
+  
+  <div id="top-creators">
     <table id="creators-table" class="display compact">
         <thead>
             <tr>
@@ -139,8 +148,15 @@ async function loadCreatorsData() {
 }
 </script>
 
-<h2>Featured Workflows</h2>
-<div id="featured-workflows">
+  </div>
+</div>
+
+<div class="content-container">
+  <div class="content-header">
+    <h2 class="section-title">Featured Workflows</h2>
+  </div>
+  
+  <div id="featured-workflows">
     <table id="workflows-table" class="display compact">
         <thead>
             <tr>
@@ -220,8 +236,15 @@ async function loadWorkflowsData() {
 
 </script>
 
-<h2>Past Challenges</h2>
-    {% assign challenge_dirs = site.pages | where_exp: "item", "item.path contains 'challenges/'" | where_exp: "item", "item.path contains '/index.md'" | sort: "path" | reverse %}
+  </div>
+</div>
+
+<div class="content-container">
+  <div class="content-header">
+    <h2 class="section-title">Past Challenges</h2>
+  </div>
+  
+  {% assign challenge_dirs = site.pages | where_exp: "item", "item.path contains 'challenges/'" | where_exp: "item", "item.path contains '/index.md'" | sort: "path" | reverse %}
     {% for page in challenge_dirs %}
         {% assign path_parts = page.path | split: '/' %}
         {% if path_parts.size == 3 %}

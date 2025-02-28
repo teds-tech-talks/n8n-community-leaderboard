@@ -2,11 +2,13 @@
 layout: default
 ---
 
-# Creators Leaderboard
+<div class="content-container">
+  <div class="content-header">
+    <h1 class="section-title">Creators Leaderboard</h1>
+    <p id="last-updated" class="meta-text"></p>
+  </div>
 
-<p id="last-updated" class="text-muted"></p>
-
-<div id="table-controls"></div>
+  <div id="table-controls"></div>
 <table id="stats-table" class="display compact">
     <thead>
         <tr>
