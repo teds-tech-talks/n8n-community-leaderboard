@@ -297,3 +297,328 @@ body {
     gap: 0.5rem;
     margin-bottom: 1rem;
 }
+
+/* DataTables styling */
+.table-controls-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+}
+
+.table-control-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.spacer {
+    flex-grow: 1;
+}
+
+.dataTables_length select, 
+.dt-button {
+    font-family: var(--font-body);
+    padding: 0.5rem 1rem;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    color: #374151;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.dataTables_length select:hover,
+.dt-button:hover {
+    background: #e5e7eb;
+}
+
+.dt-button.active {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+}
+
+.dataTables_filter input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: #374151;
+    background: white;
+}
+
+.dataTables_filter input:focus {
+    outline: none;
+    border-color: #A020F0;
+    box-shadow: 0 0 0 2px rgba(160, 32, 240, 0.1);
+}
+
+/* Table styling */
+table.dataTable {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+table.dataTable thead th {
+    background-color: #f9fafb;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: #374151;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+table.dataTable tbody td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    font-family: var(--font-body);
+}
+
+table.dataTable tbody tr:last-child td {
+    border-bottom: none;
+}
+
+table.dataTable tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+/* Pagination styling */
+.dataTables_paginate .paginate_button {
+    font-family: var(--font-body);
+    padding: 0.5rem 1rem;
+    margin: 0 0.25rem;
+    border-radius: 0.5rem;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dataTables_paginate .paginate_button:hover {
+    background: #e5e7eb;
+}
+
+.dataTables_paginate .paginate_button.current {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+}
+
+/* User avatar styling */
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Creator link styling */
+.creator-link {
+    color: #4f46e5;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.creator-link:hover {
+    color: #4338ca;
+    text-decoration: underline;
+}
+
+.external-link {
+    margin-left: 0.5rem;
+    text-decoration: none;
+}
+
+/* Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 1000px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    color: #6b7280;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close:hover {
+    color: #111827;
+}
+
+.chart-container {
+    width: 100%;
+    height: 500px;
+    margin-top: 1rem;
+}
+
+.chart-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e5e7eb;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background: var(--primary-gradient);
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(24px);
+}
+
+/* Challenge page styling */
+.countdown-container {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.countdown {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #4f46e5;
+}
+
+.challenge-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-button {
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    text-align: center;
+    min-width: 150px;
+    transition: transform 0.2s;
+}
+
+.stat-button:hover {
+    transform: translateY(-2px);
+}
+
+.stat-value {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .table-controls-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .table-control-section {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .dataTables_filter {
+        width: 100%;
+    }
+    
+    .dataTables_filter input {
+        width: 100%;
+    }
+    
+    .challenge-stats {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .stat-button {
+        width: 100%;
+    }
+}

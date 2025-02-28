@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         text: 'Total Stats',
                         show: [0,1,2,3,4,5,10,11],
                         hide: [6,7,8,9],
+                        className: 'active',
                         attr: {
                             'data-umami-event': 'table_button',
                             'data-umami-event-table': 'total'

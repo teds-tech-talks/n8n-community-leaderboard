@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<div class="content-container">
+  <div class="content-header">
+    <h1 class="section-title">{{ page.title }}</h1>
+    {% if page.show_last_updated %}
+    <p id="last-updated" class="meta-text"></p>
+    {% endif %}
+  </div>
+
+  {{ content }}
+</div>
