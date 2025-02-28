@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: content
 title: "January 2025 Challenge"
 challenge_date: 2025-01
 ---
