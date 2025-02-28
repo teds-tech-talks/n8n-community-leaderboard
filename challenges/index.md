@@ -238,7 +238,8 @@ async function loadChallengeData() {
         document.title = `${monthName} ${year} Challenge - n8n Monthly Challenges`;
         const titleElement = document.querySelector('.section-title');
         titleElement.textContent = `${monthName} ${year} Challenge`;
-        titleElement.style.textAlign = 'center';
+        titleElement.style.textAlign = 'center !important';
+        titleElement.classList.add('challenge-title-main');
 
         // Update challenge stats
         document.querySelector('.challenge-stats').innerHTML = `

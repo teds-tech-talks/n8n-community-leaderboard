@@ -550,6 +550,13 @@ input:checked + .toggle-slider:before {
     margin-bottom: 1.5rem;
 }
 
+/* Ensure the challenge title is centered */
+.challenge-title-main {
+    text-align: center !important;
+    display: block !important;
+    width: 100% !important;
+}
+
 .countdown {
     font-family: var(--font-heading);
     font-size: 1.25rem;
