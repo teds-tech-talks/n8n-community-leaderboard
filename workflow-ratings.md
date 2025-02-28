@@ -1,10 +1,9 @@
 ---
-layout: default
+layout: content
 title: Workflow ratings
 permalink: /workflows/
+show_last_updated: true
 ---
-
-# Workflow Ratings
 
 <p id="last-updated" class="text-muted"></p>
 
