@@ -1,0 +1,54 @@
+/* Table Button Styling */
+.table-action-buttons {
+    margin: 15px 0;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.table-btn {
+    padding: 8px 16px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.table-btn:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.table-btn:active {
+    background-color: #d0d0d0;
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Style for DataTables buttons to match our custom buttons */
+.dt-buttons .dt-button {
+    padding: 8px 16px !important;
+    background-color: #f5f5f5 !important;
+    background-image: none !important;
+    border: 1px solid #ddd !important;
+    border-radius: 4px !important;
+    color: #333 !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: none !important;
+}
+
+.dt-buttons .dt-button:hover {
+    background-color: #e0e0e0 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+.dt-buttons .dt-button.active {
+    background-color: #d0d0d0 !important;
+}

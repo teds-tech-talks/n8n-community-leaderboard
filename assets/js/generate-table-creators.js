@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const jsonUrl = '/n8n-community-leaderboard/stats_aggregate_creators.json';
+    let dataTable; // Store the DataTable instance for later use
 
     // Function to fetch and display the last modified date
     function fetchLastModified() {
@@ -44,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ];
             });
 
-            let table = $('#stats-table').DataTable({
+            dataTable = $('#stats-table').DataTable({
                 data: tableData,
                 columns: [
                     { title: "", searchable: false, orderable: false },
@@ -117,17 +118,83 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
 
-            table.on('draw.dt', function () {
-                var pageInfo = table.page.info();
-                table.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+            dataTable.on('draw.dt', function () {
+                var pageInfo = dataTable.page.info();
+                dataTable.column(0, { page: 'current' }).nodes().each(function (cell, i) {
                     cell.innerHTML = i + 1 + pageInfo.start;
                 });
             });
 
-            table.draw();
+            dataTable.draw();
 /*
-            table.draw();
+            dataTable.draw();
 */
         })
         .catch(error => console.error('Error:', error));
+        
+    // Button event handlers
+    document.getElementById('reset-filters').addEventListener('click', function() {
+        dataTable.search('').columns().search('').draw();
+    });
+    
+    document.getElementById('select-all').addEventListener('click', function() {
+        dataTable.rows().select();
+    });
+    
+    document.getElementById('deselect-all').addEventListener('click', function() {
+        dataTable.rows().deselect();
+    });
+    
+    document.getElementById('export-csv').addEventListener('click', function() {
+        const csvContent = convertToCSV(dataTable.data().toArray());
+        downloadFile(csvContent, 'creators-data.csv', 'text/csv');
+    });
+    
+    document.getElementById('export-json').addEventListener('click', function() {
+        const jsonData = dataTable.data().toArray();
+        const jsonContent = JSON.stringify(jsonData, null, 2);
+        downloadFile(jsonContent, 'creators-data.json', 'application/json');
+    });
+    
+    // Helper function to convert data to CSV
+    function convertToCSV(data) {
+        // Get headers from the table
+        const headers = [];
+        dataTable.columns().header().each(function(header) {
+            headers.push(header.innerText);
+        });
+        
+        // Clean data (remove HTML tags)
+        const cleanData = data.map(row => 
+            row.map(cell => {
+                // Create a temporary div to strip HTML
+                const div = document.createElement('div');
+                div.innerHTML = cell;
+                return div.textContent || div.innerText || '';
+            })
+        );
+        
+        // Combine headers and data
+        const csvRows = [headers.join(',')];
+        cleanData.forEach(row => {
+            csvRows.push(row.join(','));
+        });
+        
+        return csvRows.join('\n');
+    }
+    
+    // Helper function to download file
+    function downloadFile(content, fileName, contentType) {
+        const blob = new Blob([content], { type: contentType });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }, 100);
+    }
 });
