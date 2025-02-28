@@ -111,6 +111,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     }
                 ],
+                initComplete: function() {
+                    // Add click handler to manage active state for DataTables buttons
+                    $('.dt-button').on('click', function() {
+                        $('.dt-button').removeClass('active');
+                        $(this).addClass('active');
+                    });
+                },
                 drawCallback: function(settings) {
                     this.api().column(0, {search:'applied', order:'applied'}).nodes().each(function(cell, i) {
                         cell.innerHTML = i + 1;
@@ -132,29 +139,67 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => console.error('Error:', error));
         
-    // Button event handlers
-    document.getElementById('reset-filters').addEventListener('click', function() {
-        dataTable.search('').columns().search('').draw();
-    });
-    
-    document.getElementById('select-all').addEventListener('click', function() {
-        dataTable.rows().select();
-    });
-    
-    document.getElementById('deselect-all').addEventListener('click', function() {
-        dataTable.rows().deselect();
-    });
-    
-    document.getElementById('export-csv').addEventListener('click', function() {
-        const csvContent = convertToCSV(dataTable.data().toArray());
-        downloadFile(csvContent, 'creators-data.csv', 'text/csv');
-    });
-    
-    document.getElementById('export-json').addEventListener('click', function() {
-        const jsonData = dataTable.data().toArray();
-        const jsonContent = JSON.stringify(jsonData, null, 2);
-        downloadFile(jsonContent, 'creators-data.json', 'application/json');
-    });
+    // Create and add buttons programmatically
+    setTimeout(() => {
+        const buttonContainer = document.querySelector('.table-control-section.spacer');
+        if (buttonContainer) {
+            // Add class to container
+            buttonContainer.classList.add('table-action-buttons');
+            
+            // Create and add buttons
+            const resetButton = document.createElement('button');
+            resetButton.id = 'reset-filters';
+            resetButton.className = 'table-btn';
+            resetButton.textContent = 'Reset Filters';
+            buttonContainer.appendChild(resetButton);
+            
+            const exportCsvButton = document.createElement('button');
+            exportCsvButton.id = 'export-csv';
+            exportCsvButton.className = 'table-btn';
+            exportCsvButton.textContent = 'Export CSV';
+            buttonContainer.appendChild(exportCsvButton);
+            
+            const exportJsonButton = document.createElement('button');
+            exportJsonButton.id = 'export-json';
+            exportJsonButton.className = 'table-btn';
+            exportJsonButton.textContent = 'Export JSON';
+            buttonContainer.appendChild(exportJsonButton);
+            
+            // Add event listeners
+            document.getElementById('reset-filters').addEventListener('click', function() {
+                dataTable.search('').columns().search('').draw();
+                
+                // Visual feedback
+                const allButtons = document.querySelectorAll('.table-btn');
+                allButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                setTimeout(() => this.classList.remove('active'), 500);
+            });
+            
+            document.getElementById('export-csv').addEventListener('click', function() {
+                const csvContent = convertToCSV(dataTable.data().toArray());
+                downloadFile(csvContent, 'creators-data.csv', 'text/csv');
+                
+                // Visual feedback
+                const allButtons = document.querySelectorAll('.table-btn');
+                allButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                setTimeout(() => this.classList.remove('active'), 500);
+            });
+            
+            document.getElementById('export-json').addEventListener('click', function() {
+                const jsonData = dataTable.data().toArray();
+                const jsonContent = JSON.stringify(jsonData, null, 2);
+                downloadFile(jsonContent, 'creators-data.json', 'application/json');
+                
+                // Visual feedback
+                const allButtons = document.querySelectorAll('.table-btn');
+                allButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                setTimeout(() => this.classList.remove('active'), 500);
+            });
+        }
+    }, 100);
     
     // Helper function to convert data to CSV
     function convertToCSV(data) {

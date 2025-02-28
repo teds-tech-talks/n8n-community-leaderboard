@@ -50,5 +50,13 @@
 }
 
 .dt-buttons .dt-button.active {
-    background-color: #d0d0d0 !important;
+    background-color: #3498db !important;
+    color: white !important;
+    border-color: #2980b9 !important;
+}
+
+.table-btn.active {
+    background-color: #3498db;
+    color: white;
+    border-color: #2980b9;
 }
