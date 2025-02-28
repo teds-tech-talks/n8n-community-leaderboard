@@ -16,6 +16,37 @@
     <a id="skip-to-content" href="#content">Skip to the content.</a>
 
     <header class="page-header" role="banner">
+      <div class="decorative-container">
+        <!-- Left side cubes -->
+        <div class="decorative-element left-element-1">
+          <div class="cube-icon">
+            <img src="{{ '/assets/svg/webhook.svg' | relative_url }}" alt="webhook">
+          </div>
+        </div>
+        <div class="decorative-element left-element-2">
+          <div class="cube-icon">
+            <img src="{{ '/assets/svg/n8n-logo.svg' | relative_url }}" alt="n8n logo">
+          </div>
+        </div>
+        
+        <!-- Right side cubes -->
+        <div class="decorative-element right-element-1">
+          <div class="cube-icon">
+            <img src="{{ '/assets/svg/code.svg' | relative_url }}" alt="Code symbol">
+          </div>
+        </div>
+        <div class="decorative-element right-element-2">
+          <div class="cube-icon">
+            <img src="{{ '/assets/svg/pencil.svg' | relative_url }}" alt="Pencil">
+          </div>
+        </div>
+        <div class="decorative-element right-element-3">
+          <div class="cube-icon">
+            <img src="{{ '/assets/svg/code-file.svg' | relative_url }}" alt="Code file">
+          </div>
+        </div>
+      </div>
+      
       <h1 class="project-name">{{ site.title | default: site.github.repository_name }}</h1>
       <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
       <div class="header-buttons-row">

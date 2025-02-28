@@ -1,10 +1,8 @@
 ---
-layout: default
-title: About n8n
+layout: content
+title: What is n8n?
 permalink: /n8n/
 ---
-
-# What is n8n?
 
 [n8n](https://n8n.partnerlinks.io/xrtl7yst4s97) is a powerful and flexible automation platform. It allows you to connect various applications, services, and APIs to create automated workflows. It's designed to be a versatile tool for both technical and non-technical users. The visual interface is suitable for creating even complex integrations and automations.
 

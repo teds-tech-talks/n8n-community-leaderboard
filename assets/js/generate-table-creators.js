@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const jsonUrl = '/n8n-community-leaderboard/stats_aggregate_creators.json';
+    let dataTable; // Store the DataTable instance for later use
 
     // Function to fetch and display the last modified date
     function fetchLastModified() {
@@ -44,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ];
             });
 
-            let table = $('#stats-table').DataTable({
+            dataTable = $('#stats-table').DataTable({
                 data: tableData,
                 columns: [
                     { title: "", searchable: false, orderable: false },
@@ -83,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         text: 'Total Stats',
                         show: [0,1,2,3,4,5,10,11],
                         hide: [6,7,8,9],
+                        className: 'active',
                         attr: {
                             'data-umami-event': 'table_button',
                             'data-umami-event-table': 'total'
@@ -109,6 +111,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     }
                 ],
+                initComplete: function() {
+                    // Add click handler to manage active state for DataTables buttons
+                    $('.dt-button').on('click', function() {
+                        $('.dt-button').removeClass('active');
+                        $(this).addClass('active');
+                    });
+                },
                 drawCallback: function(settings) {
                     this.api().column(0, {search:'applied', order:'applied'}).nodes().each(function(cell, i) {
                         cell.innerHTML = i + 1;
@@ -116,16 +125,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
 
-            table.on('draw.dt', function () {
-                var pageInfo = table.page.info();
-                table.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+            dataTable.on('draw.dt', function () {
+                var pageInfo = dataTable.page.info();
+                dataTable.column(0, { page: 'current' }).nodes().each(function (cell, i) {
                     cell.innerHTML = i + 1 + pageInfo.start;
                 });
             });
 
-            table.draw();
+            dataTable.draw();
 /*
-            table.draw();
+            dataTable.draw();
 */
         })
         .catch(error => console.error('Error:', error));

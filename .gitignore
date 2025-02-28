@@ -27,3 +27,6 @@ Thumbs.db
 .fleet*
 
 *.Zone.Identifier
+**/*.Zone.Identifier
+
+draft*.html

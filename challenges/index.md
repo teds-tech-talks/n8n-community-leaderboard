@@ -1,37 +1,34 @@
 ---
-layout: default
+layout: content
 title: n8n Monthly Challenges
 ---
-<h1 class="challenge-title"></h1>
 
 <div id="current-challenge">
-    <div class="countdown-container">
-        <p id="countdown" class="countdown">Loading...</p>
-    </div>
-    <div class="challenge-stats">
-        <!-- Challenge stats will be loaded here via JS -->
-    </div>
+  <div class="countdown-container">
+    <p id="countdown" class="countdown">Loading...</p>
+  </div>
+  <div class="challenge-stats">
+    <!-- Challenge stats will be loaded here via JS -->
+  </div>
 </div>
 
-<h2>Top Creators</h2>
-<div id="top-creators">
-    <table id="creators-table" class="display compact">
-        <thead>
-            <tr>
-                <th class="number-column"></th>
-                <th></th>
-                <th>Username</th>
-                <th>Name</th>
-                <th>Templates</th>
-                <th>Total Views</th>
-                <th>Total Inserts</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <div id="creators-table_info" class="dataTables_info"></div>
-</div>
+<h2 class="section-title">Top Creators</h2>
+<table id="creators-table" class="display compact">
+  <thead>
+    <tr>
+      <th class="number-column"></th>
+      <th></th>
+      <th>Username</th>
+      <th>Name</th>
+      <th>Templates</th>
+      <th>Total Views</th>
+      <th>Total Inserts</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<div id="creators-table_info" class="dataTables_info"></div>
 
 <script>
 // Load data once and use it for all functions
@@ -41,21 +38,17 @@ let challengeData = null;
 document.addEventListener('DOMContentLoaded', () => {
     loadData().catch(error => {
         console.error('Error in main data loading:', error);
-        document.querySelector('h1.challenge-title').textContent = 'Challenge';
+        document.querySelector('.section-title').textContent = 'Challenge';
         document.getElementById('current-challenge').innerHTML = '<p>Error loading challenge data</p>';
     });
 });
 
 async function loadData() {
-    //console.log('Starting data load...');
     const response = await fetch('/n8n-community-leaderboard/challenges/challenge.json');
-    //console.log('Fetch response:', response.status, response.statusText);
     const jsonData = await response.json();
-    //console.log('Parsed JSON data:', jsonData);
     
     // Handle both array and object formats
     challengeData = Array.isArray(jsonData) ? jsonData[0] : jsonData;
-    //console.log('Challenge data to use:', challengeData);
     
     if (!challengeData) {
         console.error('challengeData is null or undefined');
@@ -71,7 +64,6 @@ async function loadData() {
     }
 
     // Load challenge data first since it sets up the page structure
-    //console.log('Loading challenge data...');
     await loadChallengeData();
     
     // Then load the tables in parallel
@@ -139,25 +131,23 @@ async function loadCreatorsData() {
 }
 </script>
 
-<h2>Featured Workflows</h2>
-<div id="featured-workflows">
-    <table id="workflows-table" class="display compact">
-        <thead>
-            <tr>
-                <th class="number-column"></th>
-                <th></th>
-                <th>Creator</th>
-                <th>Workflow</th>
-                <th>Created</th>
-                <th>Views</th>
-                <th>Inserts</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <div id="workflows-table_info" class="dataTables_info"></div>
-</div>
+<h2 class="section-title">Featured Workflows</h2>
+<table id="workflows-table" class="display compact">
+    <thead>
+        <tr>
+            <th class="number-column"></th>
+            <th></th>
+            <th>Creator</th>
+            <th>Workflow</th>
+            <th>Created</th>
+            <th>Views</th>
+            <th>Inserts</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<div id="workflows-table_info" class="dataTables_info"></div>
 
 <script>
 async function loadWorkflowsData() {
@@ -217,21 +207,20 @@ async function loadWorkflowsData() {
         console.error('Error loading workflows data:', error);
     }
 }
-
 </script>
 
-<h2>Past Challenges</h2>
-    {% assign challenge_dirs = site.pages | where_exp: "item", "item.path contains 'challenges/'" | where_exp: "item", "item.path contains '/index.md'" | sort: "path" | reverse %}
-    {% for page in challenge_dirs %}
-        {% assign path_parts = page.path | split: '/' %}
-        {% if path_parts.size == 3 %}
-            {% assign year_month = path_parts[1] | split: '-' %}
-            {% assign month_num = year_month[1] %}
-            {% assign month_name = site.data.months[month_num] %}
-            {% assign year = year_month[0] %}
+<h2 class="section-title">Past Challenges</h2>
+{% assign challenge_dirs = site.pages | where_exp: "item", "item.path contains 'challenges/'" | where_exp: "item", "item.path contains '/index.md'" | sort: "path" | reverse %}
+{% for page in challenge_dirs %}
+    {% assign path_parts = page.path | split: '/' %}
+    {% if path_parts.size == 3 %}
+        {% assign year_month = path_parts[1] | split: '-' %}
+        {% assign month_num = year_month[1] %}
+        {% assign month_name = site.data.months[month_num] %}
+        {% assign year = year_month[0] %}
 * [{{ site.data.months[month_num] }} {{ year }}]({{ site.baseurl }}/challenges/{{ path_parts[1] }})
-        {% endif %}
-    {% endfor %}
+    {% endif %}
+{% endfor %}
 
 <p><i>Learn more about <a href="{{ site.baseurl }}/about/#monthly-challenges">how monthly challenges work</a>.</i></p>
 
@@ -245,8 +234,12 @@ async function loadChallengeData() {
         const monthName = monthNames[curDate.getMonth()];
         const year = curDate.getFullYear();
 
-        // Update page title - only update the h1.challenge-title, not the header title
-        document.querySelector('h1.challenge-title').textContent = `${monthName} ${year} Challenge`;
+        // Update page title
+        document.title = `${monthName} ${year} Challenge - n8n Monthly Challenges`;
+        const titleElement = document.querySelector('.section-title');
+        titleElement.textContent = `${monthName} ${year} Challenge`;
+        titleElement.style.textAlign = 'center !important';
+        titleElement.classList.add('challenge-title-main');
 
         // Update challenge stats
         document.querySelector('.challenge-stats').innerHTML = `
@@ -288,9 +281,8 @@ async function loadChallengeData() {
 
     } catch (error) {
         console.error('Error loading challenge data:', error);
-        document.querySelector('h1.challenge-title').textContent = 'Challenge';
+        document.querySelector('.section-title').textContent = 'Challenge';
         document.getElementById('current-challenge').innerHTML = '<p>Error loading challenge data</p>';
     }
 }
-
 </script>

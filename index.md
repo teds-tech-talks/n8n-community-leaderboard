@@ -1,10 +1,8 @@
 ---
-layout: default
+layout: content
+title: Creators Leaderboard
+show_last_updated: true
 ---
-
-# Creators Leaderboard
-
-<p id="last-updated" class="text-muted"></p>
 
 <div id="table-controls"></div>
 <table id="stats-table" class="display compact">
