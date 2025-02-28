@@ -236,7 +236,9 @@ async function loadChallengeData() {
 
         // Update page title
         document.title = `${monthName} ${year} Challenge - n8n Monthly Challenges`;
-        document.querySelector('.section-title').textContent = `${monthName} ${year} Challenge`;
+        const titleElement = document.querySelector('.section-title');
+        titleElement.textContent = `${monthName} ${year} Challenge`;
+        titleElement.style.textAlign = 'center';
 
         // Update challenge stats
         document.querySelector('.challenge-stats').innerHTML = `
