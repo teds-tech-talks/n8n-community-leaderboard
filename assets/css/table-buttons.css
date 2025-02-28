@@ -41,10 +41,11 @@
     box-shadow: none;
 }
 
-/* Style for DataTables buttons to match our custom buttons */
+/* Style for DataTables buttons to match our custom buttons 
 .dt-buttons {
     display: inline-block !important;
 }
+*/
 
 .dt-buttons .dt-button {
     padding: 8px 16px !important;
