@@ -28,4 +28,3 @@ show_last_updated: true
 <p class="text-muted"><i>Note: n8n-team account is excluded.</i></p>
 
 <script src="{{ '/assets/js/generate-table-creators.js' | relative_url }}"></script>
-<link rel="stylesheet" href="{{ '/assets/css/table-buttons.css' | relative_url }}">
