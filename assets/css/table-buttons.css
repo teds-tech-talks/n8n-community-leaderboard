@@ -127,6 +127,8 @@
 }
 
 .dt-paging .dt-paging-button:hover {
+    background: none !important;
+    color: #333 !important;
     background-color: #e0e0e0 !important;
     transform: translateY(-1px) !important;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
@@ -135,6 +137,15 @@
 .dt-paging .dt-paging-button.current {
     background-color: #d0d0d0 !important;
     font-weight: normal !important;
+}
+
+/* Fix for DataTables default hover behavior */
+.dt-paging .dt-paging-button:active {
+    background: none !important;
+    color: #333 !important;
+    background-color: #d0d0d0 !important;
+    box-shadow: none !important;
+    outline: none !important;
 }
 
 .dt-paging .dt-paging-button.disabled {
