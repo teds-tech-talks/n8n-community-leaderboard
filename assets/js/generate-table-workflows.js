@@ -110,8 +110,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]], // Length menu options
                 initComplete: function() {
                     // Add click handler to manage active state for DataTables buttons
-                    $('.dt-button').on('click', function() {
-                        $('.dt-button').removeClass('active');
+                    $('.dt-button:not(.chart-btn)').on('click', function() {
+                        $('.dt-button:not(.chart-btn)').removeClass('active');
                         $(this).addClass('active');
                     });
                 },
