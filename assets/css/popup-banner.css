@@ -109,15 +109,6 @@
     visibility: visible;
   }
 
-  .popup-title {
-    font-size: 1.1em;
-    margin-bottom: 10px; /* Adjusted margin for mobile */
-  }
-
-  .popup-image {
-    max-width: 140px; /* Increased width for mobile */
-  }
-
   .popup-text {
     font-size: 0.9em;
     margin-bottom: 15px; /* Adjusted margin for mobile */

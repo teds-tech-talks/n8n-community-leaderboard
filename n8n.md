@@ -6,7 +6,7 @@ permalink: /n8n/
 
 [n8n](https://n8n.partnerlinks.io/xrtl7yst4s97) is a powerful and flexible automation platform. It allows you to connect various applications, services, and APIs to create automated workflows. It's designed to be a versatile tool for both technical and non-technical users. The visual interface is suitable for creating even complex integrations and automations.
 
-![n8n Overview](https://n8n.io/_nuxt/image/bf4fe9.png)
+![n8n Overview](/assets/img/n8n-01-overview.png)
 
 ## 👨‍💼👩‍💼 n8n for Non-Tech Users
 
@@ -19,14 +19,14 @@ For those without an extensive technical background, n8n provides:
 
 With n8n, non-technical users can automate repetitive tasks, connect different tools, and streamline their workflows without writing code.
 
-![AI Capabilities](https://n8n.io/_nuxt/image/db76ca.png)
+![AI Capabilities](/assets/img/n8n-02-ai.png)
 
 
 ### Affordable Pricing
 
 n8n offers a [cost-effective cloud solution](https://n8n.partnerlinks.io/n8n-pricing) that's significantly cheaper compared to competitors like Zapier and Make. The pricing model is based on workflow runs rather than individual tasks, providing better value for your automation needs.
 
-![Pricing Comparison](https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-stage/assets/price_comparison3_a73575928a.jpg)
+![Pricing Comparison](/assets/img/n8n-03-pricing.jpg)
 
 ## 🧰🛠️ n8n for Engineers
 
@@ -41,7 +41,7 @@ Engineers and developers will appreciate n8n's advanced features:
 
 n8n empowers engineers to build sophisticated automation systems and integrate them seamlessly with existing infrastructure.
 
-![JS expression editor](https://n8n.io/_nuxt/image/41ff09.png)
+![JS expression editor](/assets/img/n8n-04-code-editor.png)
 
 ### Self-Hosting Options
 
@@ -63,7 +63,7 @@ For managers and team leaders, n8n offers:
 - Scalable solutions that can grow with your organization's needs
 - Cost-effective pricing
 
-![Log streaming](https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/enterprise_log_streaming_859d77d6d9.png)
+![Log streaming](/assets/img/n8n-05-enterprise_log_streaming.png)
 
 ### Advanced Enterprise Options
 
