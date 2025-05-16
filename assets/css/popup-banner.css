@@ -52,14 +52,14 @@
   font-size: 1.25em;
   color: #333;
   margin-top: 0;
-  margin-bottom: 15px; /* Increased margin to separate from image */
+  margin-bottom: 5px;
 }
 
 .popup-image {
-  max-width: 180px; /* Increased width for desktop */
+  max-width: 100%;
   height: auto;
-  margin-bottom: 15px;
-  border-radius: 4px;
+  margin-bottom: 0px;
+  border-radius: 8px;
 }
 
 .popup-text {
@@ -72,7 +72,7 @@
 .popup-cta-btn {
   display: inline-block;
   background-color: #BF2F51; /* New button color: Red 600 */
-  color: #fff;
+  color: #FCFCFD;
   padding: 10px 20px; /* Style similar to header .btn */
   text-decoration: none;
   border-radius: 5px; /* Style similar to header .btn */
