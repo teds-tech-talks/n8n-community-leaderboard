@@ -1,0 +1,119 @@
+.popup-banner {
+  position: fixed;
+  top: 50%;
+  right: -400px; /* Start off-screen for slide-in from right */
+  transform: translateY(-50%);
+  width: 350px;
+  max-width: 90%; /* Ensure it doesn't overflow on very narrow viewports before media query kicks in */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  z-index: 1000;
+  transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out, bottom 0.5s ease-in-out, visibility 0s 0.5s; /* Delay visibility transition when hiding */
+  font-family: 'Open Sans', sans-serif; /* Assuming Open Sans is available from the main theme */
+  opacity: 0; /* Start fully transparent */
+  visibility: hidden; /* Start hidden */
+}
+
+.popup-banner.visible {
+  right: 20px; /* Slide into view for desktop */
+  opacity: 1;
+  visibility: visible;
+  transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out, bottom 0.5s ease-in-out, visibility 0s 0s; /* Visibility transition immediate when becoming visible */
+}
+
+.popup-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: #888;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.popup-close-btn:hover {
+  color: #333;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.popup-image {
+  max-width: 100px; 
+  height: auto;
+  margin-bottom: 15px;
+  border-radius: 4px;
+}
+
+.popup-title {
+  font-size: 1.25em;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.popup-text {
+  font-size: 0.95em;
+  color: #555;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.popup-cta-btn {
+  display: inline-block;
+  background-color: #157878; /* Using theme color from default.html */
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.popup-cta-btn:hover {
+  background-color: #115f5f; /* Darker shade of theme color */
+  color: #fff;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 600px) { /* Breakpoint for mobile popup styling */
+  .popup-banner {
+    top: auto; /* Remove top positioning */
+    bottom: -300px; /* Start off-screen from bottom for slide-up */
+    left: 10px;
+    right: 10px; /* Overrides the initial -400px for slide-in logic */
+    width: auto; /* Auto width to respect left/right 10px */
+    transform: none; /* Remove Y translation */
+    /* Ensure opacity and visibility are handled for the initial state */
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .popup-banner.visible {
+    bottom: 10px; /* Slide into view from bottom */
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .popup-image {
+    max-width: 80px;
+  }
+
+  .popup-title {
+    font-size: 1.1em;
+  }
+
+  .popup-text {
+    font-size: 0.9em;
+  }
+}
