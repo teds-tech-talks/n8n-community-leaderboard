@@ -48,40 +48,43 @@
   text-align: center;
 }
 
+.popup-title {
+  font-size: 1.25em;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 15px; /* Increased margin to separate from image */
+}
+
 .popup-image {
-  max-width: 100px; 
+  max-width: 180px; /* Increased width for desktop */
   height: auto;
   margin-bottom: 15px;
   border-radius: 4px;
 }
 
-.popup-title {
-  font-size: 1.25em;
-  color: #333;
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
 .popup-text {
   font-size: 0.95em;
   color: #555;
-  margin-bottom: 15px;
+  margin-bottom: 20px; /* Increased margin to separate from button */
   line-height: 1.4;
 }
 
 .popup-cta-btn {
   display: inline-block;
-  background-color: #157878; /* Using theme color from default.html */
+  background-color: #BF2F51; /* New button color: Red 600 */
   color: #fff;
-  padding: 10px 20px;
+  padding: 10px 20px; /* Style similar to header .btn */
   text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
+  border-radius: 5px; /* Style similar to header .btn */
+  font-weight: bold; /* Style similar to header .btn */
+  border: none; /* Ensure no unwanted border */
   transition: background-color 0.3s ease;
+  text-align: center;
+  cursor: pointer;
 }
 
 .popup-cta-btn:hover {
-  background-color: #115f5f; /* Darker shade of theme color */
+  background-color: #A92947; /* Darker shade of Red 600 */
   color: #fff;
 }
 
@@ -94,7 +97,6 @@
     right: 10px; /* Overrides the initial -400px for slide-in logic */
     width: auto; /* Auto width to respect left/right 10px */
     transform: none; /* Remove Y translation */
-    /* Ensure opacity and visibility are handled for the initial state */
     opacity: 0;
     visibility: hidden;
   }
@@ -105,15 +107,17 @@
     visibility: visible;
   }
 
-  .popup-image {
-    max-width: 80px;
-  }
-
   .popup-title {
     font-size: 1.1em;
+    margin-bottom: 10px; /* Adjusted margin for mobile */
+  }
+
+  .popup-image {
+    max-width: 140px; /* Increased width for mobile */
   }
 
   .popup-text {
     font-size: 0.9em;
+    margin-bottom: 15px; /* Adjusted margin for mobile */
   }
 }
