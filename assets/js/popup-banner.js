@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
     // Delay adding visible class slightly to ensure transition plays
-    // especially on initial page load.
+    // especially on initial page load. Increased delay for potentially slower devices.
     setTimeout(() => {
         popupBanner.classList.add('visible');
-    }, 50); // Small delay like 50ms
+    }, 100); // Increased from 50ms to 100ms
   }
 
   // Function to hide the popup
