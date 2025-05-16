@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Constants for time durations
-    const INITIAL_SHOW_DELAY = 3000; // 3 seconds before first potential show
+    const INITIAL_SHOW_DELAY = 30 * 1000; // 30 seconds before first potential show
     const VISIBILITY_TRANSITION_DELAY = 100; // ms for CSS transition to kick in
-    const FIVE_MINUTES_IN_MS = 5 * 60 * 1000;
-    const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000;
-    const FOURTEEN_DAYS_IN_MS = 14 * 24 * 60 * 60 * 1000;
+    const SHORT_DELAY = 2 * 60 * 1000; // 2 mins
+    const CLOSE_DELAY = 3 * 24 * 60 * 60 * 1000; // 3 Days
+    const CTA_DELAY = 14 * 24 * 60 * 60 * 1000;
 
     // Storage keys
     const SUPPRESSED_UNTIL_KEY = 'popupSuppressedUntil';
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const lastAppearanceTimeString = sessionStorage.getItem(LAST_NON_INTERACTED_APPEARANCE_KEY);
         if (lastAppearanceTimeString) {
             const lastAppearanceTime = parseInt(lastAppearanceTimeString, 10);
-            if ((Date.now() - lastAppearanceTime) < FIVE_MINUTES_IN_MS) {
+            if ((Date.now() - lastAppearanceTime) < SHORT_DELAY) {
                 // console.log('Popup suppressed by sessionStorage (5-min rule)');
                 return false; 
             }
@@ -80,17 +80,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event Listeners
     closePopupButton.addEventListener('click', () => {
         // Umami event is handled by its data-umami-event attribute on the HTML element
-        hidePopupAndSetSuppression(THREE_DAYS_IN_MS);
+        hidePopupAndSetSuppression(CLOSE_DELAY);
     });
 
     ctaButton.addEventListener('click', () => {
         // Umami event is handled by its data-umami-event attribute on the HTML element
-        hidePopupAndSetSuppression(FOURTEEN_DAYS_IN_MS);
+        hidePopupAndSetSuppression(CTA_DELAY);
     });
 
     imageLink.addEventListener('click', () => {
         // Umami event is handled by its data-umami-event attribute on the HTML element
-        hidePopupAndSetSuppression(FOURTEEN_DAYS_IN_MS);
+        hidePopupAndSetSuppression(CTA_DELAY);
     });
 
     // Initial decision to show popup
