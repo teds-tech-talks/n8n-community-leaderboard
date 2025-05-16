@@ -10,6 +10,7 @@
     <meta name="theme-color" content="#157878">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/popup-banner.css' | relative_url }}"> <!-- Added popup CSS -->
     {% include head-custom.html %}
   </head>
   <body>
@@ -75,5 +76,9 @@
 
       {% include footer.html %}
     </main>
+
+    {% include popup-banner.html %} <!-- Added popup HTML snippet -->
+
+    <script src="{{ '/assets/js/popup-banner.js' | relative_url }}" defer></script> <!-- Added popup JS -->
   </body>
 </html>
