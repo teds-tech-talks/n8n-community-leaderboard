@@ -74,18 +74,20 @@
   background-color: #BF2F51; /* New button color: Red 600 */
   color: #FCFCFD;
   padding: 10px 20px; /* Style similar to header .btn */
-  text-decoration: none;
+  text-decoration: none; /* Ensure no underline by default */
   border-radius: 5px; /* Style similar to header .btn */
   font-weight: bold; /* Style similar to header .btn */
   border: none; /* Ensure no unwanted border */
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease-out; /* Added transform to transition */
   text-align: center;
   cursor: pointer;
 }
 
 .popup-cta-btn:hover {
   background-color: #A92947; /* Darker shade of Red 600 */
-  color: #fff;
+  color: #fff; /* Ensuring text color remains white or as desired on hover */
+  text-decoration: none; /* Explicitly remove underline on hover */
+  transform: translateY(-2px); /* Add lift effect on hover */
 }
 
 /* Responsive adjustments for mobile */
