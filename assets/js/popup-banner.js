@@ -69,6 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
         sessionStorage.removeItem(LAST_NON_INTERACTED_APPEARANCE_KEY); // Clear session cooldown
 
         // Track Umami event specifically for close, if provided
+        // This is now only relevant if an event name is explicitly passed for other reasons.
+        // For the standard close, CTA, and image clicks, Umami events are handled by data-attributes in HTML.
         if (umamiEventNameForCloseAction && typeof umami !== 'undefined' && umami.track) {
             umami.track(umamiEventNameForCloseAction);
             // console.log('Umami event tracked:', umamiEventNameForCloseAction);
@@ -77,7 +79,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event Listeners
     closePopupButton.addEventListener('click', () => {
-        hidePopupAndSetSuppression(THREE_DAYS_IN_MS, 'Popup Closed');
+        // Umami event is handled by its data-umami-event attribute on the HTML element
+        hidePopupAndSetSuppression(THREE_DAYS_IN_MS);
     });
 
     ctaButton.addEventListener('click', () => {
