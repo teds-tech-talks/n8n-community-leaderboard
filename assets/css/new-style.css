@@ -37,7 +37,7 @@ body {
 
 .decorative-element {
     position: absolute;
-    background-image: url('/n8n-community-leaderboard/assets/svg/cube.svg');
+    background-image: url('/assets/svg/cube.svg');
     background-size: contain;
     background-repeat: no-repeat;
     display: flex;

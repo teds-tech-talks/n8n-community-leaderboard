@@ -2,8 +2,8 @@ theme: jekyll-theme-cayman
 baseurl: ""
 
 # Custom settings for Cayman theme
-title: n8n Creators Leaderboard
-description: A community-led website with creator ratings and workflow template analytics
+title: "n8n Arena: Creators Leaderboard"
+description: "Community-powered rankings of top creators and standout workflows"
 
 # Custom buttons
 github:
