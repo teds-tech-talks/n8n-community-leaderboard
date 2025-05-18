@@ -16,7 +16,7 @@ function initChart() {
     // Fetch historic data
     async function fetchHistoricData() {
         if (historicData === null) {
-            const response = await fetch('/n8n-community-leaderboard/stats_aggregate_chart.json');
+            const response = await fetch('/stats_aggregate_chart.json');
             historicData = await response.json();
         }
         return historicData;

@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function loadData() {
-    const response = await fetch('/n8n-community-leaderboard/challenges/{{ page.challenge_date }}/challenge_monthly_{{ page.challenge_date }}.json');
+    const response = await fetch('/challenges/{{ page.challenge_date }}/challenge_monthly_{{ page.challenge_date }}.json');
     const jsonData = await response.json();
     
     // Handle both array and object formats

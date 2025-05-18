@@ -1,5 +1,5 @@
 theme: jekyll-theme-cayman
-baseurl: "/n8n-community-leaderboard"
+baseurl: ""
 
 # Custom settings for Cayman theme
 title: n8n Creators Leaderboard
@@ -12,6 +12,6 @@ custom_buttons:
   - text: Templates gallery
     url: https://n8n.partnerlinks.io/n8n-workflows
   - text: What is this?
-    url: /n8n-community-leaderboard/about
+    url: /about
   - text: What is n8n?
-    url: /n8n-community-leaderboard/n8n
+    url: /n8n

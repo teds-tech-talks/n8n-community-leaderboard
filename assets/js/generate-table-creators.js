@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const jsonUrl = '/n8n-community-leaderboard/stats_aggregate_creators.json';
+    const jsonUrl = '/stats_aggregate_creators.json';
     let dataTable; // Store the DataTable instance for later use
 
     // Function to fetch and display the last modified date

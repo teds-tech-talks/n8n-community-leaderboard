@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const jsonUrl = '/n8n-community-leaderboard/stats_aggregate_workflows.json';
+    const jsonUrl = '/stats_aggregate_workflows.json';
 
     // Function to fetch and display the last modified date
     function fetchLastModified() {
