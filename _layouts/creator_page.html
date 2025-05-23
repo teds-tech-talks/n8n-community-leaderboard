@@ -3,6 +3,19 @@ layout: default
 ---
 
 <style>
+  /* Animation for gradient buttons */
+  @keyframes animatedGradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
   /* Container styles */
   .content-container {
     margin: 30px auto;
@@ -241,6 +254,112 @@ layout: default
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='%23444' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zM2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'/%3E%3C/svg%3E");
   }
 
+  /* Offers section */
+  .creator-offers {
+    padding: 25px 30px;
+    margin: 0px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    position: relative;
+    margin-bottom: 30px;
+  }
+
+  .offers-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+  }
+
+  .offer-card {
+    flex: 1;
+    min-width: 250px;
+    max-width: 400px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .offer-title {
+    font-size: 1.3em;
+    margin: 0;
+    padding: 15px;
+    background-color: #484C99;
+    color: white;
+    text-align: center;
+  }
+
+  .offer-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: 200px;
+  }
+
+  .offer-description {
+    padding: 15px;
+    flex-grow: 1;
+    color: #444;
+    line-height: 1.5;
+  }
+
+  .offer-cta-btn {
+    display: block;
+    margin: 0 15px 15px;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    background-size: 200% auto;
+    transition: all 0.3s ease;
+    border: none;
+  }
+
+  /* Animated gradient buttons based on header gradient */
+  .offer-cta-btn {
+    background-image: linear-gradient(120deg, #20B69E, #484C99, #20B69E);
+    animation: animatedGradient 4s ease infinite;
+  }
+
+  .offer-cta-btn[data-gradient="ocean"] {
+    background-image: linear-gradient(120deg, #20B69E, #484C99, #20B69E);
+  }
+
+  .offer-cta-btn[data-gradient="sunset"] {
+    background-image: linear-gradient(120deg, #EA4B71, #6E72E0, #EA4B71);
+  }
+
+  .offer-cta-btn[data-gradient="forest"] {
+    background-image: linear-gradient(120deg, #20B69E, #176363, #20B69E);
+  }
+
+  .offer-cta-btn[data-gradient="golden"] {
+    background-image: linear-gradient(120deg, #FAE166, #DDBB1A, #FAE166);
+    color: #333; /* Dark text for light background */
+  }
+
+  .offer-cta-btn[data-gradient="twilight"] {
+    background-image: linear-gradient(120deg, #484C99, #8287EB, #484C99);
+  }
+
+  .offer-cta-btn:hover {
+    background-position: right center;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    color: white;
+    text-decoration: none;
+  }
+
+  .offer-cta-btn[data-gradient="golden"]:hover {
+    color: #333; /* Keep dark text on hover for golden */
+  }
+
   /* Workflows section */
   .creator-workflows {
     padding: 25px 30px;
@@ -258,7 +377,8 @@ layout: default
     position: relative;
   }
 
-  .content-container .creator-workflows h2 {
+  .content-container .creator-workflows h2,
+  .content-container .creator-offers h2 {
     margin-top: 0;
     font-size: 1.8em;
     border-bottom: 2px solid #f0f0f0;
@@ -381,6 +501,16 @@ layout: default
       margin-top: 10px;
       margin-left: 0;
     }
+    
+    .offers-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .offer-card {
+      width: 100%;
+      max-width: 100%;
+    }
   }
 </style>
 
@@ -468,6 +598,41 @@ layout: default
     </table>
     <p><em>Rankings show {{ page.creator_name }}'s position among <span id="creator-count">all</span> creators.</em></p>
   </section>
+
+  {% if page.offer1 or page.offer2 %}
+  <section class="creator-offers">
+    <h2>Creator Offers</h2>
+    <div class="offers-container">
+      {% if page.offer1 %}
+      <div class="offer-card">
+        <h3 class="offer-title">{{ page.offer1.title }}</h3>
+        {% if page.offer1.image %}
+        <img src="{{ page.offer1.image | relative_url }}" alt="{{ page.offer1.title }}" class="offer-image">
+        {% endif %}
+        <p class="offer-description">{{ page.offer1.description }}</p>
+        <a href="{{ page.offer1.link }}" target="_blank" rel="noopener noreferrer" class="offer-cta-btn" 
+           {% if page.header_gradient %}data-gradient="{{ page.header_gradient }}"{% endif %}>
+          {{ page.offer1.cta | default: "Learn More" }}
+        </a>
+      </div>
+      {% endif %}
+      
+      {% if page.offer2 %}
+      <div class="offer-card">
+        <h3 class="offer-title">{{ page.offer2.title }}</h3>
+        {% if page.offer2.image %}
+        <img src="{{ page.offer2.image | relative_url }}" alt="{{ page.offer2.title }}" class="offer-image">
+        {% endif %}
+        <p class="offer-description">{{ page.offer2.description }}</p>
+        <a href="{{ page.offer2.link }}" target="_blank" rel="noopener noreferrer" class="offer-cta-btn"
+           {% if page.header_gradient %}data-gradient="{{ page.header_gradient }}"{% endif %}>
+          {{ page.offer2.cta | default: "Learn More" }}
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+  {% endif %}
 
   <section class="creator-workflows">
     <h2>Workflows</h2>
