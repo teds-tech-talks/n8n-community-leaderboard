@@ -159,21 +159,14 @@ layout: default
   }
 
   /* Links styles */
-  .creator-links ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .creator-links {
     display: inline-flex;
     flex-wrap: wrap;
     gap: 8px;
     margin-left: 15px;
   }
 
-  .creator-links li {
-    margin-bottom: 0;
-  }
-
-  .creator-links a {
+  .creator-links .social-button {
     text-decoration: none;
     color: #444;
     display: inline-flex;
@@ -188,7 +181,7 @@ layout: default
     background-color: #fff;
   }
 
-  .creator-links a:hover {
+  .creator-links .social-button:hover {
     border-color: #007bff;
     color: #007bff;
     box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
@@ -357,7 +350,7 @@ layout: default
       flex-wrap: wrap;
     }
     
-    .creator-links ul {
+    .creator-links {
       justify-content: center;
       margin-top: 10px;
       margin-left: 0;
@@ -396,25 +389,21 @@ layout: default
           
           {% if page.links %}
             <span class="creator-links">
-              <ul>
-                {% for item in page.links %}
-                  {% assign link = item | downcase %}
-                  <li>
-                    <a href="{{ item }}" target="_blank" rel="noopener noreferrer">
-                      <span class="link-icon {% if link contains 'twitter.com' %}icon-twitter{% elsif link contains 'github.com' %}icon-github{% elsif link contains 'linkedin.com' %}icon-linkedin{% else %}icon-website{% endif %}"></span>
-                      {% if link contains "twitter.com" %}
-                        Twitter
-                      {% elsif link contains "github.com" %}
-                        GitHub
-                      {% elsif link contains "linkedin.com" %}
-                        LinkedIn
-                      {% else %}
-                        {{ item | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}
-                      {% endif %}
-                    </a>
-                  </li>
-                {% endfor %}
-              </ul>
+              {% for item in page.links %}
+                {% assign link = item | downcase %}
+                <a href="{{ item }}" target="_blank" rel="noopener noreferrer" class="social-button">
+                  <span class="link-icon {% if link contains 'twitter.com' %}icon-twitter{% elsif link contains 'github.com' %}icon-github{% elsif link contains 'linkedin.com' %}icon-linkedin{% else %}icon-website{% endif %}"></span>
+                  {% if link contains "twitter.com" %}
+                    Twitter
+                  {% elsif link contains "github.com" %}
+                    GitHub
+                  {% elsif link contains "linkedin.com" %}
+                    LinkedIn
+                  {% else %}
+                    {{ item | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}
+                  {% endif %}
+                </a>
+              {% endfor %}
             </span>
           {% endif %}
         </p>
