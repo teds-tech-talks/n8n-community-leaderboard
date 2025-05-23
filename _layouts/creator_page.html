@@ -152,8 +152,8 @@ layout: default
           <li><a href="{{ page.links }}" target="_blank" rel="noopener noreferrer">{{ page.links | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
         </ul>
       </section>
-    {% elsif page.links.size != nil and page.links.size > 0 %}
-      {# Handle page.links if it's a collection (e.g., array) with items #}
+    {% elsif page.links.size > 0 %}
+      {# Handle page.links if it's a collection (e.g., array) with items, and not a string (already handled) #}
       <section class="creator-links">
         <h2>Links</h2>
         <ul>
