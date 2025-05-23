@@ -3,24 +3,55 @@ layout: default
 ---
 
 <style>
-  /* General container for the creator page content */
-  .content-container {
-    max-width: 880px; /* Max width for the card and subsequent sections */
-    margin: 30px auto; /* Centering and vertical spacing */
-    background-color: #fff;
-    border-radius: 12px; /* Slightly more rounded corners */
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1); /* Softer, more diffused shadow */
-    margin-bottom: 30px; /* Space before the next section (e.g., Workflows) */
-    position: relative; /* For absolute positioning of the avatar */
-    overflow: hidden; /* Ensures header grain and content stay within rounded corners */
+  /* Reset main content padding */
+  .main-content {
+    padding: 0 !important;
   }
 
+  /* Container styles */
+  .content-container {
+    max-width: 880px;
+    margin: 30px auto;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  /* Header styles */
   .creator-profile-header {
-    height: 220px; /* Height for the header banner */
-    background-image: linear-gradient(135deg, #74ebd5 0%, #9face6 100%); /* Default gradient */
+    height: 220px;
+    width: 100%;
+    background-image: linear-gradient(135deg, #20B69E 0%, #484C99 100%);
     background-size: cover;
     background-position: center;
-    position: relative; /* For the grain pseudo-element */
+    position: relative;
+    margin: 0;
+    display: block;
+  }
+
+  /* Custom gradient variations */
+  .creator-profile-header[data-gradient="ocean"] {
+    background-image: linear-gradient(135deg, #20B69E 0%, #484C99 100%);
+  }
+
+  .creator-profile-header[data-gradient="sunset"] {
+    background-image: linear-gradient(135deg, #EA4B71 0%, #6E72E0 100%);
+  }
+
+  .creator-profile-header[data-gradient="forest"] {
+    background-image: linear-gradient(135deg, #20B69E 0%, #176363 100%);
+  }
+
+  .creator-profile-header[data-gradient="golden"] {
+    background-image: linear-gradient(135deg, #FAE166 0%, #DDBB1A 100%);
+  }
+
+  .creator-profile-header[data-gradient="twilight"] {
+    background-image: linear-gradient(135deg, #484C99 0%, #8287EB 100%);
   }
 
   /* Grain effect for the header */
@@ -29,47 +60,68 @@ layout: default
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none; /* Allows clicks through to the header if ever needed */
+    pointer-events: none;
   }
 
-  .creator-avatar {
-    width: 140px;
-    height: 140px;
+  /* Avatar styles */
+  img.creator-avatar {
+    width: 200px !important;
+    height: 200px !important;
+    max-width: none !important;
     border-radius: 50%;
-    border: 5px solid #fff; /* White border to lift it off the background */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Shadow for depth */
+    border: 5px solid #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     position: absolute;
-    /* Position avatar top ~2/3 down the header */
-    top: calc(220px * 0.60 - (140px / 2)); /* (HeaderHeight * 0.60) - (AvatarHeight / 2) */
-                                          /* Approx 132px - 70px = 62px from top of card */
-                                          /* Let's adjust to be more like LinkedIn: top part of avatar higher */
-                                          /* HeaderHeight (220px) - AvatarOverlap (e.g. 90px) = 130px from top of card */
-    top: 130px; 
-    left: 30px; /* Indent from the left edge of the card */
-    z-index: 2; /* Ensure avatar is above the header content */
+    top: 120px;
+    left: 30px;
+    z-index: 2;
+    object-fit: cover;
+    margin: 0 !important;
+    display: block;
   }
 
-  /* Container for text content (name, bio, links) to the right of the avatar */
+  /* Default avatar styles */
+  .default-avatar {
+    width: 200px !important;
+    height: 200px !important;
+    max-width: none !important;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    position: absolute;
+    top: 120px;
+    left: 30px;
+    z-index: 2;
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 72px;
+    font-weight: 500;
+    text-transform: uppercase;
+    background-color: #20B69E;
+    color: #fff;
+  }
+
+  /* Main content styles */
   .creator-card-main-content {
-    padding: 20px;
-    padding-left: calc(30px + 140px + 25px); /* Avatar left + Avatar width + desired space */
-    /* Content should start visually below the header, aligned with avatar */
-    /* Avatar top is 130px, height 140px. Bottom is 270px. Header is 220px. */
-    /* We need padding-top to push content down past the header area,
-       and to align with the avatar. */
-    padding-top: 30px; /* Initial space from top of this white block */
-    margin-top: 220px; /* Start this white block right after the header */
-                       /* This creates a block that is effectively from bottom of header downwards */
-    min-height: calc( (130px + 140px) - 220px + 30px); /* Ensure content area is tall enough for avatar part below header */
-                                                      /* (Avatar_top + Avatar_height) - Header_height + bottom_padding */
-                                                      /* (130 + 140) - 220 + 30 = 270 - 220 + 30 = 50 + 30 = 80px */
-
-    background-color: #fff; /* This part has a white background */
+    padding: 30px;
+    padding-left: calc(30px + 200px + 25px);
+    padding-top: 15px;
+    background-color: #fff;
+    min-height: 80px;
+    position: relative;
   }
-  
+
+  /* Creator info styles */
+  .creator-info {
+    position: relative;
+    z-index: 1;
+  }
+
   .creator-info h1 {
-    font-size: 2.2em; /* Larger name */
-    margin-top: 0; 
+    font-size: 2.2em;
+    margin-top: 0;
     margin-bottom: 4px;
     color: #222;
   }
@@ -78,55 +130,102 @@ layout: default
     font-size: 1.1em;
     color: #555;
     margin-bottom: 15px;
-    display: block; /* Ensure it takes its own line */
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
+  /* Verification badge styles */
+  .verified-badge {
+    display: inline-flex;
+    color: #0095f6;
+    font-size: 1.2em;
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19.595 10.885c0-.69-.264-1.254-.264-1.254a1.714 1.714 0 01-.498-1.254c0-.69-.265-1.254-.265-1.254a1.714 1.714 0 01-.498-1.254c0-.69-.265-1.254-.265-1.254a1.714 1.714 0 01-.498-1.254c0-.69-.265-1.254-.265-1.254a1.714 1.714 0 01-.498-1.254H8.012c-.69 0-1.254.265-1.254.265a1.714 1.714 0 01-1.254.498c-.69 0-1.254.265-1.254.265a1.714 1.714 0 01-1.254.498c-.69 0-1.254.265-1.254.265a1.714 1.714 0 01-1.254.498c-.69 0-1.254.265-1.254.265a1.714 1.714 0 01-1.254.498v8.012c0 .69.265 1.254.265 1.254.249.498.498 1.254.498 1.254 0 .69.265 1.254.265 1.254.249.498.498 1.254.498 1.254 0 .69.265 1.254.265 1.254.249.498.498 1.254.498 1.254 0 .69.265 1.254.265 1.254.249.498.498 1.254.498 1.254h8.012c.69 0 1.254-.265 1.254-.265a1.714 1.714 0 011.254-.498c.69 0 1.254-.265 1.254-.265a1.714 1.714 0 011.254-.498c.69 0 1.254-.265 1.254-.265a1.714 1.714 0 011.254-.498c.69 0 1.254-.265 1.254-.265a1.714 1.714 0 011.254-.498V10.885zM8.676 14.547L5.014 10.885l1.254-1.254 2.408 2.408 5.07-5.07 1.254 1.254-6.324 6.324z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  /* Bio styles */
   .creator-bio {
-    font-size: 0.95em;
+    font-size: 1em;
     color: #444;
     line-height: 1.6;
     margin-bottom: 20px;
   }
 
+  /* Links styles */
   .creator-links ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px; /* Space between link items */
+    gap: 12px;
   }
 
   .creator-links li {
-    margin-bottom: 0; /* Handled by gap */
+    margin-bottom: 0;
   }
 
   .creator-links a {
     text-decoration: none;
-    color: #007bff;
-    display: inline-block;
-    padding: 8px 14px; /* Slightly more padding */
-    border: 1px solid #007bff;
-    border-radius: 20px; /* Pill-shaped links */
-    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    color: #444;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    transition: all 0.2s ease;
     font-weight: 500;
-    font-size: 0.85em;
+    font-size: 0.9em;
+    background-color: #fff;
   }
 
   .creator-links a:hover {
-    background-color: #007bff;
-    color: white;
-    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+    border-color: #007bff;
+    color: #007bff;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
   }
-  
-  /* Styling for the workflows section */
+
+  /* Social icons */
+  .link-icon {
+    width: 18px;
+    height: 18px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .icon-twitter {
+    color: #1DA1F2;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%231DA1F2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z'/%3E%3C/svg%3E");
+  }
+
+  .icon-github {
+    color: #333;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%23333' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E");
+  }
+
+  .icon-linkedin {
+    color: #0077B5;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%230077B5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z'/%3E%3C/svg%3E");
+  }
+
+  .icon-website {
+    color: #444;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='%23444' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zM2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'/%3E%3C/svg%3E");
+  }
+
+  /* Workflows section */
   .creator-workflows {
-    padding: 25px;
-    margin-top: 30px; /* Add space between main content and workflows */
-    margin-bottom: 25px;
+    padding: 25px 30px;
+    margin: 30px;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    position: relative;
   }
 
   .content-container .creator-workflows h2 {
@@ -137,48 +236,87 @@ layout: default
     margin-bottom: 20px;
     color: #333;
   }
+
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    img.creator-avatar,
+    .default-avatar {
+      width: 150px !important;
+      height: 150px !important;
+      top: 140px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .default-avatar {
+      font-size: 54px;
+    }
+
+    .creator-card-main-content {
+      padding: 20px;
+      padding-top: 70px;
+      text-align: center;
+    }
+
+    .creator-links ul {
+      justify-content: center;
+    }
+
+    .creator-username {
+      justify-content: center;
+    }
+  }
 </style>
 
 <div class="content-container">
-  <header class="creator-profile-header" {% if page.background_image %}style="background-image: url('{{ page.background_image | relative_url }}');"{% endif %}>
-    <!-- Background is either gradient (default from CSS) or page.background_image. Grain effect is ::before. -->
+  <header class="creator-profile-header" {% if page.header_gradient %}data-gradient="{{ page.header_gradient }}"{% endif %}>
   </header>
 
-  <img src="{{ page.avatar | relative_url }}" alt="{{ page.creator_name }}'s avatar" class="creator-avatar">
+  {% if page.avatar %}
+    <img src="{{ page.avatar | relative_url }}" alt="{{ page.creator_name }}'s avatar" class="creator-avatar">
+  {% else %}
+    <div class="default-avatar" aria-label="{{ page.creator_name }}'s default avatar">
+      {{ page.creator_name | slice: 0 | upcase }}
+    </div>
+  {% endif %}
   
   <div class="creator-card-main-content">
-    <h1>{{ page.creator_name }}</h1>
-    {% if page.creator_username %}
-      <p class="creator-username">@{{ page.creator_username }}</p>
-    {% endif %}
+    <div class="creator-info">
+      <h1>{{ page.creator_name }}</h1>
+      {% if page.creator_username %}
+        <p class="creator-username">
+          @{{ page.creator_username }}
+          {% if page.verified %}
+            <span class="verified-badge" title="Verified Creator"></span>
+          {% endif %}
+        </p>
+      {% endif %}
+    </div>
     
     {% if page.bio %}
-      <p class="creator-bio">{{ page.bio | markdownify | strip_html | truncatewords: 25 }}</p>
+      <p class="creator-bio">{{ page.bio | markdownify }}</p>
     {% endif %}
 
     {% if page.links %}
       <div class="creator-links">
         <ul>
-            {% comment %} Check if page.links is a non-empty string {% endcomment %}
-            {% if page.links.first == nil and page.links.size > 0 %}
-              {% comment %} page.links is a non-empty string {% endcomment %}
-              <li><a href="{{ page.links }}" target="_blank" rel="noopener noreferrer">{{ page.links | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
-            {% elsif page.links.size > 0 %}
-              {% comment %} page.links is a non-empty collection (assumed to be an array) {% endcomment %}
-              {% for item in page.links %}
-                {% if item.url and item.title %}
-                  {% comment %} Item is a link object with both url and title {% endcomment %}
-                  <li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></li>
+          {% for item in page.links %}
+            {% assign link = item | downcase %}
+            <li>
+              <a href="{{ item }}" target="_blank" rel="noopener noreferrer">
+                <span class="link-icon {% if link contains 'twitter.com' %}icon-twitter{% elsif link contains 'github.com' %}icon-github{% elsif link contains 'linkedin.com' %}icon-linkedin{% else %}icon-website{% endif %}"></span>
+                {% if link contains "twitter.com" %}
+                  Twitter
+                {% elsif link contains "github.com" %}
+                  GitHub
+                {% elsif link contains "linkedin.com" %}
+                  LinkedIn
                 {% else %}
-                  {% comment %} Fallback: Check if item is a string {% endcomment %}
-                  {% assign item_as_string_check = item | append: "" %}
-                  {% if item_as_string_check == item %}
-                    {% comment %} Item is a string {% endcomment %}
-                    <li><a href="{{ item }}" target="_blank" rel="noopener noreferrer">{{ item | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
-                  {% endif %}
+                  {{ item | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}
                 {% endif %}
-              {% endfor %}
-            {% endif %}
+              </a>
+            </li>
+          {% endfor %}
         </ul>
       </div>
     {% endif %}
@@ -189,4 +327,3 @@ layout: default
     <p><em>Workflows by {{ page.creator_name }} will be listed here.</em></p>
   </section>
 </div>
-
