@@ -353,7 +353,7 @@ layout: default
 </style>
 
 <div class="content-container">
-  <header class="creator-profile-header" {% if page.header_gradient %}data-gradient="{{ page.header_gradient }}"{% endif %}>
+  <header class="creator-profile-header" {% if page.header_gradient %}data-gradient="{{ page.header_gradient }}"{% endif %} {% if page.header_image %}style="background-image: url('{{ page.header_image }}'); background-size: cover; background-position: center;"{% endif %}>
   </header>
 
   {% if page.avatar %}
