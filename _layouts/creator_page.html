@@ -143,19 +143,30 @@ layout: default
   </section>
   {% endif %}
 
-  {% if page.links and page.links.size > 0 %}
-  <section class="creator-links">
-    <h2>Links</h2>
-    <ul>
-      {% for item in page.links %}
-        {% if item.url and item.title %} {# Handles object structure: {url: "...", title: "..."} #}
-          <li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></li>
-        {% elsif item is string %} {# Handles string URL structure #}
-          <li><a href="{{ item }}" target="_blank" rel="noopener noreferrer">{{ item | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-  </section>
+  {% if page.links %}
+    {% if page.links is string and page.links != "" %}
+      {# Handle page.links if it's a single non-empty string #}
+      <section class="creator-links">
+        <h2>Links</h2>
+        <ul>
+          <li><a href="{{ page.links }}" target="_blank" rel="noopener noreferrer">{{ page.links | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
+        </ul>
+      </section>
+    {% elsif page.links.size != nil and page.links.size > 0 %}
+      {# Handle page.links if it's a collection (e.g., array) with items #}
+      <section class="creator-links">
+        <h2>Links</h2>
+        <ul>
+          {% for item in page.links %}
+            {% if item.url and item.title %} {# Handles object structure: {url: "...", title: "..."} #}
+              <li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></li>
+            {% elsif item is string %} {# Handles string URL structure #}
+              <li><a href="{{ item }}" target="_blank" rel="noopener noreferrer">{{ item | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
   {% endif %}
 
   <section class="creator-stats">
