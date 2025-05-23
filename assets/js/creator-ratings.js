@@ -81,28 +81,31 @@ function populateCreatorProfile(creatorData) {
         console.log('Updated name to:', userData.name || userData.username);
     }
     
-    // Set creator bio if not already set or create it if missing
+    // Handle bio - only use JSON bio if the MD file doesn't have one
     let bioElement = document.querySelector('.creator-bio');
+    
     if (!bioElement && userData.bio) {
-        // Bio element doesn't exist, create it
-        console.log('Bio element not found, creating new one');
+        // Bio element doesn't exist but we have a bio in JSON, create it
+        console.log('Bio element not found, creating new one with JSON bio');
         bioElement = document.createElement('p');
         bioElement.className = 'creator-bio';
+        bioElement.textContent = userData.bio;
         const mainContent = document.querySelector('.creator-card-main-content');
         if (mainContent) {
             mainContent.appendChild(bioElement);
+            console.log('Added bio from JSON:', userData.bio);
         }
-    }
-    
-    if (bioElement) {
-        if (bioElement.textContent.trim() === '') {
-            if (userData.bio) {
-                bioElement.textContent = userData.bio;
-                console.log('Updated bio to:', userData.bio);
-            } else {
-                bioElement.style.display = 'none';
-            }
-        }
+    } else if (bioElement && bioElement.textContent.trim() === '' && userData.bio) {
+        // Bio element exists but is empty, and we have a bio in JSON
+        bioElement.textContent = userData.bio;
+        console.log('Updated empty bio with JSON bio:', userData.bio);
+    } else if (bioElement && bioElement.textContent.trim() !== '') {
+        // Bio element exists and has content from MD file, keep it
+        console.log('Using existing bio from MD file:', bioElement.textContent.trim());
+    } else if (bioElement && bioElement.textContent.trim() === '' && !userData.bio) {
+        // Bio element exists but is empty, and no JSON bio
+        bioElement.style.display = 'none';
+        console.log('No bio available, hiding bio element');
     }
     
     // Handle avatar
