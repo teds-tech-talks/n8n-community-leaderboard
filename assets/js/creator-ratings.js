@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
+            // Populate creator profile with data from JSON if not already set in the MD file
+            populateCreatorProfile(creatorData);
+            
             // Extract all creators' metrics for comparison
             const allTotalViews = data.map(item => parseInt(item.sum_unique_visitors) || 0);
             const allTotalInserters = data.map(item => parseInt(item.sum_unique_inserters) || 0);
@@ -55,6 +58,89 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => console.error('Error fetching creator data:', error));
 });
+
+/**
+ * Populate the creator profile with data from JSON if not already set in the MD file
+ * @param {Object} creatorData - The creator's data from the JSON
+ */
+function populateCreatorProfile(creatorData) {
+    const userData = creatorData.user;
+    
+    // Set creator name if not already set
+    const nameElement = document.querySelector('.creator-info h1');
+    if (nameElement && nameElement.textContent.trim() === '') {
+        nameElement.textContent = userData.name || userData.username;
+    }
+    
+    // Set creator bio if not already set
+    const bioElement = document.querySelector('.creator-bio');
+    if (bioElement && bioElement.textContent.trim() === '') {
+        if (userData.bio) {
+            bioElement.textContent = userData.bio;
+        } else {
+            bioElement.style.display = 'none';
+        }
+    }
+    
+    // Set creator avatar if not already set
+    const avatarElement = document.querySelector('.creator-avatar');
+    if (avatarElement && (!avatarElement.src || avatarElement.src.includes('default'))) {
+        if (userData.avatar) {
+            avatarElement.src = userData.avatar;
+        }
+    }
+    
+    // Set verified badge if applicable
+    const verifiedBadge = document.querySelector('.verified-badge');
+    if (userData.verified) {
+        if (!verifiedBadge) {
+            const usernameElement = document.querySelector('.creator-username');
+            if (usernameElement) {
+                const badge = document.createElement('span');
+                badge.className = 'verified-badge';
+                badge.title = 'Verified Creator';
+                usernameElement.appendChild(badge);
+            }
+        }
+    } else if (verifiedBadge) {
+        verifiedBadge.style.display = 'none';
+    }
+    
+    // Add social links if not already set
+    const linksContainer = document.querySelector('.creator-links');
+    if (linksContainer && linksContainer.children.length === 0 && userData.links && userData.links.length > 0) {
+        userData.links.forEach(link => {
+            const linkLower = link.toLowerCase();
+            let iconClass = 'icon-website';
+            let linkText = link.replace('https://', '').replace('http://', '').split('/')[0];
+            
+            if (linkLower.includes('twitter.com')) {
+                iconClass = 'icon-twitter';
+                linkText = 'Twitter';
+            } else if (linkLower.includes('github.com')) {
+                iconClass = 'icon-github';
+                linkText = 'GitHub';
+            } else if (linkLower.includes('linkedin.com')) {
+                iconClass = 'icon-linkedin';
+                linkText = 'LinkedIn';
+            }
+            
+            const linkElement = document.createElement('a');
+            linkElement.href = link;
+            linkElement.target = '_blank';
+            linkElement.rel = 'noopener noreferrer';
+            linkElement.className = 'social-button';
+            
+            const iconSpan = document.createElement('span');
+            iconSpan.className = `link-icon ${iconClass}`;
+            
+            linkElement.appendChild(iconSpan);
+            linkElement.appendChild(document.createTextNode(linkText));
+            
+            linksContainer.appendChild(linkElement);
+        });
+    }
+}
 
 /**
  * Calculate and display a creator's position/rank
