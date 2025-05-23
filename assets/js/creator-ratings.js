@@ -81,18 +81,32 @@ function populateCreatorProfile(creatorData) {
         console.log('Updated name to:', userData.name || userData.username);
     }
     
-    // Set creator bio if not already set
-    const bioElement = document.querySelector('.creator-bio');
-    if (bioElement && bioElement.textContent.trim() === '') {
-        if (userData.bio) {
-            bioElement.textContent = userData.bio;
-        } else {
-            bioElement.style.display = 'none';
+    // Set creator bio if not already set or create it if missing
+    let bioElement = document.querySelector('.creator-bio');
+    if (!bioElement && userData.bio) {
+        // Bio element doesn't exist, create it
+        console.log('Bio element not found, creating new one');
+        bioElement = document.createElement('p');
+        bioElement.className = 'creator-bio';
+        const mainContent = document.querySelector('.creator-card-main-content');
+        if (mainContent) {
+            mainContent.appendChild(bioElement);
+        }
+    }
+    
+    if (bioElement) {
+        if (bioElement.textContent.trim() === '') {
+            if (userData.bio) {
+                bioElement.textContent = userData.bio;
+                console.log('Updated bio to:', userData.bio);
+            } else {
+                bioElement.style.display = 'none';
+            }
         }
     }
     
     // Set creator avatar if not already set
-    const avatarElement = document.querySelector('.creator-avatar');
+    const avatarElement = document.querySelector('img.creator-avatar');
     console.log('Avatar element found:', avatarElement, 'Current src:', avatarElement ? avatarElement.src : 'not found');
     if (avatarElement && (!avatarElement.src || avatarElement.src.includes('default'))) {
         if (userData.avatar) {
@@ -118,43 +132,67 @@ function populateCreatorProfile(creatorData) {
     }
     
     // Add social links if not already set
-    const linksContainer = document.querySelector('.creator-links');
+    const linksContainer = document.querySelector('.creator-username .creator-links');
     console.log('Links container found:', linksContainer, 'Children count:', linksContainer ? linksContainer.children.length : 'not found');
     console.log('User links:', userData.links);
     
-    if (linksContainer && linksContainer.children.length === 0 && userData.links && userData.links.length > 0) {
-        console.log('Adding links to container');
+    // If links container doesn't exist, create it
+    if (!linksContainer && userData.links && userData.links.length > 0) {
+        console.log('Links container not found, creating new one');
+        const usernameElement = document.querySelector('.creator-username');
+        if (usernameElement) {
+            const newLinksContainer = document.createElement('span');
+            newLinksContainer.className = 'creator-links';
+            usernameElement.appendChild(newLinksContainer);
+            
+            // Add links to the new container
+            userData.links.forEach(link => {
+                addLinkToContainer(link, newLinksContainer);
+            });
+        }
+    } else if (linksContainer && linksContainer.children.length === 0 && userData.links && userData.links.length > 0) {
+        console.log('Adding links to existing container');
         userData.links.forEach(link => {
-            const linkLower = link.toLowerCase();
-            let iconClass = 'icon-website';
-            let linkText = link.replace('https://', '').replace('http://', '').split('/')[0];
-            
-            if (linkLower.includes('twitter.com')) {
-                iconClass = 'icon-twitter';
-                linkText = 'Twitter';
-            } else if (linkLower.includes('github.com')) {
-                iconClass = 'icon-github';
-                linkText = 'GitHub';
-            } else if (linkLower.includes('linkedin.com')) {
-                iconClass = 'icon-linkedin';
-                linkText = 'LinkedIn';
-            }
-            
-            const linkElement = document.createElement('a');
-            linkElement.href = link;
-            linkElement.target = '_blank';
-            linkElement.rel = 'noopener noreferrer';
-            linkElement.className = 'social-button';
-            
-            const iconSpan = document.createElement('span');
-            iconSpan.className = `link-icon ${iconClass}`;
-            
-            linkElement.appendChild(iconSpan);
-            linkElement.appendChild(document.createTextNode(linkText));
-            
-            linksContainer.appendChild(linkElement);
+            addLinkToContainer(link, linksContainer);
         });
     }
+}
+
+/**
+ * Helper function to add a link to a container
+ * @param {string} link - The URL to add
+ * @param {HTMLElement} container - The container to add the link to
+ */
+function addLinkToContainer(link, container) {
+    const linkLower = link.toLowerCase();
+    let iconClass = 'icon-website';
+    let linkText = link.replace('https://', '').replace('http://', '').split('/')[0];
+    
+    if (linkLower.includes('twitter.com')) {
+        iconClass = 'icon-twitter';
+        linkText = 'Twitter';
+    } else if (linkLower.includes('github.com')) {
+        iconClass = 'icon-github';
+        linkText = 'GitHub';
+    } else if (linkLower.includes('linkedin.com')) {
+        iconClass = 'icon-linkedin';
+        linkText = 'LinkedIn';
+    }
+    
+    const linkElement = document.createElement('a');
+    linkElement.href = link;
+    linkElement.target = '_blank';
+    linkElement.rel = 'noopener noreferrer';
+    linkElement.className = 'social-button';
+    
+    const iconSpan = document.createElement('span');
+    iconSpan.className = `link-icon ${iconClass}`;
+    
+    linkElement.appendChild(iconSpan);
+    linkElement.appendChild(document.createTextNode(linkText));
+    
+    container.appendChild(linkElement);
+    console.log('Added link:', link, 'to container');
 }
 
 /**
