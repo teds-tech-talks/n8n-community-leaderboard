@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
- * Calculate and display a rating based on percentile
+ * Calculate and display a creator's position/rank
  * @param {string} elementId - The ID of the element to update
  * @param {number} value - The creator's value for this metric
  * @param {Array<number>} allValues - All creators' values for this metric
@@ -66,33 +66,45 @@ function displayRating(elementId, value, allValues) {
     const element = document.getElementById(elementId);
     if (!element) return;
     
-    // Filter out zeros and sort values
-    const filteredValues = allValues.filter(v => v > 0).sort((a, b) => a - b);
+    // Filter out zeros and sort values in descending order (higher is better)
+    const filteredValues = allValues.filter(v => v > 0).sort((a, b) => b - a);
     
     if (filteredValues.length === 0 || value === 0) {
         element.textContent = 'N/A';
         return;
     }
     
-    // Find the percentile of the current value
-    const index = filteredValues.findIndex(v => v >= value);
-    const percentile = index === -1 
-        ? 100 // Higher than all values
-        : (index / filteredValues.length) * 100;
+    // Find the position of the current value (1-based index)
+    const position = filteredValues.findIndex(v => v === value) + 1;
     
-    // Convert percentile to rating (1-10)
-    // Using a non-linear scale to reward higher percentiles more
-    const rating = Math.max(1, Math.min(10, Math.ceil(Math.pow(percentile / 100, 0.5) * 10)));
+    // If value not found in the array (shouldn't happen, but just in case)
+    if (position === 0) {
+        element.textContent = 'N/A';
+        return;
+    }
     
-    // Display the rating
-    element.textContent = rating + '/10';
+    // Display the position
+    element.textContent = `#${position}`;
     
-    // Add appropriate class based on rating
-    if (rating >= 8) {
-        element.classList.add('rating-high');
-    } else if (rating >= 5) {
-        element.classList.add('rating-medium');
+    // Add appropriate class based on position
+    const totalCreators = filteredValues.length;
+    const percentile = (position / totalCreators) * 100;
+    
+    // Update the total creators count (only needs to be done once)
+    const totalCreatorsElement = document.getElementById('total-creators');
+    if (totalCreatorsElement && elementId === 'total-views-rating') {
+        totalCreatorsElement.textContent = `Total creators: ${totalCreators}`;
+    }
+    
+    // Clear any existing classes
+    element.classList.remove('rating-top', 'rating-middle', 'rating-bottom');
+    
+    // Add appropriate class based on percentile
+    if (percentile <= 33) {
+        element.classList.add('rating-top');
+    } else if (percentile <= 66) {
+        element.classList.add('rating-middle');
     } else {
-        element.classList.add('rating-low');
+        element.classList.add('rating-bottom');
     }
 }
