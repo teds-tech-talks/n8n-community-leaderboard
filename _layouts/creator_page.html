@@ -163,9 +163,10 @@ layout: default
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 8px;
+    margin-left: 15px;
   }
 
   .creator-links li {
@@ -177,13 +178,13 @@ layout: default
     color: #444;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
+    gap: 6px;
+    padding: 4px 10px;
     border: 1px solid #e0e0e0;
     border-radius: 20px;
     transition: all 0.2s ease;
     font-weight: 500;
-    font-size: 0.9em;
+    font-size: 0.85em;
     background-color: #fff;
   }
 
@@ -351,12 +352,15 @@ layout: default
       text-align: center;
     }
 
-    .creator-links ul {
-      justify-content: center;
-    }
-
     .creator-username {
       justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .creator-links ul {
+      justify-content: center;
+      margin-top: 10px;
+      margin-left: 0;
     }
   }
 </style>
@@ -389,36 +393,36 @@ layout: default
           {% if page.verified %}
             <span class="verified-badge" title="Verified Creator"></span>
           {% endif %}
+          
+          {% if page.links %}
+            <span class="creator-links">
+              <ul>
+                {% for item in page.links %}
+                  {% assign link = item | downcase %}
+                  <li>
+                    <a href="{{ item }}" target="_blank" rel="noopener noreferrer">
+                      <span class="link-icon {% if link contains 'twitter.com' %}icon-twitter{% elsif link contains 'github.com' %}icon-github{% elsif link contains 'linkedin.com' %}icon-linkedin{% else %}icon-website{% endif %}"></span>
+                      {% if link contains "twitter.com" %}
+                        Twitter
+                      {% elsif link contains "github.com" %}
+                        GitHub
+                      {% elsif link contains "linkedin.com" %}
+                        LinkedIn
+                      {% else %}
+                        {{ item | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}
+                      {% endif %}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </span>
+          {% endif %}
         </p>
       {% endif %}
     </div>
     
     {% if page.bio %}
       <p class="creator-bio">{{ page.bio | markdownify }}</p>
-    {% endif %}
-
-    {% if page.links %}
-      <div class="creator-links">
-        <ul>
-          {% for item in page.links %}
-            {% assign link = item | downcase %}
-            <li>
-              <a href="{{ item }}" target="_blank" rel="noopener noreferrer">
-                <span class="link-icon {% if link contains 'twitter.com' %}icon-twitter{% elsif link contains 'github.com' %}icon-github{% elsif link contains 'linkedin.com' %}icon-linkedin{% else %}icon-website{% endif %}"></span>
-                {% if link contains "twitter.com" %}
-                  Twitter
-                {% elsif link contains "github.com" %}
-                  GitHub
-                {% elsif link contains "linkedin.com" %}
-                  LinkedIn
-                {% else %}
-                  {{ item | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}
-                {% endif %}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
     {% endif %}
   </div>
 
