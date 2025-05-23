@@ -437,9 +437,7 @@ layout: default
       {% endif %}
     </div>
     
-    {% if page.bio %}
-      <p class="creator-bio">{{ page.bio | markdownify }}</p>
-    {% endif %}
+    <p class="creator-bio" {% if page.bio == blank %}style="display: none;"{% endif %}>{{ page.bio | markdownify }}</p>
   </div>
 
   <section class="creator-ratings">
