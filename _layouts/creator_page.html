@@ -166,21 +166,25 @@ layout: default
           {% if page.links %}
             <div class="creator-links">
               <ul>
-              {% if page.links is string and page.links != "" %}
-                {# Handle page.links if it's a single non-empty string #}
+              {% comment %} Check if page.links is a non-empty string {% endcomment %}
+              {% if page.links.first == nil and page.links.size > 0 %}
+                {# page.links is a non-empty string #}
                 <li><a href="{{ page.links }}" target="_blank" rel="noopener noreferrer">{{ page.links | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
               {% elsif page.links.size > 0 %}
-                {# Handle page.links if it's a collection (e.g., array) with items #}
-                {% assign first_item_in_collection = page.links.first %}
-                {% if first_item_in_collection.url or first_item_in_collection is string %}
-                  {% for item in page.links %}
-                    {% if item.url and item.title %} {# Handles object structure: {url: "...", title: "..."} #}
-                      <li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></li>
-                    {% elsif item is string %} {# Handles string URL structure #}
+                {# page.links is a non-empty collection (assumed to be an array) #}
+                {% for item in page.links %}
+                  {% if item.url and item.title %}
+                    {# Item is a link object with both url and title #}
+                    <li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></li>
+                  {% else %}
+                    {% comment %} Fallback: Check if item is a string {% endcomment %}
+                    {% assign item_as_string_check = item | append: "" %}
+                    {% if item_as_string_check == item %}
+                      {# Item is a string #}
                       <li><a href="{{ item }}" target="_blank" rel="noopener noreferrer">{{ item | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
                     {% endif %}
-                  {% endfor %}
-                {% endif %}
+                  {% endif %}
+                {% endfor %}
               {% endif %}
               </ul>
             </div>
