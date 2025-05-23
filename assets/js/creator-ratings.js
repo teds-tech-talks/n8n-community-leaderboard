@@ -105,14 +105,31 @@ function populateCreatorProfile(creatorData) {
         }
     }
     
-    // Set creator avatar if not already set
+    // Handle avatar
     const avatarElement = document.querySelector('img.creator-avatar');
-    console.log('Avatar element found:', avatarElement, 'Current src:', avatarElement ? avatarElement.src : 'not found');
-    if (avatarElement && (!avatarElement.src || avatarElement.src.includes('default'))) {
-        if (userData.avatar) {
+    const defaultAvatarElement = document.querySelector('.default-avatar');
+    console.log('Avatar element found:', avatarElement, 'Default avatar found:', defaultAvatarElement);
+    
+    if (userData.avatar) {
+        // If we have an avatar URL from the JSON
+        if (avatarElement) {
+            // If there's an img.creator-avatar element, update its src
             avatarElement.src = userData.avatar;
-            console.log('Updated avatar to:', userData.avatar);
+            console.log('Updated avatar image src to:', userData.avatar);
+        } else if (defaultAvatarElement) {
+            // If there's a default avatar div, replace it with an image
+            const img = document.createElement('img');
+            img.src = userData.avatar;
+            img.alt = `${userData.name || userData.username}'s avatar`;
+            img.className = 'creator-avatar';
+            defaultAvatarElement.parentNode.replaceChild(img, defaultAvatarElement);
+            console.log('Replaced default avatar with image:', userData.avatar);
         }
+    } else if (defaultAvatarElement) {
+        // If no avatar URL but we have a default avatar element, make sure it shows the first letter
+        const nameFirstLetter = (userData.name || userData.username || '?').charAt(0).toUpperCase();
+        defaultAvatarElement.textContent = nameFirstLetter;
+        console.log('Set default avatar text to:', nameFirstLetter);
     }
     
     // Set verified badge if applicable

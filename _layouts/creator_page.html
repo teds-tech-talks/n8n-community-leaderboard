@@ -372,8 +372,8 @@ layout: default
   {% if page.avatar %}
     <img src="{{ page.avatar | relative_url }}" alt="{{ page.creator_name }}'s avatar" class="creator-avatar">
   {% else %}
-    <div class="default-avatar" aria-label="{{ page.creator_name }}'s default avatar">
-      {{ page.creator_name | slice: 0 | upcase }}
+    <div class="default-avatar" aria-label="{{ page.creator_name | default: page.creator_username }}'s default avatar">
+      {{ page.creator_name | default: page.creator_username | slice: 0 | upcase }}
     </div>
   {% endif %}
   
