@@ -81,6 +81,13 @@ function populateCreatorProfile(creatorData) {
         console.log('Updated name to:', userData.name || userData.username);
     }
     
+    // Update the creator name in the rankings text if needed
+    const displayNameElement = document.getElementById('creator-display-name');
+    if (displayNameElement && displayNameElement.textContent.trim() === '') {
+        displayNameElement.textContent = userData.name || userData.username;
+        console.log('Updated display name in rankings to:', userData.name || userData.username);
+    }
+    
     // Handle bio - only use JSON bio if the MD file doesn't have one
     const bioElement = document.querySelector('.creator-bio');
     console.log('Bio element found:', bioElement);
