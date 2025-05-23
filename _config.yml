@@ -19,4 +19,14 @@ custom_buttons:
 collections:
   creators:
     output: true
-    permalink: /creators/:name/
+    permalink: /creators/:name/index.html
+    files_dir: 'creators'
+    
+# Configure webrick for local development
+webrick:
+  headers:
+    DirectoryIndex: index.html
+
+# Include underscore folders
+include:
+  - _creators
