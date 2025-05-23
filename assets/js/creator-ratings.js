@@ -93,7 +93,7 @@ function displayRating(elementId, value, allValues) {
     // Update the total creators count (only needs to be done once)
     const totalCreatorsElement = document.getElementById('total-creators');
     if (totalCreatorsElement && elementId === 'total-views-rating') {
-        totalCreatorsElement.textContent = `Total creators: ${totalCreators}`;
+        totalCreatorsElement.textContent = `Out of ${totalCreators} total creators`;
     }
     
     // Clear any existing classes

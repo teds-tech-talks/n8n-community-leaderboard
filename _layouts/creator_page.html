@@ -242,33 +242,28 @@ layout: default
   /* Ratings table styles - matching main creators table */
   .ratings-table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
+    border-collapse: collapse;
     margin-bottom: 20px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   }
   
-  .ratings-table th,
+  .ratings-table th, 
   .ratings-table td {
-    padding: 12px 15px;
+    border: none;
+    border-bottom: 1px solid #E4E6EC;
+    padding: 10px;
     text-align: center;
-    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .ratings-table thead th {
+    text-align: left;
+    background-color: #484C99;
+    color: #FCFCFD;
+    font-weight: bold;
+    padding: 10px;
   }
   
   .ratings-table th {
-    background-color: #f8f9fa;
-    font-weight: 600;
-    color: #333;
-    position: relative;
-    border-bottom: 2px solid #ddd;
-  }
-  
-  .ratings-table tr:hover {
-    background-color: rgba(0, 0, 0, 0.02);
-  }
-  
-  .ratings-table tr:last-child td {
-    border-bottom: none;
+    border-bottom: 1px solid #707183;
   }
   
   .metric-name {
@@ -278,7 +273,6 @@ layout: default
   
   .rating-position {
     font-weight: 600;
-    font-size: 1.1em;
   }
   
   .rating-top {
