@@ -171,13 +171,13 @@ layout: default
               {% comment %} page.links is a non-empty collection (assumed to be an array) {% endcomment %}
               {% for item in page.links %}
                 {% if item.url and item.title %}
-                  {# Item is a link object with both url and title #}
+                  {% comment %} Item is a link object with both url and title {% endcomment %}
                   <li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></li>
                 {% else %}
                   {% comment %} Fallback: Check if item is a string {% endcomment %}
                   {% assign item_as_string_check = item | append: "" %}
                   {% if item_as_string_check == item %}
-                    {# Item is a string #}
+                    {% comment %} Item is a string {% endcomment %}
                     <li><a href="{{ item }}" target="_blank" rel="noopener noreferrer">{{ item | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
                   {% endif %}
                 {% endif %}
