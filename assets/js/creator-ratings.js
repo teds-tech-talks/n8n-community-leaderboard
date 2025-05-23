@@ -83,15 +83,19 @@ function populateCreatorProfile(creatorData) {
     
     // Handle bio - only use JSON bio if the MD file doesn't have one
     const bioElement = document.querySelector('.creator-bio');
-    console.log('Bio element found:', bioElement, 'Content:', bioElement ? bioElement.textContent.trim() : 'not found');
+    console.log('Bio element found:', bioElement);
     
-    // Check if the bio element has content from the MD file
-    const hasMdBio = bioElement && bioElement.textContent.trim() !== '';
+    // Check if the bio is coming from the MD file by looking at the HTML structure
+    // If it's from the MD file, it will have child nodes (like <p> tags from markdownify)
+    const bioFromMd = bioElement && (bioElement.innerHTML.trim() !== bioElement.textContent.trim() || 
+                                    bioElement.childNodes.length > 1);
+    
+    console.log('Bio from MD:', bioFromMd, 'Bio innerHTML:', bioElement ? bioElement.innerHTML : 'none');
     
     if (bioElement) {
-        if (hasMdBio) {
+        if (bioFromMd || bioElement.textContent.trim() !== '') {
             // If bio element has content from MD file, keep it and don't add JSON bio
-            console.log('Using existing bio from MD file:', bioElement.textContent.trim());
+            console.log('Using existing bio from MD file');
         } else if (userData.bio) {
             // If bio element is empty and we have a bio in JSON
             bioElement.textContent = userData.bio;
