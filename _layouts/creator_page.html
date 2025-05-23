@@ -153,19 +153,28 @@ layout: default
         </ul>
       </section>
     {% elsif page.links.size > 0 %}
-      {# Handle page.links if it's a collection (e.g., array) with items, and not a string (already handled) #}
-      <section class="creator-links">
-        <h2>Links</h2>
-        <ul>
-          {% for item in page.links %}
-            {% if item.url and item.title %} {# Handles object structure: {url: "...", title: "..."} #}
-              <li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></li>
-            {% elsif item is string %} {# Handles string URL structure #}
-              <li><a href="{{ item }}" target="_blank" rel="noopener noreferrer">{{ item | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
-            {% endif %}
-          {% endfor %}
-        </ul>
-      </section>
+      {# page.links is a non-empty collection, and not a non-empty string. #}
+      {% assign first_item_in_collection = page.links.first %}
+      {% comment %}
+        Check if the first item suggests it's an array of strings or an array of {url, title} objects.
+        If page.links is a hash, first_item_in_collection will be a [key, value] array,
+        for which .url is nil and 'is string' is false.
+        This prevents rendering the "Links" section for unsupported hash structures.
+      {% endcomment %}
+      {% if first_item_in_collection.url or first_item_in_collection is string %}
+        <section class="creator-links">
+          <h2>Links</h2>
+          <ul>
+            {% for item in page.links %}
+              {% if item.url and item.title %} {# Handles object structure: {url: "...", title: "..."} #}
+                <li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></li>
+              {% elsif item is string %} {# Handles string URL structure #}
+                <li><a href="{{ item }}" target="_blank" rel="noopener noreferrer">{{ item | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </section>
+      {% endif %}
     {% endif %}
   {% endif %}
 
