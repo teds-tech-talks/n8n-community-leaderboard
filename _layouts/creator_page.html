@@ -144,60 +144,58 @@ layout: default
 </style>
 
 <div class="content-container">
-  <article class="creator-page">
-    <div class="creator-card">
-      <header class="creator-profile-header" {% if page.background_image %}style="background-image: url('{{ page.background_image | relative_url }}');"{% endif %}>
-        <!-- Background is either gradient (default from CSS) or page.background_image. Grain effect is ::before. -->
-      </header>
+  <div class="creator-card">
+    <header class="creator-profile-header" {% if page.background_image %}style="background-image: url('{{ page.background_image | relative_url }}');"{% endif %}>
+      <!-- Background is either gradient (default from CSS) or page.background_image. Grain effect is ::before. -->
+    </header>
 
-      <img src="{{ page.avatar | relative_url }}" alt="{{ page.creator_name }}'s avatar" class="creator-avatar">
-      
-      <div class="creator-card-main-content">
-        <div class="creator-info">
-          <h1>{{ page.creator_name }}</h1>
-          {% if page.creator_username %}
-            <p class="creator-username">@{{ page.creator_username }}</p>
-          {% endif %}
-          
-          {% if page.bio %}
-            <p class="creator-bio">{{ page.bio | markdownify | strip_html | truncatewords: 25 }}</p>
-          {% endif %}
+    <img src="{{ page.avatar | relative_url }}" alt="{{ page.creator_name }}'s avatar" class="creator-avatar">
+    
+    <div class="creator-card-main-content">
+      <div class="creator-info">
+        <h1>{{ page.creator_name }}</h1>
+        {% if page.creator_username %}
+          <p class="creator-username">@{{ page.creator_username }}</p>
+        {% endif %}
+        
+        {% if page.bio %}
+          <p class="creator-bio">{{ page.bio | markdownify | strip_html | truncatewords: 25 }}</p>
+        {% endif %}
 
-          {% if page.links %}
-            <div class="creator-links">
-              <ul>
-              {% comment %} Check if page.links is a non-empty string {% endcomment %}
-              {% if page.links.first == nil and page.links.size > 0 %}
-                {# page.links is a non-empty string #}
-                <li><a href="{{ page.links }}" target="_blank" rel="noopener noreferrer">{{ page.links | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
-              {% elsif page.links.size > 0 %}
-                {# page.links is a non-empty collection (assumed to be an array) #}
-                {% for item in page.links %}
-                  {% if item.url and item.title %}
-                    {# Item is a link object with both url and title #}
-                    <li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></li>
-                  {% else %}
-                    {% comment %} Fallback: Check if item is a string {% endcomment %}
-                    {% assign item_as_string_check = item | append: "" %}
-                    {% if item_as_string_check == item %}
-                      {# Item is a string #}
-                      <li><a href="{{ item }}" target="_blank" rel="noopener noreferrer">{{ item | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
-                    {% endif %}
+        {% if page.links %}
+          <div class="creator-links">
+            <ul>
+            {% comment %} Check if page.links is a non-empty string {% endcomment %}
+            {% if page.links.first == nil and page.links.size > 0 %}
+              {# page.links is a non-empty string #}
+              <li><a href="{{ page.links }}" target="_blank" rel="noopener noreferrer">{{ page.links | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
+            {% elsif page.links.size > 0 %}
+              {# page.links is a non-empty collection (assumed to be an array) #}
+              {% for item in page.links %}
+                {% if item.url and item.title %}
+                  {# Item is a link object with both url and title #}
+                  <li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></li>
+                {% else %}
+                  {% comment %} Fallback: Check if item is a string {% endcomment %}
+                  {% assign item_as_string_check = item | append: "" %}
+                  {% if item_as_string_check == item %}
+                    {# Item is a string #}
+                    <li><a href="{{ item }}" target="_blank" rel="noopener noreferrer">{{ item | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
                   {% endif %}
-                {% endfor %}
-              {% endif %}
-              </ul>
-            </div>
-          {% endif %}
-        </div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+            </ul>
+          </div>
+        {% endif %}
       </div>
     </div>
+  </div>
 
-    <section class="creator-workflows">
-      <h2>Workflows</h2>
-      <p><em>Workflows by {{ page.creator_name }} will be listed here.</em></p>
-    </section>
-  </article>
+  <section class="creator-workflows">
+    <h2>Workflows</h2>
+    <p><em>Workflows by {{ page.creator_name }} will be listed here.</em></p>
+  </section>
 </div>
 
 <!-- Statistics script removed -->
