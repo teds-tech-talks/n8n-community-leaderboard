@@ -138,10 +138,21 @@ function populateCreatorProfile(creatorData) {
         if (!verifiedBadge) {
             const usernameElement = document.querySelector('.creator-username');
             if (usernameElement) {
-                const badge = document.createElement('span');
-                badge.className = 'verified-badge';
-                badge.title = 'Verified Creator';
-                usernameElement.appendChild(badge);
+                // Find where to insert the badge - right after the username text
+                const usernameText = usernameElement.childNodes[0];
+                if (usernameText) {
+                    const badge = document.createElement('span');
+                    badge.className = 'verified-badge';
+                    badge.title = 'Verified Creator';
+                    
+                    // Insert after the username text but before any other elements
+                    usernameElement.insertBefore(badge, usernameText.nextSibling);
+                    console.log('Added verified badge after username text');
+                } else {
+                    // Fallback to appending if we can't find the text node
+                    usernameElement.appendChild(badge);
+                    console.log('Added verified badge at end of username element');
+                }
             }
         }
     } else if (verifiedBadge) {
