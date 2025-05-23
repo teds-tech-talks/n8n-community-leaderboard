@@ -23,9 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Prepare data for DataTable
-            let tableData = creatorWorkflows.map((item, index) => {
+            let tableData = creatorWorkflows.map((item) => {
                 return [
-                    index + 1, // Row number
                     `<a href="${item.template_url}" target="_blank" data-umami-event="workflow" data-umami-event-workflow="${item.wf_detais.id}">${item.wf_detais.name}</a>`,
                     item.unique_visitors || 0,
                     item.unique_inserters || 0,
@@ -42,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 data: tableData,
                 dom: '<"table-controls-wrapper"<"table-control-section"l><"table-control-section"f>>rtip',
                 columns: [
-                    { title: "", searchable: false, orderable: false },
                     { title: "Workflow Name" },
                     { title: "Total<br/>Views" },
                     { title: "Total<br/>Inserters" },
@@ -52,14 +50,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     { title: "Weekly<br/>Inserters" },
                     { title: "Creation<br/>Date" }
                 ],
-                order: [[2, 'desc']], // Sort by total views by default
+                order: [[1, 'desc']], // Sort by total views by default
                 pageLength: 25,
                 bFilter: true,
                 responsive: true,
                 columnDefs: [
-                    { targets: 0, className: 'dt-body-center number-column', width: "30px" },
-                    { targets: 1, className: 'dt-body-left' },
-                    { targets: [2,3,4,5,6,7,8], className: 'dt-body-center' }
+                    { targets: 0, className: 'dt-body-left' },
+                    { targets: [1,2,3,4,5,6], className: 'dt-body-center' },
+                    { targets: 7, className: 'dt-body-center', width: "120px" }
                 ]
             });
         })
