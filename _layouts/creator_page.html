@@ -27,25 +27,34 @@ layout: default
     display: block;
   }
 
+  /* CSS variables for gradients */
+  :root {
+    --gradient-ocean: linear-gradient(135deg, #20B69E 0%, #484C99 100%);
+    --gradient-sunset: linear-gradient(135deg, #EA4B71 0%, #6E72E0 100%);
+    --gradient-forest: linear-gradient(135deg, #20B69E 0%, #176363 100%);
+    --gradient-golden: linear-gradient(135deg, #FAE166 0%, #DDBB1A 100%);
+    --gradient-twilight: linear-gradient(135deg, #484C99 0%, #8287EB 100%);
+  }
+
   /* Custom gradient variations */
   .creator-profile-header[data-gradient="ocean"] {
-    background-image: linear-gradient(135deg, #20B69E 0%, #484C99 100%);
+    background-image: var(--gradient-ocean);
   }
 
   .creator-profile-header[data-gradient="sunset"] {
-    background-image: linear-gradient(135deg, #EA4B71 0%, #6E72E0 100%);
+    background-image: var(--gradient-sunset);
   }
 
   .creator-profile-header[data-gradient="forest"] {
-    background-image: linear-gradient(135deg, #20B69E 0%, #176363 100%);
+    background-image: var(--gradient-forest);
   }
 
   .creator-profile-header[data-gradient="golden"] {
-    background-image: linear-gradient(135deg, #FAE166 0%, #DDBB1A 100%);
+    background-image: var(--gradient-golden);
   }
 
   .creator-profile-header[data-gradient="twilight"] {
-    background-image: linear-gradient(135deg, #484C99 0%, #8287EB 100%);
+    background-image: var(--gradient-twilight);
   }
 
   /* Grain effect for the header */
@@ -353,7 +362,13 @@ layout: default
 </style>
 
 <div class="content-container">
-  <header class="creator-profile-header" {% if page.header_gradient %}data-gradient="{{ page.header_gradient }}"{% endif %} {% if page.header_image %}style="background-image: url('{{ page.header_image }}'); background-size: cover; background-position: center;"{% endif %}>
+  <header class="creator-profile-header" 
+    {% if page.header_gradient %}data-gradient="{{ page.header_gradient }}"{% endif %}
+    {% if page.header_image %}
+    style="background-image: url('{{ page.header_image }}'), {% if page.header_gradient %}var(--gradient-{{ page.header_gradient }}){% else %}linear-gradient(135deg, #20B69E 0%, #484C99 100%){% endif %}; 
+    background-size: cover, cover; 
+    background-position: center, center;"
+    {% endif %}>
   </header>
 
   {% if page.avatar %}
