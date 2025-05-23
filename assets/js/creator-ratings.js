@@ -20,6 +20,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
+            // Log creator data for debugging
+            console.log('Creator data found:', creatorData);
+            console.log('Creator user data:', creatorData.user);
+            console.log('Current URL path:', window.location.pathname);
+            console.log('Extracted username:', creatorUsername);
+            
             // Populate creator profile with data from JSON if not already set in the MD file
             populateCreatorProfile(creatorData);
             
@@ -65,11 +71,14 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function populateCreatorProfile(creatorData) {
     const userData = creatorData.user;
+    console.log('Populating profile with user data:', userData);
     
     // Set creator name if not already set
     const nameElement = document.querySelector('.creator-info h1');
+    console.log('Name element found:', nameElement, 'Current text:', nameElement ? nameElement.textContent : 'not found');
     if (nameElement && nameElement.textContent.trim() === '') {
         nameElement.textContent = userData.name || userData.username;
+        console.log('Updated name to:', userData.name || userData.username);
     }
     
     // Set creator bio if not already set
@@ -84,9 +93,11 @@ function populateCreatorProfile(creatorData) {
     
     // Set creator avatar if not already set
     const avatarElement = document.querySelector('.creator-avatar');
+    console.log('Avatar element found:', avatarElement, 'Current src:', avatarElement ? avatarElement.src : 'not found');
     if (avatarElement && (!avatarElement.src || avatarElement.src.includes('default'))) {
         if (userData.avatar) {
             avatarElement.src = userData.avatar;
+            console.log('Updated avatar to:', userData.avatar);
         }
     }
     
@@ -108,7 +119,11 @@ function populateCreatorProfile(creatorData) {
     
     // Add social links if not already set
     const linksContainer = document.querySelector('.creator-links');
+    console.log('Links container found:', linksContainer, 'Children count:', linksContainer ? linksContainer.children.length : 'not found');
+    console.log('User links:', userData.links);
+    
     if (linksContainer && linksContainer.children.length === 0 && userData.links && userData.links.length > 0) {
+        console.log('Adding links to container');
         userData.links.forEach(link => {
             const linkLower = link.toLowerCase();
             let iconClass = 'icon-website';
