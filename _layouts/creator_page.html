@@ -9,8 +9,8 @@ layout: default
     margin: 30px auto; /* Centering and vertical spacing */
   }
 
-  /* The main profile card */
-  .creator-card {
+  /* The content container now serves as the main card */
+  .content-container {
     background-color: #fff;
     border-radius: 12px; /* Slightly more rounded corners */
     box-shadow: 0 6px 20px rgba(0,0,0,0.1); /* Softer, more diffused shadow */
@@ -123,10 +123,10 @@ layout: default
     box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
   }
   
-  /* Styling for sections outside the card, like Workflows */
-  .content-container .creator-workflows { /* Specificity for sections within this page layout */
+  /* Styling for the workflows section */
+  .creator-workflows {
     padding: 25px;
-    margin-top: 0; /* Already spaced by creator-card margin-bottom */
+    margin-top: 30px; /* Add space between main content and workflows */
     margin-bottom: 25px;
     background-color: #ffffff;
     border-radius: 8px;
@@ -144,27 +144,25 @@ layout: default
 </style>
 
 <div class="content-container">
-  <div class="creator-card">
-    <header class="creator-profile-header" {% if page.background_image %}style="background-image: url('{{ page.background_image | relative_url }}');"{% endif %}>
-      <!-- Background is either gradient (default from CSS) or page.background_image. Grain effect is ::before. -->
-    </header>
+  <header class="creator-profile-header" {% if page.background_image %}style="background-image: url('{{ page.background_image | relative_url }}');"{% endif %}>
+    <!-- Background is either gradient (default from CSS) or page.background_image. Grain effect is ::before. -->
+  </header>
 
-    <img src="{{ page.avatar | relative_url }}" alt="{{ page.creator_name }}'s avatar" class="creator-avatar">
+  <img src="{{ page.avatar | relative_url }}" alt="{{ page.creator_name }}'s avatar" class="creator-avatar">
+  
+  <div class="creator-card-main-content">
+    <h1>{{ page.creator_name }}</h1>
+    {% if page.creator_username %}
+      <p class="creator-username">@{{ page.creator_username }}</p>
+    {% endif %}
     
-    <div class="creator-card-main-content">
-      <div class="creator-info">
-        <h1>{{ page.creator_name }}</h1>
-        {% if page.creator_username %}
-          <p class="creator-username">@{{ page.creator_username }}</p>
-        {% endif %}
-        
-        {% if page.bio %}
-          <p class="creator-bio">{{ page.bio | markdownify | strip_html | truncatewords: 25 }}</p>
-        {% endif %}
+    {% if page.bio %}
+      <p class="creator-bio">{{ page.bio | markdownify | strip_html | truncatewords: 25 }}</p>
+    {% endif %}
 
-        {% if page.links %}
-          <div class="creator-links">
-            <ul>
+    {% if page.links %}
+      <div class="creator-links">
+        <ul>
             {% comment %} Check if page.links is a non-empty string {% endcomment %}
             {% if page.links.first == nil and page.links.size > 0 %}
               {# page.links is a non-empty string #}
@@ -185,11 +183,9 @@ layout: default
                 {% endif %}
               {% endfor %}
             {% endif %}
-            </ul>
-          </div>
-        {% endif %}
+        </ul>
       </div>
-    </div>
+    {% endif %}
   </div>
 
   <section class="creator-workflows">
