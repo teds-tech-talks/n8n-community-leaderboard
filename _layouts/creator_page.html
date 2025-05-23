@@ -2,24 +2,157 @@
 layout: default
 ---
 
+<style>
+  .creator-page {
+    /* Styles for the main article container, if any, can go here. */
+    /* The .main-content class from default.html likely handles overall padding. */
+  }
+
+  .creator-header {
+    padding: 50px 20px; /* Increased padding for a more spacious header */
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-bottom: 1px solid #eaeaea; /* Softer border color */
+    color: #333; /* Default text color for header content if background is light */
+  }
+
+  .creator-header.has-gradient {
+    background: linear-gradient(135deg, #6dd5fa 0%, #2980b9 100%); /* A pleasant blue gradient */
+    color: #ffffff; /* White text for better contrast on this gradient */
+  }
+
+  /* Ensure heading and username also adopt the white color on gradient */
+  .creator-header.has-gradient h1,
+  .creator-header.has-gradient .creator-username {
+    color: #ffffff;
+  }
+
+  .creator-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Makes the image round */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border: 5px solid #fff; /* White border around the avatar */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Softer shadow for depth */
+    margin-bottom: 20px; /* Space below avatar */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .creator-header h1 {
+    margin-top: 0;
+    margin-bottom: 8px; /* Adjusted spacing */
+    font-size: 2.8em; /* Slightly larger name */
+  }
+
+  .creator-username {
+    font-size: 1.3em; /* Slightly larger username */
+    color: #555; /* Default color, overridden by .has-gradient */
+    margin-bottom: 0; /* No margin if it's the last element before content sections */
+  }
+
+  /* Common styling for content sections */
+  .creator-page section {
+    padding: 25px; /* More padding inside sections */
+    margin: 25px auto; /* Centering sections */
+    max-width: 800px; /* Consistent content width */
+    background-color: #ffffff; /* White background for sections */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* Subtle shadow */
+  }
+
+  .creator-page section h2 {
+    margin-top: 0;
+    font-size: 1.8em; /* Adjusted section title size */
+    border-bottom: 2px solid #f0f0f0; /* Lighter border */
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .creator-links ul {
+    list-style: none;
+    padding: 0;
+    display: flex; /* Arrange links in a row */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 10px; /* Space between link items */
+  }
+
+  .creator-links li {
+    margin-bottom: 0; /* Handled by gap in flex container */
+  }
+
+  .creator-links a {
+    text-decoration: none;
+    color: #007bff;
+    display: inline-block;
+    padding: 10px 15px; /* Slightly larger padding for links */
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-weight: 500;
+  }
+
+  .creator-links a:hover {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .creator-stats ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .creator-stats li {
+    padding: 10px 0; /* Increased padding for stat items */
+    border-bottom: 1px solid #eee; /* Lighter dashed border */
+    display: flex;
+    justify-content: space-between; /* Align text and value */
+  }
+
+  .creator-stats li:last-child {
+    border-bottom: none;
+  }
+
+  .creator-stats strong {
+    color: #333;
+    margin-right: 10px; /* Space after the label */
+  }
+  .creator-stats span {
+    color: #555; /* Color for the stat value */
+  }
+</style>
+
 <article class="creator-page">
-  <header class="creator-header">
-    <img src="{{ page.avatar }}" alt="{{ page.creator_name }}'s avatar" class="creator-avatar">
+  <header class="creator-header {% unless page.background_image %}has-gradient{% endunless %}"
+          {% if page.background_image %}style="background-image: url('{{ page.background_image | relative_url }}');"{% endif %}>
+    <img src="{{ page.avatar | relative_url }}" alt="{{ page.creator_name }}'s avatar" class="creator-avatar">
     <h1>{{ page.creator_name }}</h1>
-    <p class="creator-username">@{{ page.creator_username }}</p>
+    {% if page.creator_username %}
+      <p class="creator-username">@{{ page.creator_username }}</p>
+    {% endif %}
   </header>
 
+  {% if page.bio %}
   <section class="creator-bio">
     <h2>Bio</h2>
-    <p>{{ page.bio }}</p>
+    <p>{{ page.bio | markdownify }}</p> {# Added markdownify filter for bio #}
   </section>
+  {% endif %}
 
   {% if page.links and page.links.size > 0 %}
   <section class="creator-links">
     <h2>Links</h2>
     <ul>
-      {% for link in page.links %}
-        <li><a href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.title }}</a></li>
+      {% for item in page.links %}
+        {% if item.url and item.title %} {# Handles object structure: {url: "...", title: "..."} #}
+          <li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></li>
+        {% elsif item is string %} {# Handles string URL structure #}
+          <li><a href="{{ item }}" target="_blank" rel="noopener noreferrer">{{ item | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
+        {% endif %}
       {% endfor %}
     </ul>
   </section>
@@ -39,7 +172,6 @@ layout: default
     </ul>
   </section>
 
-  <!-- Placeholder for future content, like a list of their workflows -->
   <section class="creator-workflows">
     <h2>Workflows</h2>
     <p><em>Workflows by {{ page.creator_name }} will be listed here.</em></p>
@@ -50,7 +182,7 @@ layout: default
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const currentCreatorUsername = '{{ page.creator_username }}';
-    const jsonUrl = '/stats_aggregate_creators.json';
+    const jsonUrl = '{{ "/stats_aggregate_creators.json" | relative_url }}'; // Used relative_url for jsonUrl
 
     fetch(jsonUrl)
       .then(response => {
@@ -63,13 +195,13 @@ layout: default
         const creatorData = data.find(creator => creator.user_username === currentCreatorUsername || (creator.user && creator.user.username === currentCreatorUsername));
 
         if (creatorData) {
-          document.getElementById('stats-total-visitors').textContent = creatorData.sum_unique_visitors !== undefined ? creatorData.sum_unique_visitors : 'N/A';
-          document.getElementById('stats-template-count').textContent = creatorData.unique_count_template_url !== undefined ? creatorData.unique_count_template_url : 'N/A';
-          document.getElementById('stats-total-inserters').textContent = creatorData.sum_unique_inserters !== undefined ? creatorData.sum_unique_inserters : 'N/A';
-          document.getElementById('stats-monthly-visitors').textContent = creatorData.sum_unique_monthly_visitors !== undefined ? creatorData.sum_unique_monthly_visitors : 'N/A';
-          document.getElementById('stats-monthly-inserters').textContent = creatorData.sum_unique_monthly_inserters !== undefined ? creatorData.sum_unique_monthly_inserters : 'N/A';
-          document.getElementById('stats-weekly-visitors').textContent = creatorData.sum_unique_weekly_visitors !== undefined ? creatorData.sum_unique_weekly_visitors : 'N/A';
-          document.getElementById('stats-weekly-inserters').textContent = creatorData.sum_unique_weekly_inserters !== undefined ? creatorData.sum_unique_weekly_inserters : 'N/A';
+          document.getElementById('stats-total-visitors').textContent = creatorData.sum_unique_visitors !== undefined ? creatorData.sum_unique_visitors.toLocaleString() : 'N/A';
+          document.getElementById('stats-template-count').textContent = creatorData.unique_count_template_url !== undefined ? creatorData.unique_count_template_url.toLocaleString() : 'N/A';
+          document.getElementById('stats-total-inserters').textContent = creatorData.sum_unique_inserters !== undefined ? creatorData.sum_unique_inserters.toLocaleString() : 'N/A';
+          document.getElementById('stats-monthly-visitors').textContent = creatorData.sum_unique_monthly_visitors !== undefined ? creatorData.sum_unique_monthly_visitors.toLocaleString() : 'N/A';
+          document.getElementById('stats-monthly-inserters').textContent = creatorData.sum_unique_monthly_inserters !== undefined ? creatorData.sum_unique_monthly_inserters.toLocaleString() : 'N/A';
+          document.getElementById('stats-weekly-visitors').textContent = creatorData.sum_unique_weekly_visitors !== undefined ? creatorData.sum_unique_weekly_visitors.toLocaleString() : 'N/A';
+          document.getElementById('stats-weekly-inserters').textContent = creatorData.sum_unique_weekly_inserters !== undefined ? creatorData.sum_unique_weekly_inserters.toLocaleString() : 'N/A';
           
           let earliestWfText = 'N/A';
           if (creatorData.min_earliest_wf) {
