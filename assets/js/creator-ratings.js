@@ -85,19 +85,22 @@ function populateCreatorProfile(creatorData) {
     const bioElement = document.querySelector('.creator-bio');
     console.log('Bio element found:', bioElement, 'Content:', bioElement ? bioElement.textContent.trim() : 'not found');
     
+    // Check if the bio element has content from the MD file
+    const hasMdBio = bioElement && bioElement.textContent.trim() !== '';
+    
     if (bioElement) {
-        // If bio element exists but is empty, and we have a bio in JSON
-        if (bioElement.textContent.trim() === '' && userData.bio) {
+        if (hasMdBio) {
+            // If bio element has content from MD file, keep it and don't add JSON bio
+            console.log('Using existing bio from MD file:', bioElement.textContent.trim());
+        } else if (userData.bio) {
+            // If bio element is empty and we have a bio in JSON
             bioElement.textContent = userData.bio;
             bioElement.style.display = ''; // Make sure it's visible
             console.log('Updated empty bio with JSON bio:', userData.bio);
-        } else if (bioElement.textContent.trim() === '' && !userData.bio) {
-            // Bio element exists but is empty, and no JSON bio
+        } else {
+            // No bio in MD file or JSON
             bioElement.style.display = 'none';
             console.log('No bio available, hiding bio element');
-        } else {
-            // Bio element has content from MD file, keep it
-            console.log('Using existing bio from MD file:', bioElement.textContent.trim());
         }
     }
     
