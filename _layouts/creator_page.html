@@ -165,10 +165,10 @@ layout: default
         <ul>
             {% comment %} Check if page.links is a non-empty string {% endcomment %}
             {% if page.links.first == nil and page.links.size > 0 %}
-              {# page.links is a non-empty string #}
+              {% comment %} page.links is a non-empty string {% endcomment %}
               <li><a href="{{ page.links }}" target="_blank" rel="noopener noreferrer">{{ page.links | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
             {% elsif page.links.size > 0 %}
-              {# page.links is a non-empty collection (assumed to be an array) #}
+              {% comment %} page.links is a non-empty collection (assumed to be an array) {% endcomment %}
               {% for item in page.links %}
                 {% if item.url and item.title %}
                   {# Item is a link object with both url and title #}
