@@ -144,7 +144,7 @@ layout: default
   {% endif %}
 
   {% if page.links %}
-    {% if page.links is string and page.links != "" %}
+    {% if page.links != "" %}
       {# Handle page.links if it's a single non-empty string #}
       <section class="creator-links">
         <h2>Links</h2>
@@ -155,13 +155,7 @@ layout: default
     {% elsif page.links.size > 0 %}
       {# page.links is a non-empty collection, and not a non-empty string. #}
       {% assign first_item_in_collection = page.links.first %}
-      {% comment %}
-        Check if the first item suggests it's an array of strings or an array of {url, title} objects.
-        If page.links is a hash, first_item_in_collection will be a [key, value] array,
-        for which .url is nil and 'is string' is false.
-        This prevents rendering the "Links" section for unsupported hash structures.
-      {% endcomment %}
-      {% if first_item_in_collection.url or first_item_in_collection is string %}
+      {% if first_item_in_collection.url %}
         <section class="creator-links">
           <h2>Links</h2>
           <ul>
