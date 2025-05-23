@@ -96,6 +96,12 @@ function displayRating(elementId, value, allValues) {
         totalCreatorsElement.textContent = `Out of ${totalCreators} total creators`;
     }
     
+    // Also update the creator count in the explanation text
+    const creatorCountElement = document.getElementById('creator-count');
+    if (creatorCountElement && elementId === 'total-views-rating') {
+        creatorCountElement.textContent = totalCreators;
+    }
+    
     // Clear any existing classes
     element.classList.remove('rating-top', 'rating-middle', 'rating-bottom');
     

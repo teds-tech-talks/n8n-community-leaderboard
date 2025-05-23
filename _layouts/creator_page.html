@@ -218,8 +218,7 @@ layout: default
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='%23444' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zM2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'/%3E%3C/svg%3E");
   }
 
-  /* Ratings and Workflows sections */
-  .creator-ratings,
+  /* Workflows section */
   .creator-workflows {
     padding: 25px 30px;
     margin: 30px;
@@ -229,12 +228,25 @@ layout: default
     position: relative;
   }
 
-  .content-container .creator-ratings h2,
+  /* Ratings section - no border/box */
+  .creator-ratings {
+    padding: 25px 30px;
+    margin: 30px;
+    position: relative;
+  }
+
   .content-container .creator-workflows h2 {
     margin-top: 0;
     font-size: 1.8em;
     border-bottom: 2px solid #f0f0f0;
     padding-bottom: 12px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .content-container .creator-ratings h2 {
+    margin-top: 0;
+    font-size: 1.8em;
     margin-bottom: 20px;
     color: #333;
   }
@@ -406,7 +418,7 @@ layout: default
       </tbody>
     </table>
     <p id="total-creators" class="total-creators"></p>
-    <p><em>Rankings show this creator's position among all creators.</em></p>
+    <p><em>Rankings show {{ page.creator_name }}'s position among <span id="creator-count">all</span> creators.</em></p>
   </section>
 
   <section class="creator-workflows">
