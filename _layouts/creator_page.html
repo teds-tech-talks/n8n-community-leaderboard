@@ -251,22 +251,26 @@ layout: default
     color: #333;
   }
   
-  /* Ratings table styles - matching main creators table */
-  .ratings-table {
+  /* Table styles - matching main creators table */
+  .ratings-table,
+  #creator-workflows-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
   }
   
   .ratings-table th, 
-  .ratings-table td {
+  .ratings-table td,
+  #creator-workflows-table th,
+  #creator-workflows-table td {
     border: none;
     border-bottom: 1px solid #E4E6EC;
     padding: 10px;
     text-align: center;
   }
   
-  .ratings-table thead th {
+  .ratings-table thead th,
+  #creator-workflows-table thead th {
     text-align: left;
     background-color: #484C99;
     color: #FCFCFD;
@@ -274,8 +278,32 @@ layout: default
     padding: 10px;
   }
   
-  .ratings-table th {
+  .ratings-table th,
+  #creator-workflows-table th {
     border-bottom: 1px solid #707183;
+  }
+  
+  /* DataTables specific styling */
+  .dataTables_wrapper .dataTables_length, 
+  .dataTables_wrapper .dataTables_filter, 
+  .dataTables_wrapper .dataTables_info, 
+  .dataTables_wrapper .dataTables_processing, 
+  .dataTables_wrapper .dataTables_paginate {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0.3em 0.8em;
+    border: 1px solid #ddd;
+    margin-left: 2px;
+    cursor: pointer;
+  }
+  
+  .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background: #484C99;
+    color: white !important;
+    border-color: #484C99;
   }
   
   .metric-name {
@@ -415,8 +443,27 @@ layout: default
 
   <section class="creator-workflows">
     <h2>Workflows</h2>
-    <p><em>Workflows by {{ page.creator_name }} will be listed here.</em></p>
+    <table id="creator-workflows-table" class="display compact">
+      <thead>
+        <tr>
+          <th class="number-column"></th>
+          <th>Workflow Name</th>
+          <th>Total Views</th>
+          <th>Total Inserters</th>
+          <th>Monthly Views</th>
+          <th>Monthly Inserters</th>
+          <th>Weekly Views</th>
+          <th>Weekly Inserters</th>
+          <th>Creation Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Workflows will be loaded here -->
+      </tbody>
+    </table>
+    <p id="no-workflows-message" style="display: none;"><em>No workflows found for {{ page.creator_name }}.</em></p>
   </section>
   
   <script src="{{ '/assets/js/creator-ratings.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/creator-workflows.js' | relative_url }}"></script>
 </div>
