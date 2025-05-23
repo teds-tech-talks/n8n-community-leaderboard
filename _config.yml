@@ -15,3 +15,8 @@ custom_buttons:
     url: /about
   - text: What is n8n?
     url: /n8n
+
+collections:
+  creators:
+    output: true
+    permalink: /creators/:name/

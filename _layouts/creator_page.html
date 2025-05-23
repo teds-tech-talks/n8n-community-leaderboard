@@ -1,0 +1,115 @@
+---
+layout: default
+---
+
+<article class="creator-page">
+  <header class="creator-header">
+    <img src="{{ page.avatar }}" alt="{{ page.creator_name }}'s avatar" class="creator-avatar">
+    <h1>{{ page.creator_name }}</h1>
+    <p class="creator-username">@{{ page.creator_username }}</p>
+  </header>
+
+  <section class="creator-bio">
+    <h2>Bio</h2>
+    <p>{{ page.bio }}</p>
+  </section>
+
+  {% if page.links and page.links.size > 0 %}
+  <section class="creator-links">
+    <h2>Links</h2>
+    <ul>
+      {% for link in page.links %}
+        <li><a href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  <section class="creator-stats">
+    <h2>Statistics</h2>
+    <ul>
+      <li><strong>Total Unique Visitors:</strong> <span id="stats-total-visitors">Loading...</span></li>
+      <li><strong>Number of Templates:</strong> <span id="stats-template-count">Loading...</span></li>
+      <li><strong>Total Inserters:</strong> <span id="stats-total-inserters">Loading...</span></li>
+      <li><strong>Monthly Visitors:</strong> <span id="stats-monthly-visitors">Loading...</span></li>
+      <li><strong>Monthly Inserters:</strong> <span id="stats-monthly-inserters">Loading...</span></li>
+      <li><strong>Weekly Visitors:</strong> <span id="stats-weekly-visitors">Loading...</span></li>
+      <li><strong>Weekly Inserters:</strong> <span id="stats-weekly-inserters">Loading...</span></li>
+      <li><strong>Earliest Workflow:</strong> <span id="stats-earliest-wf">Loading...</span></li>
+    </ul>
+  </section>
+
+  <!-- Placeholder for future content, like a list of their workflows -->
+  <section class="creator-workflows">
+    <h2>Workflows</h2>
+    <p><em>Workflows by {{ page.creator_name }} will be listed here.</em></p>
+  </section>
+
+</article>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const currentCreatorUsername = '{{ page.creator_username }}';
+    const jsonUrl = '/stats_aggregate_creators.json';
+
+    fetch(jsonUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        const creatorData = data.find(creator => creator.user_username === currentCreatorUsername || (creator.user && creator.user.username === currentCreatorUsername));
+
+        if (creatorData) {
+          document.getElementById('stats-total-visitors').textContent = creatorData.sum_unique_visitors !== undefined ? creatorData.sum_unique_visitors : 'N/A';
+          document.getElementById('stats-template-count').textContent = creatorData.unique_count_template_url !== undefined ? creatorData.unique_count_template_url : 'N/A';
+          document.getElementById('stats-total-inserters').textContent = creatorData.sum_unique_inserters !== undefined ? creatorData.sum_unique_inserters : 'N/A';
+          document.getElementById('stats-monthly-visitors').textContent = creatorData.sum_unique_monthly_visitors !== undefined ? creatorData.sum_unique_monthly_visitors : 'N/A';
+          document.getElementById('stats-monthly-inserters').textContent = creatorData.sum_unique_monthly_inserters !== undefined ? creatorData.sum_unique_monthly_inserters : 'N/A';
+          document.getElementById('stats-weekly-visitors').textContent = creatorData.sum_unique_weekly_visitors !== undefined ? creatorData.sum_unique_weekly_visitors : 'N/A';
+          document.getElementById('stats-weekly-inserters').textContent = creatorData.sum_unique_weekly_inserters !== undefined ? creatorData.sum_unique_weekly_inserters : 'N/A';
+          
+          let earliestWfText = 'N/A';
+          if (creatorData.min_earliest_wf) {
+            try {
+              earliestWfText = new Date(creatorData.min_earliest_wf).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            } catch (e) {
+              console.error('Error formatting date:', e);
+              earliestWfText = creatorData.min_earliest_wf; // Show raw date if formatting fails
+            }
+          }
+          document.getElementById('stats-earliest-wf').textContent = earliestWfText;
+
+        } else {
+          const statsIds = [
+            'stats-total-visitors', 'stats-template-count', 'stats-total-inserters', 
+            'stats-monthly-visitors', 'stats-monthly-inserters', 'stats-weekly-visitors', 
+            'stats-weekly-inserters', 'stats-earliest-wf'
+          ];
+          statsIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+              el.textContent = 'N/A';
+            }
+          });
+          console.warn('Creator data not found for username:', currentCreatorUsername);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching or processing creator stats:', error);
+        const statsIds = [
+          'stats-total-visitors', 'stats-template-count', 'stats-total-inserters', 
+          'stats-monthly-visitors', 'stats-monthly-inserters', 'stats-weekly-visitors', 
+          'stats-weekly-inserters', 'stats-earliest-wf'
+        ];
+        statsIds.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.textContent = 'Error loading';
+          }
+        });
+      });
+  });
+</script>
