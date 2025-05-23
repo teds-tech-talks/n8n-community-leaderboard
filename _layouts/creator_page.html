@@ -3,259 +3,197 @@ layout: default
 ---
 
 <style>
-  .creator-page {
-    /* Styles for the main article container, if any, can go here. */
-    /* The .main-content class from default.html likely handles overall padding. */
+  /* General container for the creator page content */
+  .content-container {
+    max-width: 880px; /* Max width for the card and subsequent sections */
+    margin: 30px auto; /* Centering and vertical spacing */
   }
 
-  .creator-header {
-    padding: 50px 20px; /* Increased padding for a more spacious header */
-    text-align: center;
+  /* The main profile card */
+  .creator-card {
+    background-color: #fff;
+    border-radius: 12px; /* Slightly more rounded corners */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1); /* Softer, more diffused shadow */
+    margin-bottom: 30px; /* Space before the next section (e.g., Workflows) */
+    position: relative; /* For absolute positioning of the avatar */
+    overflow: hidden; /* Ensures header grain and content stay within rounded corners */
+  }
+
+  .creator-profile-header {
+    height: 220px; /* Height for the header banner */
+    background-image: linear-gradient(135deg, #74ebd5 0%, #9face6 100%); /* Default gradient */
     background-size: cover;
     background-position: center;
-    position: relative;
-    border-bottom: 1px solid #eaeaea; /* Softer border color */
-    color: #333; /* Default text color for header content if background is light */
+    position: relative; /* For the grain pseudo-element */
   }
 
-  .creator-header.has-gradient {
-    background: linear-gradient(135deg, #6dd5fa 0%, #2980b9 100%); /* A pleasant blue gradient */
-    color: #ffffff; /* White text for better contrast on this gradient */
-  }
-
-  /* Ensure heading and username also adopt the white color on gradient */
-  .creator-header.has-gradient h1,
-  .creator-header.has-gradient .creator-username {
-    color: #ffffff;
+  /* Grain effect for the header */
+  .creator-profile-header::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; /* Allows clicks through to the header if ever needed */
   }
 
   .creator-avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%; /* Makes the image round */
-    object-fit: cover; /* Ensures the image covers the area without distortion */
-    border: 5px solid #fff; /* White border around the avatar */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Softer shadow for depth */
-    margin-bottom: 20px; /* Space below avatar */
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 5px solid #fff; /* White border to lift it off the background */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Shadow for depth */
+    position: absolute;
+    /* Position avatar top ~2/3 down the header */
+    top: calc(220px * 0.60 - (140px / 2)); /* (HeaderHeight * 0.60) - (AvatarHeight / 2) */
+                                          /* Approx 132px - 70px = 62px from top of card */
+                                          /* Let's adjust to be more like LinkedIn: top part of avatar higher */
+                                          /* HeaderHeight (220px) - AvatarOverlap (e.g. 90px) = 130px from top of card */
+    top: 130px; 
+    left: 30px; /* Indent from the left edge of the card */
+    z-index: 2; /* Ensure avatar is above the header content */
   }
 
-  .creator-header h1 {
-    margin-top: 0;
-    margin-bottom: 8px; /* Adjusted spacing */
-    font-size: 2.8em; /* Slightly larger name */
+  /* Container for text content (name, bio, links) to the right of the avatar */
+  .creator-card-main-content {
+    padding: 20px;
+    padding-left: calc(30px + 140px + 25px); /* Avatar left + Avatar width + desired space */
+    /* Content should start visually below the header, aligned with avatar */
+    /* Avatar top is 130px, height 140px. Bottom is 270px. Header is 220px. */
+    /* We need padding-top to push content down past the header area,
+       and to align with the avatar. */
+    padding-top: 30px; /* Initial space from top of this white block */
+    margin-top: 220px; /* Start this white block right after the header */
+                       /* This creates a block that is effectively from bottom of header downwards */
+    min-height: calc( (130px + 140px) - 220px + 30px); /* Ensure content area is tall enough for avatar part below header */
+                                                      /* (Avatar_top + Avatar_height) - Header_height + bottom_padding */
+                                                      /* (130 + 140) - 220 + 30 = 270 - 220 + 30 = 50 + 30 = 80px */
+
+    background-color: #fff; /* This part has a white background */
+  }
+  
+  .creator-info h1 {
+    font-size: 2.2em; /* Larger name */
+    margin-top: 0; 
+    margin-bottom: 4px;
+    color: #222;
   }
 
   .creator-username {
-    font-size: 1.3em; /* Slightly larger username */
-    color: #555; /* Default color, overridden by .has-gradient */
-    margin-bottom: 0; /* No margin if it's the last element before content sections */
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 15px;
+    display: block; /* Ensure it takes its own line */
   }
 
-  /* Common styling for content sections */
-  .creator-page section {
-    padding: 25px; /* More padding inside sections */
-    margin: 25px auto; /* Centering sections */
-    max-width: 800px; /* Consistent content width */
-    background-color: #ffffff; /* White background for sections */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* Subtle shadow */
-  }
-
-  .creator-page section h2 {
-    margin-top: 0;
-    font-size: 1.8em; /* Adjusted section title size */
-    border-bottom: 2px solid #f0f0f0; /* Lighter border */
-    padding-bottom: 12px;
+  .creator-bio {
+    font-size: 0.95em;
+    color: #444;
+    line-height: 1.6;
     margin-bottom: 20px;
-    color: #333;
   }
 
   .creator-links ul {
     list-style: none;
     padding: 0;
-    display: flex; /* Arrange links in a row */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
     gap: 10px; /* Space between link items */
   }
 
   .creator-links li {
-    margin-bottom: 0; /* Handled by gap in flex container */
+    margin-bottom: 0; /* Handled by gap */
   }
 
   .creator-links a {
     text-decoration: none;
     color: #007bff;
     display: inline-block;
-    padding: 10px 15px; /* Slightly larger padding for links */
+    padding: 8px 14px; /* Slightly more padding */
     border: 1px solid #007bff;
-    border-radius: 5px;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    border-radius: 20px; /* Pill-shaped links */
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
     font-weight: 500;
+    font-size: 0.85em;
   }
 
   .creator-links a:hover {
     background-color: #007bff;
     color: white;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
   }
   
-  .creator-stats ul {
-    list-style-type: none;
-    padding-left: 0;
+  /* Styling for sections outside the card, like Workflows */
+  .content-container .creator-workflows { /* Specificity for sections within this page layout */
+    padding: 25px;
+    margin-top: 0; /* Already spaced by creator-card margin-bottom */
+    margin-bottom: 25px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   }
 
-  .creator-stats li {
-    padding: 10px 0; /* Increased padding for stat items */
-    border-bottom: 1px solid #eee; /* Lighter dashed border */
-    display: flex;
-    justify-content: space-between; /* Align text and value */
-  }
-
-  .creator-stats li:last-child {
-    border-bottom: none;
-  }
-
-  .creator-stats strong {
+  .content-container .creator-workflows h2 {
+    margin-top: 0;
+    font-size: 1.8em;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
     color: #333;
-    margin-right: 10px; /* Space after the label */
-  }
-  .creator-stats span {
-    color: #555; /* Color for the stat value */
   }
 </style>
 
-<article class="creator-page">
-  <header class="creator-header {% unless page.background_image %}has-gradient{% endunless %}"
-          {% if page.background_image %}style="background-image: url('{{ page.background_image | relative_url }}');"{% endif %}>
-    <img src="{{ page.avatar | relative_url }}" alt="{{ page.creator_name }}'s avatar" class="creator-avatar">
-    <h1>{{ page.creator_name }}</h1>
-    {% if page.creator_username %}
-      <p class="creator-username">@{{ page.creator_username }}</p>
-    {% endif %}
-  </header>
+<div class="content-container">
+  <article class="creator-page">
+    <div class="creator-card">
+      <header class="creator-profile-header" {% if page.background_image %}style="background-image: url('{{ page.background_image | relative_url }}');"{% endif %}>
+        <!-- Background is either gradient (default from CSS) or page.background_image. Grain effect is ::before. -->
+      </header>
 
-  {% if page.bio %}
-  <section class="creator-bio">
-    <h2>Bio</h2>
-    <p>{{ page.bio | markdownify }}</p> {# Added markdownify filter for bio #}
-  </section>
-  {% endif %}
-
-  {% if page.links %}
-    {% if page.links != "" %}
-      {# Handle page.links if it's a single non-empty string #}
-      <section class="creator-links">
-        <h2>Links</h2>
-        <ul>
-          <li><a href="{{ page.links }}" target="_blank" rel="noopener noreferrer">{{ page.links | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
-        </ul>
-      </section>
-    {% elsif page.links.size > 0 %}
-      {# page.links is a non-empty collection, and not a non-empty string. #}
-      {% assign first_item_in_collection = page.links.first %}
-      {% if first_item_in_collection.url %}
-        <section class="creator-links">
-          <h2>Links</h2>
-          <ul>
-            {% for item in page.links %}
-              {% if item.url and item.title %} {# Handles object structure: {url: "...", title: "..."} #}
-                <li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></li>
-              {% elsif item is string %} {# Handles string URL structure #}
-                <li><a href="{{ item }}" target="_blank" rel="noopener noreferrer">{{ item | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-        </section>
-      {% endif %}
-    {% endif %}
-  {% endif %}
-
-  <section class="creator-stats">
-    <h2>Statistics</h2>
-    <ul>
-      <li><strong>Total Unique Visitors:</strong> <span id="stats-total-visitors">Loading...</span></li>
-      <li><strong>Number of Templates:</strong> <span id="stats-template-count">Loading...</span></li>
-      <li><strong>Total Inserters:</strong> <span id="stats-total-inserters">Loading...</span></li>
-      <li><strong>Monthly Visitors:</strong> <span id="stats-monthly-visitors">Loading...</span></li>
-      <li><strong>Monthly Inserters:</strong> <span id="stats-monthly-inserters">Loading...</span></li>
-      <li><strong>Weekly Visitors:</strong> <span id="stats-weekly-visitors">Loading...</span></li>
-      <li><strong>Weekly Inserters:</strong> <span id="stats-weekly-inserters">Loading...</span></li>
-      <li><strong>Earliest Workflow:</strong> <span id="stats-earliest-wf">Loading...</span></li>
-    </ul>
-  </section>
-
-  <section class="creator-workflows">
-    <h2>Workflows</h2>
-    <p><em>Workflows by {{ page.creator_name }} will be listed here.</em></p>
-  </section>
-
-</article>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const currentCreatorUsername = '{{ page.creator_username }}';
-    const jsonUrl = '{{ "/stats_aggregate_creators.json" | relative_url }}'; // Used relative_url for jsonUrl
-
-    fetch(jsonUrl)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok: ' + response.statusText);
-        }
-        return response.json();
-      })
-      .then(data => {
-        const creatorData = data.find(creator => creator.user_username === currentCreatorUsername || (creator.user && creator.user.username === currentCreatorUsername));
-
-        if (creatorData) {
-          document.getElementById('stats-total-visitors').textContent = creatorData.sum_unique_visitors !== undefined ? creatorData.sum_unique_visitors.toLocaleString() : 'N/A';
-          document.getElementById('stats-template-count').textContent = creatorData.unique_count_template_url !== undefined ? creatorData.unique_count_template_url.toLocaleString() : 'N/A';
-          document.getElementById('stats-total-inserters').textContent = creatorData.sum_unique_inserters !== undefined ? creatorData.sum_unique_inserters.toLocaleString() : 'N/A';
-          document.getElementById('stats-monthly-visitors').textContent = creatorData.sum_unique_monthly_visitors !== undefined ? creatorData.sum_unique_monthly_visitors.toLocaleString() : 'N/A';
-          document.getElementById('stats-monthly-inserters').textContent = creatorData.sum_unique_monthly_inserters !== undefined ? creatorData.sum_unique_monthly_inserters.toLocaleString() : 'N/A';
-          document.getElementById('stats-weekly-visitors').textContent = creatorData.sum_unique_weekly_visitors !== undefined ? creatorData.sum_unique_weekly_visitors.toLocaleString() : 'N/A';
-          document.getElementById('stats-weekly-inserters').textContent = creatorData.sum_unique_weekly_inserters !== undefined ? creatorData.sum_unique_weekly_inserters.toLocaleString() : 'N/A';
+      <img src="{{ page.avatar | relative_url }}" alt="{{ page.creator_name }}'s avatar" class="creator-avatar">
+      
+      <div class="creator-card-main-content">
+        <div class="creator-info">
+          <h1>{{ page.creator_name }}</h1>
+          {% if page.creator_username %}
+            <p class="creator-username">@{{ page.creator_username }}</p>
+          {% endif %}
           
-          let earliestWfText = 'N/A';
-          if (creatorData.min_earliest_wf) {
-            try {
-              earliestWfText = new Date(creatorData.min_earliest_wf).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-            } catch (e) {
-              console.error('Error formatting date:', e);
-              earliestWfText = creatorData.min_earliest_wf; // Show raw date if formatting fails
-            }
-          }
-          document.getElementById('stats-earliest-wf').textContent = earliestWfText;
+          {% if page.bio %}
+            <p class="creator-bio">{{ page.bio | markdownify | strip_html | truncatewords: 25 }}</p>
+          {% endif %}
 
-        } else {
-          const statsIds = [
-            'stats-total-visitors', 'stats-template-count', 'stats-total-inserters', 
-            'stats-monthly-visitors', 'stats-monthly-inserters', 'stats-weekly-visitors', 
-            'stats-weekly-inserters', 'stats-earliest-wf'
-          ];
-          statsIds.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) {
-              el.textContent = 'N/A';
-            }
-          });
-          console.warn('Creator data not found for username:', currentCreatorUsername);
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching or processing creator stats:', error);
-        const statsIds = [
-          'stats-total-visitors', 'stats-template-count', 'stats-total-inserters', 
-          'stats-monthly-visitors', 'stats-monthly-inserters', 'stats-weekly-visitors', 
-          'stats-weekly-inserters', 'stats-earliest-wf'
-        ];
-        statsIds.forEach(id => {
-          const el = document.getElementById(id);
-          if (el) {
-            el.textContent = 'Error loading';
-          }
-        });
-      });
-  });
-</script>
+          {% if page.links %}
+            <div class="creator-links">
+              <ul>
+              {% if page.links is string and page.links != "" %}
+                {# Handle page.links if it's a single non-empty string #}
+                <li><a href="{{ page.links }}" target="_blank" rel="noopener noreferrer">{{ page.links | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
+              {% elsif page.links.size > 0 %}
+                {# Handle page.links if it's a collection (e.g., array) with items #}
+                {% assign first_item_in_collection = page.links.first %}
+                {% if first_item_in_collection.url or first_item_in_collection is string %}
+                  {% for item in page.links %}
+                    {% if item.url and item.title %} {# Handles object structure: {url: "...", title: "..."} #}
+                      <li><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a></li>
+                    {% elsif item is string %} {# Handles string URL structure #}
+                      <li><a href="{{ item }}" target="_blank" rel="noopener noreferrer">{{ item | replace: 'https://', '' | replace: 'http://', '' | split: '/' | first }}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              {% endif %}
+              </ul>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <section class="creator-workflows">
+      <h2>Workflows</h2>
+      <p><em>Workflows by {{ page.creator_name }} will be listed here.</em></p>
+    </section>
+  </article>
+</div>
+
+<!-- Statistics script removed -->
