@@ -40,67 +40,27 @@ document.addEventListener('DOMContentLoaded', function() {
             // Initialize DataTable
             $('#creator-workflows-table').DataTable({
                 data: tableData,
-                dom: '<"table-controls-wrapper"<"table-control-section"l><"table-control-section"B><"table-control-section"f>>rtip',
+                dom: '<"table-controls-wrapper"<"table-control-section"l><"table-control-section"f>>rtip',
                 columns: [
                     { title: "", searchable: false, orderable: false },
                     { title: "Workflow Name" },
-                    { title: "Total Views" },
-                    { title: "Total Inserters" },
-                    { title: "Monthly Views", visible: false },
-                    { title: "Monthly Inserters", visible: false },
-                    { title: "Weekly Views", visible: false },
-                    { title: "Weekly Inserters", visible: false },
-                    { title: "Creation Date" }
+                    { title: "Total<br/>Views" },
+                    { title: "Total<br/>Inserters" },
+                    { title: "Monthly<br/>Views" },
+                    { title: "Monthly<br/>Inserters" },
+                    { title: "Weekly<br/>Views" },
+                    { title: "Weekly<br/>Inserters" },
+                    { title: "Creation<br/>Date" }
                 ],
                 order: [[2, 'desc']], // Sort by total views by default
-                pageLength: 10,
+                pageLength: 25,
                 bFilter: true,
                 responsive: true,
                 columnDefs: [
                     { targets: 0, className: 'dt-body-center number-column', width: "30px" },
                     { targets: 1, className: 'dt-body-left' },
                     { targets: [2,3,4,5,6,7,8], className: 'dt-body-center' }
-                ],
-                buttons: [
-                    {
-                        extend: 'colvisGroup',
-                        text: 'Total Stats',
-                        show: [0,1,2,3,8],
-                        hide: [4,5,6,7],
-                        className: 'active',
-                        attr: {
-                            'data-umami-event': 'table_button',
-                            'data-umami-event-table': 'total'
-                        }
-                    },
-                    {
-                        extend: 'colvisGroup',
-                        text: 'Monthly Stats',
-                        show: [0,1,4,5,8],
-                        hide: [2,3,6,7],
-                        attr: {
-                            'data-umami-event': 'table_button',
-                            'data-umami-event-table': 'monthly'
-                        }
-                    },
-                    {
-                        extend: 'colvisGroup',
-                        text: 'Weekly Stats',
-                        show: [0,1,6,7,8],
-                        hide: [2,3,4,5],
-                        attr: {
-                            'data-umami-event': 'table_button',
-                            'data-umami-event-table': 'weekly'
-                        }
-                    }
-                ],
-                initComplete: function() {
-                    // Add click handler to manage active state for DataTables buttons
-                    $('.dt-button').on('click', function() {
-                        $('.dt-button').removeClass('active');
-                        $(this).addClass('active');
-                    });
-                }
+                ]
             });
         })
         .catch(error => console.error('Error fetching workflows data:', error));
