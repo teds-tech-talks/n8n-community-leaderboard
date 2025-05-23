@@ -35,26 +35,49 @@ layout: default
     --gradient-golden: linear-gradient(135deg, #FAE166 0%, #DDBB1A 100%);
     --gradient-twilight: linear-gradient(135deg, #484C99 0%, #8287EB 100%);
   }
+  
+  /* Noise texture for grainy effect */
+  .noise-texture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
 
   /* Custom gradient variations */
   .creator-profile-header[data-gradient="ocean"] {
     background-image: var(--gradient-ocean);
+    position: relative;
   }
 
   .creator-profile-header[data-gradient="sunset"] {
     background-image: var(--gradient-sunset);
+    position: relative;
   }
 
   .creator-profile-header[data-gradient="forest"] {
     background-image: var(--gradient-forest);
+    position: relative;
   }
 
   .creator-profile-header[data-gradient="golden"] {
     background-image: var(--gradient-golden);
+    position: relative;
   }
 
   .creator-profile-header[data-gradient="twilight"] {
     background-image: var(--gradient-twilight);
+    position: relative;
+  }
+  
+  /* Default position for header without specific gradient */
+  .creator-profile-header {
+    position: relative;
   }
 
   /* Grain effect for the header */
