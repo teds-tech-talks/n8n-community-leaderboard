@@ -218,7 +218,8 @@ layout: default
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='%23444' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zM2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'/%3E%3C/svg%3E");
   }
 
-  /* Workflows section */
+  /* Ratings and Workflows sections */
+  .creator-ratings,
   .creator-workflows {
     padding: 25px 30px;
     margin: 30px;
@@ -228,6 +229,7 @@ layout: default
     position: relative;
   }
 
+  .content-container .creator-ratings h2,
   .content-container .creator-workflows h2 {
     margin-top: 0;
     font-size: 1.8em;
@@ -235,6 +237,52 @@ layout: default
     padding-bottom: 12px;
     margin-bottom: 20px;
     color: #333;
+  }
+  
+  /* Ratings table styles */
+  .ratings-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .ratings-table th,
+  .ratings-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .ratings-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #444;
+  }
+  
+  .ratings-table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .metric-name {
+    text-align: left;
+    font-weight: 500;
+  }
+  
+  .rating-value {
+    font-weight: 600;
+    font-size: 1.1em;
+  }
+  
+  .rating-high {
+    color: #28a745;
+  }
+  
+  .rating-medium {
+    color: #fd7e14;
+  }
+  
+  .rating-low {
+    color: #6c757d;
   }
 
   /* Responsive styles */
@@ -322,8 +370,39 @@ layout: default
     {% endif %}
   </div>
 
+  <section class="creator-ratings">
+    <h2>Creator Ratings</h2>
+    <table class="ratings-table" id="creator-ratings-table">
+      <thead>
+        <tr>
+          <th class="metric-name">Metric</th>
+          <th>Total Rating</th>
+          <th>Monthly Rating</th>
+          <th>Weekly Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="metric-name">Views</td>
+          <td id="total-views-rating" class="rating-value">-</td>
+          <td id="monthly-views-rating" class="rating-value">-</td>
+          <td id="weekly-views-rating" class="rating-value">-</td>
+        </tr>
+        <tr>
+          <td class="metric-name">Inserters</td>
+          <td id="total-inserters-rating" class="rating-value">-</td>
+          <td id="monthly-inserters-rating" class="rating-value">-</td>
+          <td id="weekly-inserters-rating" class="rating-value">-</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><em>Ratings are calculated based on the creator's performance relative to other creators.</em></p>
+  </section>
+
   <section class="creator-workflows">
     <h2>Workflows</h2>
     <p><em>Workflows by {{ page.creator_name }} will be listed here.</em></p>
   </section>
+  
+  <script src="{{ '/assets/js/creator-ratings.js' | relative_url }}"></script>
 </div>
