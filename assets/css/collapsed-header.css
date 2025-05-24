@@ -1,13 +1,27 @@
 /* Collapsed header styles */
 .page-header.collapsed-header {
-  height: 60px;
+  height: auto;
+  min-height: 60px;
+  max-height: 80px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   overflow: hidden;
-  transition: height 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.page-header.collapsed-header .project-name {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.8rem;
+  line-height: 1.2;
 }
 
 .page-header.collapsed-header.expanded {
+  max-height: none;
   height: auto;
   overflow: visible;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .page-header.collapsed-header .collapsible-content {
@@ -15,11 +29,13 @@
   max-height: 0;
   overflow: hidden;
   transition: opacity 0.3s ease, max-height 0.3s ease;
+  margin-top: 0;
 }
 
 .page-header.collapsed-header.expanded .collapsible-content {
   opacity: 1;
   max-height: 500px;
+  margin-top: 1rem;
 }
 
 /* Hamburger button styles */
@@ -83,7 +99,15 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .page-header.collapsed-header {
-    height: 50px;
+    min-height: 50px;
+    max-height: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .page-header.collapsed-header .project-name {
+    font-size: 1.5rem;
+    padding-right: 40px; /* Make room for hamburger button */
   }
   
   .hamburger-button {
@@ -91,16 +115,41 @@
     right: 15px;
   }
 }
+
+@media (max-width: 480px) {
+  .page-header.collapsed-header {
+    min-height: 40px;
+    max-height: 120px;
+  }
+  
+  .page-header.collapsed-header .project-name {
+    font-size: 1.3rem;
+  }
+}
 /* Collapsed header styles */
 .page-header.collapsed-header {
-  height: 60px;
+  height: auto;
+  min-height: 60px;
+  max-height: 80px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   overflow: hidden;
-  transition: height 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.page-header.collapsed-header .project-name {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.8rem;
+  line-height: 1.2;
 }
 
 .page-header.collapsed-header.expanded {
+  max-height: none;
   height: auto;
   overflow: visible;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .page-header.collapsed-header .collapsible-content {
@@ -108,11 +157,13 @@
   max-height: 0;
   overflow: hidden;
   transition: opacity 0.3s ease, max-height 0.3s ease;
+  margin-top: 0;
 }
 
 .page-header.collapsed-header.expanded .collapsible-content {
   opacity: 1;
   max-height: 500px;
+  margin-top: 1rem;
 }
 
 /* Hamburger button styles */
