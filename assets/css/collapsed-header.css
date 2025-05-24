@@ -1,22 +1,29 @@
 /* Collapsed header styles */
-.collapsed-header {
-  height: 60px;
-  overflow: hidden;
+.page-header {
   transition: height 0.3s ease;
 }
 
-.collapsed-header.expanded {
-  height: auto;
+.page-header.collapsed-header {
+  height: 60px;
+  overflow: hidden;
 }
 
-.collapsed-header .collapsible-content {
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
+.page-header.collapsed-header.expanded {
+  height: auto;
+  overflow: visible;
+}
+
+.page-header .collapsible-content {
   transition: opacity 0.3s ease, max-height 0.3s ease;
 }
 
-.collapsed-header.expanded .collapsible-content {
+.page-header.collapsed-header .collapsible-content {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.page-header.collapsed-header.expanded .collapsible-content {
   opacity: 1;
   max-height: 500px;
 }
@@ -81,7 +88,7 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .collapsed-header {
+  .page-header.collapsed-header {
     height: 50px;
   }
   

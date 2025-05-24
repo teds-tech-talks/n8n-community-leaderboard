@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   const hamburgerButton = document.getElementById('hamburger-menu');
-  const header = document.querySelector('.collapsed-header');
+  const header = document.querySelector('.page-header.collapsed-header');
   
   if (hamburgerButton && header) {
     hamburgerButton.addEventListener('click', function() {
