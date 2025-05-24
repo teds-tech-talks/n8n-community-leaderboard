@@ -34,6 +34,16 @@
   line-height: 1.2;
 }
 
+.site-title-link {
+  color: white;
+  text-decoration: none;
+}
+
+.site-title-link:hover {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9);
+}
+
 .page-header.collapsed-header.expanded {
   max-height: none;
   height: auto;
