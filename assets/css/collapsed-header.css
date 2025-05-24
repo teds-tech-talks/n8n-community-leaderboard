@@ -3,27 +3,27 @@
   height: auto;
   min-height: 60px;
   max-height: 80px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+/*  padding-top: 15px;
+  padding-bottom: 15px;*/
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
 }
 
 /* Hide decorative elements when collapsed */
 .page-header.collapsed-header .decorative-container {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.1s ease, visibility 0.1s ease;
   height: 0;
   overflow: hidden;
   pointer-events: none;
 }
 
 .page-header.collapsed-header.expanded .decorative-container {
-  opacity: 1;
+  opacity: 0.15;
   visibility: visible;
-  height: auto;
-  overflow: visible;
+  height: 100%;
+  overflow: hidden;
   pointer-events: auto;
 }
 
