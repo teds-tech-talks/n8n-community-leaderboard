@@ -10,7 +10,7 @@ creator_name: ""
 avatar: ""
 
 # Optional: Override the creator's bio (otherwise fetched from JSON)
-bio: "Eduard is a low-code specialist focused on helping companies to automate business processes and achieve digital transformation. He is specialized on the open-source and uses n8n on a daily basis."
+bio: "Eduard is a low-code specialist focused on helping companies to automate business processes and achieve digital transformation.<br>He is specialized on the open-source and uses n8n on a daily basis."
 
 # Optional: Background image for the header
 header_image: "/_creators/eduard/banner.jpg"
