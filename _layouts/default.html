@@ -16,11 +16,9 @@
   </head>
   <body>
 
-    <header class="page-header {% if layout.name == 'creator_page_collapsed.html' %}collapsed-header{% endif %}" role="banner">
-      {% if layout.name == 'creator_page_collapsed.html' %}
-      <button id="hamburger-menu" class="hamburger-button" aria-label="Toggle menu">
-        <span class="hamburger-icon"></span>
-      </button>
+    <header class="page-header {% if layout.collapsed_header or page.collapsed_header %}collapsed-header{% endif %}" role="banner">
+      {% if layout.collapsed_header or page.collapsed_header %}
+      {% include header_hamburger.html %}
       {% endif %}
       
       <div class="decorative-container">
@@ -89,7 +87,7 @@
     {% include popup-banner.html %}
 
     <script src="{{ '/assets/js/popup-banner.js' | relative_url }}" defer></script>
-    {% if layout.name == 'creator_page_collapsed.html' %}
+    {% if layout.collapsed_header or page.collapsed_header %}
     <script src="{{ '/assets/js/collapsed-header.js' | relative_url }}" defer></script>
     {% endif %}
   </body>
