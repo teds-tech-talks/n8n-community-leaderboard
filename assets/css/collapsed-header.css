@@ -61,7 +61,7 @@
 .hamburger-button {
   position: absolute;
   top: 15px;
-  right: calc(50% - 600px); /* Align with content container edge */
+  right: calc(50% - 580px); /* Align with content container edge */
   z-index: 100;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -78,7 +78,7 @@
 
 @media (max-width: 1200px) {
   .hamburger-button {
-    right: 50px; /* Fallback for smaller screens */
+    right: 30px; /* Fallback for smaller screens */
   }
 }
 
