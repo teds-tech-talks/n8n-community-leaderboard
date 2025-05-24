@@ -64,20 +64,29 @@
   right: calc(50% - 600px); /* Align with content container edge */
   z-index: 100;
   background: transparent;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
   cursor: pointer;
-  width: 30px;
-  height: 30px;
-  padding: 0;
+  width: 36px;
+  height: 36px;
+  padding: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 1200px) {
   .hamburger-button {
     right: 50px; /* Fallback for smaller screens */
   }
+}
+
+.hamburger-button {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .hamburger-icon {
@@ -87,6 +96,8 @@
   background-color: white;
   border-radius: 3px;
   transition: all 0.3s ease;
+  display: block;
+  margin: 0 auto;
 }
 
 .hamburger-icon::before,
@@ -98,6 +109,7 @@
   background-color: white;
   border-radius: 3px;
   transition: all 0.3s ease;
+  left: 0;
 }
 
 .hamburger-icon::before {
