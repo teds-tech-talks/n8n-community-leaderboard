@@ -79,7 +79,7 @@ async function loadCreatorsData() {
             return [
                 "",
                 `<img src="${item.avatar}" alt="${item.username}" class="user-avatar" width="40">`,
-                `<a href="${item.profile_url}" class="creator-link" target="_blank" data-umami-event="creator_profile" data-umami-event-creator="${item.username}">${item.username}</a>`,
+                `<a href="${item.profile_url}" class="creator-link" data-umami-event="creator_profile" data-umami-event-creator="${item.username}">${item.username}</a>`,
                 item.name,
                 item.template_count,
                 item.total_views,
