@@ -62,7 +62,7 @@
 .hamburger-button {
   position: absolute;
   top: 15px;
-  right: 20px;
+  right: calc(50% - 600px); /* Align with content container edge */
   z-index: 100;
   background: transparent;
   border: none;
@@ -73,6 +73,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 1200px) {
+  .hamburger-button {
+    right: 30px; /* Fallback for smaller screens */
+  }
 }
 
 .hamburger-icon {
@@ -132,7 +138,7 @@
   
   .hamburger-button {
     top: 10px;
-    right: 15px;
+    right: 30px;
   }
 }
 
