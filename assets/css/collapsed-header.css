@@ -14,13 +14,18 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
-  height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
 }
 
 .page-header.collapsed-header.expanded .decorative-container {
   opacity: 1;
   visibility: visible;
-  height: auto;
+  position: relative;
+  pointer-events: auto;
 }
 
 .page-header.collapsed-header .project-name {
