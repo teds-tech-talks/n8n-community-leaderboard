@@ -54,7 +54,7 @@
         </div>
       </div>
       
-      <h1 class="project-name"><a href="{{ site.baseurl }}/" class="site-title-link">{{ site.title | default: site.github.repository_name }}</a></h1>
+      <h1 class="project-name">{% if layout.collapsed_header or page.collapsed_header %}<a href="{{ site.baseurl }}/" class="site-title-link">{% endif %}{{ site.title | default: site.github.repository_name }}{% if layout.collapsed_header or page.collapsed_header %}</a>{% endif %}</h1>
       
       <div class="collapsible-content">
         <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
