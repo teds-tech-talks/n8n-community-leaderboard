@@ -44,10 +44,15 @@ collapsed_header: true
   /* CSS variables for gradients */
   :root {
     --gradient-ocean: linear-gradient(135deg, #20B69E 0%, #484C99 100%);
+    --gradient-ocean-start: #20B69E;
     --gradient-sunset: linear-gradient(135deg, #EA4B71 0%, #6E72E0 100%);
+    --gradient-sunset-start: #EA4B71;
     --gradient-forest: linear-gradient(135deg, #20B69E 0%, #176363 100%);
+    --gradient-forest-start: #20B69E;
     --gradient-golden: linear-gradient(135deg, #FAE166 0%, #DDBB1A 100%);
+    --gradient-golden-start: #FAE166;
     --gradient-twilight: linear-gradient(135deg, #484C99 0%, #8287EB 100%);
+    --gradient-twilight-start: #484C99;
   }
   
   /* Noise texture for grainy effect */
@@ -139,8 +144,30 @@ collapsed_header: true
     font-size: 72px;
     font-weight: 500;
     text-transform: uppercase;
-    background-color: #20B69E;
+    background-color: var(--gradient-ocean-start, #20B69E);
     color: #fff;
+  }
+  
+  /* Avatar gradient colors */
+  .default-avatar[data-gradient="ocean"] {
+    background-color: #20B69E;
+  }
+  
+  .default-avatar[data-gradient="sunset"] {
+    background-color: #EA4B71;
+  }
+  
+  .default-avatar[data-gradient="forest"] {
+    background-color: #20B69E;
+  }
+  
+  .default-avatar[data-gradient="golden"] {
+    background-color: #FAE166;
+    color: #333; /* Dark text for light background */
+  }
+  
+  .default-avatar[data-gradient="twilight"] {
+    background-color: #484C99;
   }
 
   /* Main content styles */
@@ -525,7 +552,9 @@ collapsed_header: true
   {% if page.avatar %}
     <img src="{{ page.avatar | relative_url }}" alt="{{ page.creator_name }}'s avatar" class="creator-avatar">
   {% else %}
-    <div class="default-avatar" aria-label="{{ page.creator_name | default: page.creator_username }}'s default avatar">
+    <div class="default-avatar" 
+         data-gradient="{{ page.header_gradient | default: 'ocean' }}"
+         aria-label="{{ page.creator_name | default: page.creator_username }}'s default avatar">
       {{ page.creator_name | default: page.creator_username | slice: 0 | upcase }}
     </div>
   {% endif %}
