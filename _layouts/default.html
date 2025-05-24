@@ -11,11 +11,18 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/popup-banner.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/collapsed-header.css' | relative_url }}">
     {% include head-custom.html %}
   </head>
   <body>
 
-    <header class="page-header" role="banner">
+    <header class="page-header {% if layout.name == 'creator_page_collapsed.html' %}collapsed-header{% endif %}" role="banner">
+      {% if layout.name == 'creator_page_collapsed.html' %}
+      <button id="hamburger-menu" class="hamburger-button" aria-label="Toggle menu">
+        <span class="hamburger-icon"></span>
+      </button>
+      {% endif %}
+      
       <div class="decorative-container">
         <!-- Left side cubes -->
         <div class="decorative-element left-element-1">
@@ -48,26 +55,29 @@
       </div>
       
       <h1 class="project-name">{{ site.title | default: site.github.repository_name }}</h1>
-      <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
-      <div class="header-buttons-row">
-        <a href="{{ site.baseurl }}/" class="btn" data-umami-event="Button Creators">👥 Creators</a>
-        <a href="{{ site.baseurl }}/workflows" class="btn" data-umami-event="Button Workflows">📊 Workflows</a>
-        <a href="{{ site.baseurl }}/challenges" class="btn" data-umami-event="Button Challenges">🏆 Monthly Challenge</a>
-      </div>
-      <div class="header-buttons-row">
-        {% if site.custom_buttons %}
-          {% for button in site.custom_buttons %}
-            <a href="{{ button.url }}" class="btn" data-umami-event="Custom button">{{ button.text }}</a>
-          {% endfor %}
+      
+      <div class="collapsible-content">
+        <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
+        <div class="header-buttons-row">
+          <a href="{{ site.baseurl }}/" class="btn" data-umami-event="Button Creators">👥 Creators</a>
+          <a href="{{ site.baseurl }}/workflows" class="btn" data-umami-event="Button Workflows">📊 Workflows</a>
+          <a href="{{ site.baseurl }}/challenges" class="btn" data-umami-event="Button Challenges">🏆 Monthly Challenge</a>
+        </div>
+        <div class="header-buttons-row">
+          {% if site.custom_buttons %}
+            {% for button in site.custom_buttons %}
+              <a href="{{ button.url }}" class="btn" data-umami-event="Custom button">{{ button.text }}</a>
+            {% endfor %}
+          {% endif %}
+          {% if site.github.is_project_page %}
+            <a href="{{ site.github.repository_url }}" class="btn" data-umami-event="View on GitHub">View on GitHub</a>
+          {% endif %}
+        </div>
+        {% if site.show_downloads %}
+          <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
+          <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
         {% endif %}
-        {% if site.github.is_project_page %}
-          <a href="{{ site.github.repository_url }}" class="btn" data-umami-event="View on GitHub">View on GitHub</a>
-        {% endif %}
       </div>
-      {% if site.show_downloads %}
-        <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
-        <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
-      {% endif %}
 	  </header>
 
     <main id="content" class="main-content" role="main">
@@ -79,5 +89,8 @@
     {% include popup-banner.html %}
 
     <script src="{{ '/assets/js/popup-banner.js' | relative_url }}" defer></script>
+    {% if layout.name == 'creator_page_collapsed.html' %}
+    <script src="{{ '/assets/js/collapsed-header.js' | relative_url }}" defer></script>
+    {% endif %}
   </body>
 </html>

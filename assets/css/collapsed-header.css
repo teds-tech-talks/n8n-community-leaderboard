@@ -1,0 +1,92 @@
+/* Collapsed header styles */
+.collapsed-header {
+  height: 60px;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+.collapsed-header.expanded {
+  height: auto;
+}
+
+.collapsed-header .collapsible-content {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+.collapsed-header.expanded .collapsible-content {
+  opacity: 1;
+  max-height: 500px;
+}
+
+/* Hamburger button styles */
+.hamburger-button {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  z-index: 100;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger-icon {
+  position: relative;
+  width: 24px;
+  height: 3px;
+  background-color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.hamburger-icon::before,
+.hamburger-icon::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 3px;
+  background-color: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.hamburger-icon::before {
+  transform: translateY(-8px);
+}
+
+.hamburger-icon::after {
+  transform: translateY(8px);
+}
+
+/* Hamburger animation */
+.hamburger-button.active .hamburger-icon {
+  background-color: transparent;
+}
+
+.hamburger-button.active .hamburger-icon::before {
+  transform: rotate(45deg);
+}
+
+.hamburger-button.active .hamburger-icon::after {
+  transform: rotate(-45deg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .collapsed-header {
+    height: 50px;
+  }
+  
+  .hamburger-button {
+    top: 10px;
+    right: 15px;
+  }
+}
