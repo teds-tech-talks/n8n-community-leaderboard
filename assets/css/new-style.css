@@ -1,6 +1,8 @@
 /* Import fonts */
+/*
 @import url('https://cdnjs.cloudflare.com/ajax/libs/space-grotesk/2.0.0/space-grotesk.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/dm-sans/1.1.1/dm-sans.min.css');
+*/
 
 :root {
     --primary-gradient: linear-gradient(102.83deg, #FF6B6B 2.21%, #A020F0 81.47%);
