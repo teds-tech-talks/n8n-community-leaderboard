@@ -227,11 +227,30 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .page-header.collapsed-header {
-    height: 50px;
+    min-height: 50px;
+    max-height: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .page-header.collapsed-header .project-name {
+    font-size: 1.5rem;
+    padding-right: 40px; /* Make room for hamburger button */
   }
   
   .hamburger-button {
     top: 10px;
     right: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header.collapsed-header {
+    min-height: 40px;
+    max-height: 120px;
+  }
+  
+  .page-header.collapsed-header .project-name {
+    font-size: 1.3rem;
   }
 }
