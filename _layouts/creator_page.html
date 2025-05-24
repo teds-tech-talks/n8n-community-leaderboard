@@ -578,7 +578,7 @@ collapsed_header: true
       {{ page.creator_name | default: page.creator_username | slice: 0 | upcase }}
     </div>
     {% if page.avatar %}
-    <img src="{{ page.avatar | relative_url }}" alt="{{ page.creator_name }}" class="creator-avatar" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+    <img src="{{ page.avatar | relative_url }}" alt="{{ page.creator_name }}" class="creator-avatar" onload="this.classList.add('loaded')">
     {% endif %}
   </div>
   
