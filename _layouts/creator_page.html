@@ -108,6 +108,17 @@ collapsed_header: true
     pointer-events: none;
   }
 
+  /* Avatar container */
+  .avatar-container {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 120px;
+    left: 30px;
+    z-index: 2;
+    margin: 0 !important;
+  }
+
   /* Avatar styles */
   img.creator-avatar {
     width: 200px !important;
@@ -117,12 +128,18 @@ collapsed_header: true
     border: 5px solid #fff;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     position: absolute;
-    top: 120px;
-    left: 30px;
-    z-index: 2;
+    top: 0;
+    left: 0;
     object-fit: cover;
     margin: 0 !important;
     display: block;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+  }
+
+  img.creator-avatar.loaded {
+    opacity: 1;
   }
 
   /* Default avatar styles */
@@ -134,8 +151,8 @@ collapsed_header: true
     border: 5px solid #fff;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     position: absolute;
-    top: 120px;
-    left: 30px;
+    top: 0;
+    left: 0;
     z-index: 2;
     margin: 0 !important;
     display: flex;
@@ -495,13 +512,18 @@ collapsed_header: true
   
   /* Responsive styles */
   @media (max-width: 768px) {
+    .avatar-container {
+      width: 150px;
+      height: 150px;
+      top: 140px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
     img.creator-avatar,
     .default-avatar {
       width: 150px !important;
       height: 150px !important;
-      top: 140px;
-      left: 50%;
-      transform: translateX(-50%);
     }
     
     .default-avatar {
@@ -549,15 +571,16 @@ collapsed_header: true
 	  <div class="noise-texture"></div>
 	</header>
 
-  {% if page.avatar %}
-    <img src="{{ page.avatar | relative_url }}" alt="{{ page.creator_name }}'s avatar" class="creator-avatar">
-  {% else %}
+  <div class="avatar-container">
     <div class="default-avatar" 
          data-gradient="{{ page.header_gradient | default: 'ocean' }}"
-         aria-label="{{ page.creator_name | default: page.creator_username }}'s default avatar">
+         aria-label="{{ page.creator_name | default: page.creator_username }}">
       {{ page.creator_name | default: page.creator_username | slice: 0 | upcase }}
     </div>
-  {% endif %}
+    {% if page.avatar %}
+    <img src="{{ page.avatar | relative_url }}" alt="{{ page.creator_name }}" class="creator-avatar" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+    {% endif %}
+  </div>
   
   <div class="creator-card-main-content">
     <div class="creator-info">
