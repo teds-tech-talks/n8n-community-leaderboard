@@ -4,7 +4,6 @@ baseurl: ""
 # Custom settings for Cayman theme
 title: "n8n Arena: Creators Leaderboard"
 description: "Community-powered rankings of top creators and standout workflows"
-url: "{{ site.github.url }}"
 
 # Custom buttons
 github:
