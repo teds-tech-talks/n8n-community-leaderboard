@@ -5,7 +5,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: {{ site.url | default: site.github.url }}/sitemap.xml
+Sitemap: {{ "/sitemap.xml" | absolute_url }}
 
 # Optional: Disallow crawling of raw creator files
 Disallow: /_creators/

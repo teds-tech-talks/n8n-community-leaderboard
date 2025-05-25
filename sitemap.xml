@@ -7,7 +7,7 @@ layout: null
   <!-- Static pages -->
   {% for page_url in site.sitemap_pages %}
   <url>
-    <loc>{{ site.url | default: site.github.url }}{{ page_url }}</loc>
+    <loc>{{ page_url | absolute_url }}</loc>
     <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>{% if page_url == '/' %}1.0{% else %}0.8{% endif %}</priority>
@@ -17,11 +17,10 @@ layout: null
   <!-- Collection pages (creators) -->
   {% for creator in site.creators %}
   <url>
-    <loc>{{ site.url | default: site.github.url }}/creators/{{ creator.creator_username | downcase }}/</loc>
+    <loc>{{ "/creators/" | append: creator.creator_username | downcase | append: "/" | absolute_url }}</loc>
     <lastmod>{% if creator.last_modified_at %}{{ creator.last_modified_at | date_to_xmlschema }}{% else %}{{ creator.date | default: site.time | date_to_xmlschema }}{% endif %}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   {% endfor %}
-  
 </urlset>
