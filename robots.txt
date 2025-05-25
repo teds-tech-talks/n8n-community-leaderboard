@@ -1,0 +1,11 @@
+---
+layout: null
+---
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: {{ site.url | default: site.github.url }}/sitemap.xml
+
+# Optional: Disallow crawling of raw creator files
+Disallow: /_creators/

@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             // Find the current creator's data
-            const creatorData = data.find(item => item.user.username === creatorUsername);
+            const creatorData = data.find(item => item.user.username.toLowerCase() === creatorUsername);
             
             if (!creatorData) {
                 console.error('Creator not found in data:', creatorUsername);

@@ -4,6 +4,7 @@ baseurl: ""
 # Custom settings for Cayman theme
 title: "n8n Arena: Creators Leaderboard"
 description: "Community-powered rankings of top creators and standout workflows"
+url: "{{ site.github.url }}"
 
 # Custom buttons
 github:
@@ -20,8 +21,8 @@ collections:
   creators:
     output: true
     permalink: /creators/:name/index.html
-    files_dir: 'creators'
-    
+    # files_dir: 'creators'
+
 # Configure webrick for local development
 webrick:
   headers:
@@ -30,3 +31,10 @@ webrick:
 # Include underscore folders
 include:
   - _creators
+
+# Define your static pages for the sitemap
+sitemap_pages:
+  - /
+  - /about/
+  - /n8n/
+  - /workflows/

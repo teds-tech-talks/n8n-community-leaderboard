@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             let tableData = data.map(item => {
-                let creatorLink = `<a href="/creators/${item.user.username}" class="creator-link"  data-umami-event="creator_profile" data-umami-event-creator="${item.user.username}">${item.user.username}</a>`;
+                let creatorLink = `<a href="/creators/${item.user.username.toLowerCase()}" class="creator-link"  data-umami-event="creator_profile" data-umami-event-creator="${item.user.username}">${item.user.username}</a>`;
                 if (item?.user?.links[0]) {
                     creatorLink += `<a href="${item.user.links[0]}" class="external-link" target="_blank" data-umami-event="creator_external" data-umami-event-creator="${item.user.username}" data-umami-event-url="${item.user.links[0]}">🌐</a>`;
                 }

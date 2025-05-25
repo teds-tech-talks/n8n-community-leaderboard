@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             // Filter workflows for the current creator
-            const creatorWorkflows = data.filter(item => item.user.username === creatorUsername);
+            const creatorWorkflows = data.filter(item => item.user.username.toLowerCase() === creatorUsername);
             
             if (creatorWorkflows.length === 0) {
                 // Show message if no workflows found
