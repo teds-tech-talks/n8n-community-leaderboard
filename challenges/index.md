@@ -275,7 +275,7 @@ async function loadChallengeData() {
             
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("countdown").innerHTML = "Challenge has ended";
+                document.getElementById("countdown").innerHTML = "Challenge has ended, results coming soon!";
             }
         }, 1000);
 
