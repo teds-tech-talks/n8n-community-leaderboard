@@ -20,6 +20,6 @@ header_image: ""
 header_gradient: "twilight"
 
 # Optional: Override the creator's social links (otherwise fetched from JSON)
-links: []
+links: ["https://www.linkedin.com/in/oskarkramarz/","https://www.youtube.com/@workfloows"]
 
 ---
