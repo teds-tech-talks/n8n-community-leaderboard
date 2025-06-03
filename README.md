@@ -92,7 +92,7 @@ Each offer can include:
 
 ### Complete Example
 
-See `_creators/eduard/eduard.md` for a complete example of a customized creator page.
+See [`_creators/eduard/eduard.md`](_creators/eduard) for a complete example of a customized creator page.
 
 <details>
 <summary>Click to expand the visual example</summary>
