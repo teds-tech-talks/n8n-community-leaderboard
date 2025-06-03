@@ -1,10 +1,10 @@
 ---
 layout: content
-title: About the n8n Creators Leaderboard
+title: About n8narena
 permalink: /about/
 ---
 
-Welcome to the n8n Creators Leaderboard, a community-led initiative showcasing the top creators and their workflow templates.
+Welcome to n8narena, a community-led initiative showcasing the top creators and their workflow templates.
 
 ## Our Purpose
 
@@ -21,6 +21,19 @@ Are you an n8n creator looking to showcase your work? Here's how you can get lis
 1. Register as a creator through the [n8n Creator hub](https://n8n.notion.site/n8n-Creator-hub-7bd2cbe0fce0449198ecb23ff4a2f76f).
 2. Publish your workflows on the n8n platform.
 3. During our next update cycle, your information will be included in the leaderboard.
+
+## Claim Your Creator Page on n8narena
+
+Already listed on n8narena? You can now claim and customize your creator page! This allows you to:
+
+- Add a custom bio and profile information
+- Add your social media links and contact information
+- Upload a custom banner image or choose from beautiful gradients
+- Showcase your services, courses, or special offers
+
+**[Learn how to claim your page →](https://github.com/teds-tech-talks/n8n-community-leaderboard/blob/main/README.md)**
+
+The process is simple: just create a pull request with your customized creator page information, and we'll review and merge it. After submitting your pull request, please send a DM on LinkedIn to [Eduard](https://www.linkedin.com/in/parsadanyan/) to verify that you are claiming your own page.
 
 ## Updating Your Information
 
@@ -68,6 +81,6 @@ We run monthly challenges to encourage both new and existing creators to contrib
 
 ## Community-Led Initiative
 
-The n8n Creators Leaderboard is a community-led project. We strive to maintain transparency, fairness, and accuracy in our rankings and presentations. If you have any questions, suggestions, or concerns, please don't hesitate to reach out.
+n8narena is a community-led project. We strive to maintain transparency, fairness, and accuracy in our rankings and presentations. If you have any questions, suggestions, or concerns, please don't hesitate to reach out.
 
 Thank you for being part of the n8n creator community!
