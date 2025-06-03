@@ -15,7 +15,7 @@ This leaderboard recognizes contributions from n8n creators, provides visibility
 
 ## Claim Your Creator Page
 
-Are you an n8n creator? You can now claim and customize your creator page! Add your own bio, social links, header images, and promotional offers.
+Are you an n8n workflow template creator? You can now claim and customize your creator page! Add your own bio, social links, header images, and promotional offers.
 
 ### How to Claim Your Page
 
@@ -23,9 +23,7 @@ Are you an n8n creator? You can now claim and customize your creator page! Add y
 2. **Fork this repository**
 3. **Customize your creator file** in `_creators/[your-username].md` (file already exists, just needs your personal touch)
 4. **Submit a pull request** with your customized information
-5. **Verify your identity** by sending a DM on LinkedIn to [Eduard](https://www.linkedin.com/in/parsadanyan/) to confirm you are claiming your own page
-
-The process is simple: just create a pull request with your customized creator page information, and we'll review and merge it. After submitting your pull request, please send a DM on LinkedIn to [Eduard](https://www.linkedin.com/in/parsadanyan/) to verify that you are claiming your own page.
+5. **Send a DM on LinkedIn** to [Eduard](https://www.linkedin.com/in/parsadanyan/) to confirm you are claiming your own page
 
 For detailed instructions and examples, see the [Creator Page Guide](#creator-page-customization) below.
 
@@ -90,3 +88,12 @@ Each offer can include:
 ### Complete Example
 
 See `_creators/eduard/eduard.md` for a complete example of a customized creator page.
+
+<details>
+<summary>Click to expand</summary>
+
+![Creator Page Example](./creator-page-example.png)
+
+</details>
+
+*Example of a customized creator page with header image, bio, social links, and promotional offers*
