@@ -21,7 +21,7 @@ Are you an n8n workflow template creator? You can now claim and customize your c
 
 1. **Find your creator page** on n8narena
 2. **Fork this repository**
-3. **Customize your creator file** in `_creators/[your-username].md` (file already exists, just needs your personal touch)
+3. **Customize your creator file** in `_creators/[your-username]/[your-username].md` (file already exists, just needs your personal touch)
 4. **Submit a pull request** with your customized information
 5. **Send a DM on LinkedIn** to [Eduard](https://www.linkedin.com/in/parsadanyan/) to confirm you are claiming your own page
 
@@ -60,7 +60,10 @@ links: ["https://www.linkedin.com/in/yourprofile/","https://yourweb.site"]
 
 ### Bonus: Promotional Offers
 
-If you have courses, services, or other offerings, you can showcase up to 2 promotional sections:
+If you have courses, services, or other offerings, you can showcase up to 2 promotional sections under `offer1` and/or `offer2`
+
+<details>
+<summary>Click to expand the example</summary>
 
 ```yaml
 offer1:
@@ -78,6 +81,8 @@ offer2:
   cta: "Learn how"
 ```
 
+</details>
+
 Each offer can include:
 - `title`: Catchy headline for your offer
 - `image`: Image file (place in your creator directory)
@@ -90,7 +95,7 @@ Each offer can include:
 See `_creators/eduard/eduard.md` for a complete example of a customized creator page.
 
 <details>
-<summary>Click to expand</summary>
+<summary>Click to expand the visual example</summary>
 
 ![Creator Page Example](./creator-page-example.png)
 
