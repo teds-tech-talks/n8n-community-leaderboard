@@ -1,7 +1,3 @@
-<div align="center" style="position: relative; background-image: url('./n8narena-bg.jpg'); background-size: cover; background-position: center; height: 300px; display: flex; align-items: center; justify-content: center; margin-bottom: 30px;">
-  <h1 style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.7); font-size: 3em; margin: 0;">n8narena</h1>
-</div>
-
 # n8narena - Community Leaderboard
 
 A community-led initiative showcasing the top n8n creators and their workflow templates.
@@ -93,4 +89,4 @@ Each offer can include:
 
 ### Complete Example
 
-See `_creators/eduard.md` for a complete example of a customized creator page.
+See `_creators/eduard/eduard.md` for a complete example of a customized creator page.
