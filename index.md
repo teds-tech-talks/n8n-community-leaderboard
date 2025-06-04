@@ -1,6 +1,6 @@
 ---
 layout: content
-title: Creators Leaderboard
+title: n8n Arena: Creators Leaderboard
 show_last_updated: true
 ---
 

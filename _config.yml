@@ -16,6 +16,12 @@ custom_buttons:
   - text: What is n8n?
     url: /n8n
 
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/img/n8narena.png
+
 collections:
   creators:
     output: true
