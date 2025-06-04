@@ -36,7 +36,7 @@ When customizing your creator page, you'll work with a YAML front matter structu
 ```yaml
 layout: creator_page
 # Required: Username for the creator (used for URL and data lookup)
-creator_username: "eduard"
+creator_username: "[your-username]"
 ```
 
 ⚠️ **Important**: Keep `layout` and `creator_username` exactly as they are. These are required for the page to function properly.
