@@ -29,7 +29,7 @@ collections:
     # files_dir: 'creators'
   posts:
     output: true
-    permalink: /post/:path/
+    permalink: /posts/:name/index.html
 
 # Configure webrick for local development
 webrick:
@@ -47,4 +47,4 @@ sitemap_pages:
   - /about/
   - /n8n/
   - /workflows/
-  - /post/
+  - /posts/
