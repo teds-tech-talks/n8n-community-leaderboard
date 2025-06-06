@@ -27,6 +27,9 @@ collections:
     output: true
     permalink: /creators/:name/index.html
     # files_dir: 'creators'
+  posts:
+    output: true
+    permalink: /post/:path/
 
 # Configure webrick for local development
 webrick:
@@ -36,6 +39,7 @@ webrick:
 # Include underscore folders
 include:
   - _creators
+  - _posts
 
 # Define your static pages for the sitemap
 sitemap_pages:
@@ -43,3 +47,4 @@ sitemap_pages:
   - /about/
   - /n8n/
   - /workflows/
+  - /post/
