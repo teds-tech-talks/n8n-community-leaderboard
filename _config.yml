@@ -21,15 +21,20 @@ defaults:
       path: ""
     values:
       image: /assets/img/n8narena.png
+  - scope:
+      path: ""
+      type: "guides"
+    values:
+      layout: "content"
 
 collections:
   creators:
     output: true
     permalink: /creators/:name/index.html
     # files_dir: 'creators'
-  posts:
+  guides:
     output: true
-    permalink: /post/:path/
+    permalink: /guides/:path/
 
 # Configure webrick for local development
 webrick:
@@ -39,7 +44,7 @@ webrick:
 # Include underscore folders
 include:
   - _creators
-  - _posts
+  - _guides
 
 # Define your static pages for the sitemap
 sitemap_pages:
@@ -47,4 +52,4 @@ sitemap_pages:
   - /about/
   - /n8n/
   - /workflows/
-  - /post/
+  - /guides/
