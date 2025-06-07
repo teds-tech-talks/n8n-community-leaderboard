@@ -1,22 +1,25 @@
 ---
 layout: default
 ---
-<div class="content-container">
+<div class="guide-layout">
   <div class="toc-sidebar">
     <div class="toc-sticky">
       <h3>Contents</h3>
       <div id="toc"></div>
     </div>
   </div>
-  <div class="content-main">
-    <div class="content-header">
-      <h1 class="section-title">{{ page.title }}</h1>
-      {% if page.show_last_updated %}
-      <p id="last-updated" class="meta-text"></p>
-      {% endif %}
-    </div>
+  
+  <div class="content-container">
+    <div class="content-main">
+      <div class="content-header">
+        <h1 class="section-title">{{ page.title }}</h1>
+        {% if page.show_last_updated %}
+        <p id="last-updated" class="meta-text"></p>
+        {% endif %}
+      </div>
 
-    {{ content }}
+      {{ content }}
+    </div>
   </div>
 </div>
 
@@ -54,18 +57,23 @@ layout: default
 </script>
 
 <style>
-  .content-container {
-    display: flex;
-    flex-direction: row;
+  .guide-layout {
+    position: relative;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
   }
   
+  .content-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
   .toc-sidebar {
+    position: fixed;
     width: 220px;
-    margin-right: 30px;
-    flex-shrink: 0;
+    left: calc(50% - 520px);
+    top: 100px;
   }
   
   .toc-sticky {
@@ -128,17 +136,9 @@ layout: default
   }
   
   /* Responsive adjustments */
-  @media screen and (max-width: 800px) {
-    .content-container {
-      flex-direction: column;
-    }
-    
+  @media screen and (max-width: 1100px) {
     .toc-sidebar {
       display: none;
-    }
-    
-    .content-main {
-      padding: 15px;
     }
   }
 </style>
