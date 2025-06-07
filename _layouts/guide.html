@@ -2,25 +2,23 @@
 layout: default
 ---
 <div class="guide-container">
-  <div class="guide-layout">
-    <div class="toc-sidebar">
-      <div class="toc-sticky">
-        <h3>Contents</h3>
-        <div id="toc"></div>
-      </div>
+  <div class="toc-sidebar">
+    <div class="toc-sticky">
+      <h3>Contents</h3>
+      <div id="toc"></div>
     </div>
   </div>
-</div>
   
-<div class="content-container">
-  <div class="content-header">
-    <h1 class="section-title">{{ page.title }}</h1>
-    {% if page.show_last_updated %}
-    <p id="last-updated" class="meta-text"></p>
-    {% endif %}
-  </div>
+  <div class="content-container">
+    <div class="content-header">
+      <h1 class="section-title">{{ page.title }}</h1>
+      {% if page.show_last_updated %}
+      <p id="last-updated" class="meta-text"></p>
+      {% endif %}
+    </div>
 
-  {{ content }}
+    {{ content }}
+  </div>
 </div>
 
 
@@ -63,22 +61,18 @@ layout: default
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-  }
-  
-  .guide-layout {
-    position: relative;
+    display: flex;
   }
   
   .content-container {
-    max-width: 1200px;
-    margin: 0 auto 0 230px;
+    flex: 1;
+    max-width: 900px;
+    margin-left: 30px;
   }
   
   .toc-sidebar {
-    position: absolute;
     width: 200px;
-    left: calc(50% - 600px);
-    top: 0;
+    flex-shrink: 0;
   }
   
   .toc-sticky {
