@@ -25,7 +25,7 @@ defaults:
       path: ""
       type: "guides"
     values:
-      layout: "content"
+      layout: "guide"
 
 collections:
   creators:
