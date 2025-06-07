@@ -1078,6 +1078,6 @@ Initial analysis was conducted in three phases:
 
 [Click here to see what's included](https://mini-course.parsedventures.com/)
 
-<div style="margin: auto;">
+<div style="text-align: center; margin: 0 auto; max-width: 600px;">
 <script async data-uid="73046fb308" src="https://eduard-parsed-ventures.kit.com/73046fb308/index.js"></script>
 </div>
