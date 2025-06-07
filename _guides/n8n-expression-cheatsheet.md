@@ -1076,8 +1076,8 @@ Initial analysis was conducted in three phases:
 
 ### Learn how to self-host n8n
 
-[Click here to see what's included](https://mini-course.parsedventures.com/)
-
-<div style="text-align: center; margin: 0 auto; max-width: 600px;">
+<div style="text-align: center; margin: 0 auto; max-width: 700px;">
 <script async data-uid="73046fb308" src="https://eduard-parsed-ventures.kit.com/73046fb308/index.js"></script>
 </div>
+
+[Click here to see what's included](https://mini-course.parsedventures.com/)
