@@ -10,25 +10,24 @@ layout: default
       </div>
     </div>
   </div>
-  
-  <div class="content-container">
-    <div class="content-main">
-      <div class="content-header">
-        <h1 class="section-title">{{ page.title }}</h1>
-        {% if page.show_last_updated %}
-        <p id="last-updated" class="meta-text"></p>
-        {% endif %}
-      </div>
-
-      {{ content }}
-    </div>
-  </div>
 </div>
+  
+<div class="content-container">
+  <div class="content-header">
+    <h1 class="section-title">{{ page.title }}</h1>
+    {% if page.show_last_updated %}
+    <p id="last-updated" class="meta-text"></p>
+    {% endif %}
+  </div>
+
+  {{ content }}
+</div>
+
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     // Generate TOC
-    const headings = document.querySelectorAll('.content-main h2, .content-main h3');
+    const headings = document.querySelectorAll('.content-container h2, .content-container h3');
     const toc = document.getElementById('toc');
     
     if (headings.length > 0) {
@@ -71,14 +70,14 @@ layout: default
   }
   
   .content-container {
-    max-width: 1000px;
-    margin: 0 auto 0 220px;
+    max-width: 1200px;
+    margin: 0 auto 0 230px;
   }
   
   .toc-sidebar {
     position: absolute;
     width: 200px;
-    left: 20px;
+    left: 0px;
     top: 0;
   }
   
@@ -132,14 +131,6 @@ layout: default
     text-decoration: underline;
   }
   
-  .content-main {
-    flex: 1;
-    min-width: 0;
-    background-color: white;
-    padding: 20px 30px;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
   
   /* Responsive adjustments */
   @media screen and (max-width: 1100px) {
