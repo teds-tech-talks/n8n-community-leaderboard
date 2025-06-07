@@ -75,16 +75,14 @@ layout: default
   }
   
   .toc-sidebar {
-    position: absolute;
+    position: fixed;
     width: 200px;
-    left: 0px;
-    top: 0;
+    left: calc(50% - 600px);
+    top: 100px;
   }
   
   .toc-sticky {
-    position: sticky;
-    top: 20px;
-    max-height: calc(100vh - 40px);
+    max-height: calc(100vh - 120px);
     overflow-y: auto;
     padding: 12px;
     background-color: #f8f9fa;
