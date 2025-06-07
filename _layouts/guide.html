@@ -87,6 +87,27 @@ layout: default
     font-size: 14px;
     border: 1px solid #e8e8e8;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    scrollbar-width: thin;
+    scrollbar-color: #c1c1c1 #f8f9fa;
+  }
+  
+  /* Custom scrollbar for WebKit browsers (Chrome, Safari, etc.) */
+  .toc-sticky::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .toc-sticky::-webkit-scrollbar-track {
+    background: #f8f9fa;
+    border-radius: 3px;
+  }
+  
+  .toc-sticky::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
+    border-radius: 3px;
+  }
+  
+  .toc-sticky::-webkit-scrollbar-thumb:hover {
+    background-color: #a8a8a8;
   }
   
   
