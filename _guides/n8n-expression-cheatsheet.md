@@ -121,7 +121,7 @@ Initial analysis was conducted in three phases:
 
 ---
 
-## Beginner Level {#total-beginner}
+## Beginner Level {#total-beginner}
 
 *This section covers the fundamental patterns. Master these before moving to novice-level expressions*
 
