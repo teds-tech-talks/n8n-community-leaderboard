@@ -1071,3 +1071,13 @@ Initial analysis was conducted in three phases:
 - **Side Effects**: Avoid modifying external state within expressions (use Set or Code nodes instead)
 
 *Found an error or want to suggest an update? Please raise an issue or make a pull request in the [n8narena GitHub repository](https://github.com/teds-tech-talks/n8n-community-leaderboard)*
+
+## What's next?
+
+### Learn how to self-host n8n
+
+[Click here to see what's included](https://mini-course.parsedventures.com/)
+
+<div style="margin: auto;">
+<script async data-uid="73046fb308" src="https://eduard-parsed-ventures.kit.com/73046fb308/index.js"></script>
+</div>
