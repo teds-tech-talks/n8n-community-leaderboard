@@ -753,39 +753,70 @@ collapsed_header: true
 </div>
 
 {% if page.page_status != "claimed" %}
-<!-- Default to "new" status if not explicitly set to "claimed" -->
+<!-- Styles for unclaimed profiles -->
 <style>
-  /* Styles for unclaimed profiles */
-  .unclaimed-overlay {
-    position: fixed;
+  /* Hide personal content for unclaimed profiles */
+  .creator-avatar, .default-avatar {
+    display: none !important;
+  }
+  
+  /* Hide bio for unclaimed profiles */
+  .creator-bio {
+    display: none !important;
+  }
+  
+  /* Hide links for unclaimed profiles */
+  .creator-links {
+    display: none !important;
+  }
+  
+  /* Hide offers for unclaimed profiles */
+  .creator-offers {
+    display: none !important;
+  }
+  
+  /* Blur the tables content */
+  .creator-ratings table, 
+  .creator-workflows table {
+    filter: blur(5px);
+    pointer-events: none;
+  }
+  
+  /* Overlay for tables */
+  .section-overlay {
+    position: relative;
+  }
+  
+  .section-overlay::after {
+    content: "This content is hidden until the creator opts in";
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255, 255, 255, 0.9);
-    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: bold;
+    color: #555;
+    z-index: 10;
+  }
+  
+  /* Claim profile banner */
+  .claim-profile-banner {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 20px 0;
     text-align: center;
   }
   
-  .unclaimed-message {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-  }
-  
-  .unclaimed-message h2 {
-    margin-top: 0;
-  }
-  
-  .unclaimed-message .btn {
+  .claim-profile-banner .btn {
     display: inline-block;
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
+    margin-top: 10px;
+    padding: 8px 16px;
     background-color: #ff6d00;
     color: white;
     text-decoration: none;
@@ -793,24 +824,46 @@ collapsed_header: true
     font-weight: bold;
   }
   
-  .unclaimed-message .btn:hover {
+  .claim-profile-banner .btn:hover {
     background-color: #e65100;
-  }
-  
-  /* Blur the content behind the overlay */
-  .content-container {
-    filter: blur(8px);
-    pointer-events: none;
   }
 </style>
 
-<div class="unclaimed-overlay">
-  <div class="unclaimed-message">
-    <h2>This creator profile is not yet claimed</h2>
-    <p>The content is hidden until the creator explicitly opts in to n8n Arena.</p>
-    <p>Are you {{ page.creator_name | default: page.creator_username }}?</p>
-    <a href="https://github.com/n8n-arena/n8n-arena.github.io/issues/new?template=claim_profile.md&title=Claim%20profile:%20{{ page.creator_username }}" class="btn btn-primary">Claim this profile</a>
-  </div>
-</div>
+<!-- Modify content for unclaimed profiles -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Only show username, not real name
+    const nameElement = document.querySelector('.creator-info h1');
+    if (nameElement) {
+      nameElement.textContent = '@{{ page.creator_username }}';
+    }
+    
+    // Add overlay to tables
+    const ratingsSection = document.querySelector('.creator-ratings');
+    const workflowsSection = document.querySelector('.creator-workflows');
+    
+    if (ratingsSection) {
+      ratingsSection.classList.add('section-overlay');
+    }
+    
+    if (workflowsSection) {
+      workflowsSection.classList.add('section-overlay');
+    }
+    
+    // Add claim profile banner
+    const mainContent = document.querySelector('.creator-card-main-content');
+    if (mainContent) {
+      const banner = document.createElement('div');
+      banner.className = 'claim-profile-banner';
+      banner.innerHTML = `
+        <h3>This creator profile is not yet claimed</h3>
+        <p>The content is hidden until the creator explicitly opts in to n8n Arena.</p>
+        <p>Are you @{{ page.creator_username }}?</p>
+        <a href="https://github.com/n8n-arena/n8n-arena.github.io/issues/new?template=claim_profile.md&title=Claim%20profile:%20{{ page.creator_username }}" class="btn">Claim this profile</a>
+      `;
+      mainContent.appendChild(banner);
+    }
+  });
+</script>
 {% endif %}
 {% endif %}
