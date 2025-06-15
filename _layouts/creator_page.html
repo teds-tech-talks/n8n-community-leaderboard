@@ -762,8 +762,8 @@ collapsed_header: true
 {% if page.page_status != "claimed" %}
 <!-- Styles for unclaimed profiles -->
 <style>
-  /* Hide personal content for unclaimed profiles */
-  .creator-avatar, .default-avatar {
+  /* Show default avatar but hide creator avatar for unclaimed profiles */
+  .creator-avatar {
     display: none !important;
   }
   
@@ -782,38 +782,10 @@ collapsed_header: true
     display: none !important;
   }
   
-  /* Empty tables with placeholder text */
-  .creator-ratings table tbody tr td,
-  #creator-workflows-table tbody tr td {
-    display: none;
-  }
-  
-  .creator-ratings table thead,
-  #creator-workflows-table thead {
-    opacity: 0.5;
-  }
-  
-  /* Overlay for tables */
-  .section-overlay {
-    position: relative;
-  }
-  
-  .section-overlay::after {
-    content: "Content is hidden until the creator opts in";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    color: #555;
-    z-index: 10;
-    text-align: center;
-    padding: 20px;
+  /* Hide ratings and workflows sections completely for unclaimed profiles */
+  .creator-ratings,
+  .creator-workflows {
+    display: none !important;
   }
   
   /* Claim profile banner */
@@ -862,17 +834,7 @@ collapsed_header: true
   document.addEventListener('DOMContentLoaded', function() {
     // Username is already set in the template
     
-    // Add overlay to tables
-    const ratingsSection = document.querySelector('.creator-ratings');
-    const workflowsSection = document.querySelector('.creator-workflows');
-    
-    if (ratingsSection) {
-      ratingsSection.classList.add('section-overlay');
-    }
-    
-    if (workflowsSection) {
-      workflowsSection.classList.add('section-overlay');
-    }
+    // Tables are now hidden via CSS
     
     // Add claim profile banner
     const mainContent = document.querySelector('.creator-card-main-content');
@@ -880,8 +842,9 @@ collapsed_header: true
       const banner = document.createElement('div');
       banner.className = 'claim-profile-banner';
       banner.innerHTML = `
-        <h3>@{{ page.creator_username }} creator profile is not yet claimed</h3>
-        <p>Content is hidden until the creator explicitly opts in to n8n Arena.</p>
+        <h3>@{{ page.creator_username }} profile is not yet claimed</h3>
+        <p>Creator ratings and published workflows are hidden until the creator explicitly opts in to n8n Arena.</p>
+        <p>Are you @{{ page.creator_username }}?</p>
         <a href="https://github.com/n8n-arena/n8n-arena.github.io/issues/new?template=claim_profile.md&title=Claim%20profile:%20{{ page.creator_username }}" class="btn">Claim this profile</a>
       `;
       mainContent.appendChild(banner);
