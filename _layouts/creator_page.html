@@ -3,9 +3,7 @@ layout: default
 collapsed_header: true
 ---
 {% if page.redirect_to %}
-<meta http-equiv="refresh" content="0;url={{ page.redirect_to }}">
 <link rel="canonical" href="{{ page.redirect_to }}">
-<script>window.location.href = "{{ page.redirect_to }}";</script>
 <style>
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -18,15 +16,30 @@ collapsed_header: true
   p { margin: 20px 0; }
   a { color: #ff6d00; text-decoration: none; }
   a:hover { text-decoration: underline; }
+  .countdown {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ff6d00;
+  }
 </style>
-<h1>Redirecting...</h1>
+<h1>Redirecting in <span class="countdown">15</span> seconds...</h1>
 <p>This creator has opted out of n8n Arena.</p>
-<p>If you are not redirected automatically, <a href="{{ page.redirect_to }}">click here</a>.</p>
+<p>You will be redirected to <a href="{{ page.redirect_to }}">{{ page.redirect_to }}</a></p>
+<script>
+  let seconds = 15;
+  const countdownElement = document.querySelector('.countdown');
+  const timer = setInterval(function() {
+    seconds--;
+    countdownElement.textContent = seconds;
+    if (seconds <= 0) {
+      clearInterval(timer);
+      window.location.href = "{{ page.redirect_to }}";
+    }
+  }, 1000);
+</script>
 {% elsif page.page_status == "skip" %}
 {% assign default_redirect = "https://n8n.io/creators/" | append: page.creator_username | append: "/" %}
-<meta http-equiv="refresh" content="0;url={{ default_redirect }}">
 <link rel="canonical" href="{{ default_redirect }}">
-<script>window.location.href = "{{ default_redirect }}";</script>
 <style>
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -39,10 +52,27 @@ collapsed_header: true
   p { margin: 20px 0; }
   a { color: #ff6d00; text-decoration: none; }
   a:hover { text-decoration: underline; }
+  .countdown {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ff6d00;
+  }
 </style>
-<h1>Redirecting...</h1>
+<h1>Redirecting in <span class="countdown">15</span> seconds...</h1>
 <p>This creator has opted out of n8n Arena.</p>
-<p>If you are not redirected automatically, <a href="{{ default_redirect }}">click here</a>.</p>
+<p>You will be redirected to <a href="{{ default_redirect }}">{{ default_redirect }}</a></p>
+<script>
+  let seconds = 15;
+  const countdownElement = document.querySelector('.countdown');
+  const timer = setInterval(function() {
+    seconds--;
+    countdownElement.textContent = seconds;
+    if (seconds <= 0) {
+      clearInterval(timer);
+      window.location.href = "{{ default_redirect }}";
+    }
+  }, 1000);
+</script>
 {% endif %}
 
 <style>
