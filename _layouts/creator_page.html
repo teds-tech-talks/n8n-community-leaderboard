@@ -630,7 +630,7 @@ collapsed_header: true
   
   <div class="creator-card-main-content">
     <div class="creator-info">
-      <h1>{% if page.page_status == "claimed" %}{{ page.creator_name }}{% else %}@{{ page.creator_username }}{% endif %}</h1>
+      <h1>{% if page.page_status == "claimed" %}{{ page.creator_name }}{% else %}{% endif %}</h1>
       {% if page.creator_username and page.page_status == "claimed" %}
         <p class="creator-username">
           @{{ page.creator_username }}
@@ -798,7 +798,7 @@ collapsed_header: true
   }
   
   .section-overlay::after {
-    content: "This content is hidden until the creator opts in";
+    content: "Content is hidden until the creator opts in";
     position: absolute;
     top: 0;
     left: 0;
@@ -879,9 +879,8 @@ collapsed_header: true
       const banner = document.createElement('div');
       banner.className = 'claim-profile-banner';
       banner.innerHTML = `
-        <h3>This creator profile is not yet claimed</h3>
-        <p>The content is hidden until the creator explicitly opts in to n8n Arena.</p>
-        <p>Are you @{{ page.creator_username }}?</p>
+        <h3>@{{ page.creator_username }} creator profile is not yet claimed</h3>
+        <p>Content is hidden until the creator explicitly opts in to n8n Arena.</p>
         <a href="https://github.com/n8n-arena/n8n-arena.github.io/issues/new?template=claim_profile.md&title=Claim%20profile:%20{{ page.creator_username }}" class="btn">Claim this profile</a>
       `;
       mainContent.appendChild(banner);
