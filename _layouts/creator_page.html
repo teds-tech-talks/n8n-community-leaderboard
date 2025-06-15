@@ -560,9 +560,14 @@ collapsed_header: true
   }
 </style>
 
-{% if page.page_status == "skip" %}
+{% if page.redirect_to %}
+  <meta http-equiv="refresh" content="0;url={{ page.redirect_to }}">
   <script>
-    // Redirect to n8n.io creator page for opt-out creators
+    window.location.href = "{{ page.redirect_to }}";
+  </script>
+{% elsif page.page_status == "skip" %}
+  <script>
+    // Fallback redirect to n8n.io creator page for opt-out creators
     window.location.href = "https://n8n.io/creators/{{ page.creator_username }}/";
   </script>
 {% else %}
