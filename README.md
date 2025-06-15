@@ -22,8 +22,9 @@ Are you an n8n workflow template creator? You can now claim and customize your c
 1. **Find your creator page** on n8narena
 2. **Fork this repository**
 3. **Customize your creator file** in `_creators/[your-username]/[your-username].md` (file already exists, just needs your personal touch)
-4. **Submit a pull request** with your customized information
-5. **Send a DM on LinkedIn** to [Eduard](https://www.linkedin.com/in/parsadanyan/) to confirm you are claiming your own page
+4. **Activate your page** by setting `page_status: "claimed"` within your creator file. This is an important step!
+5. **Submit a pull request** with your customized information
+6. **Send a DM on LinkedIn** to [Eduard](https://www.linkedin.com/in/parsadanyan/) to confirm you are claiming your own page
 
 For detailed instructions and examples, see the [Creator Page Guide](#creator-page-customization) below.
 
@@ -40,6 +41,8 @@ creator_username: "[your-username]"
 ```
 
 ⚠️ **Important**: Keep `layout` and `creator_username` exactly as they are. These are required for the page to function properly.
+
+⚠️ **Important**: Make sure to set up `page_status: "claimed"` - this way n8n Arena knows that you explicitly want your data to be shown.
 
 ### Optional Customization Fields
 
