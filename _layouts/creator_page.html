@@ -560,17 +560,7 @@ collapsed_header: true
   }
 </style>
 
-{% if page.redirect_to %}
-  <meta http-equiv="refresh" content="0;url={{ page.redirect_to }}">
-  <script>
-    window.location.href = "{{ page.redirect_to }}";
-  </script>
-{% elsif page.page_status == "skip" %}
-  <script>
-    // Fallback redirect to n8n.io creator page for opt-out creators
-    window.location.href = "https://n8n.io/creators/{{ page.creator_username }}/";
-  </script>
-{% else %}
+{% if page.page_status != "skip" %}
 <div class="content-container">
 	<header class="creator-profile-header" 
 	  {% if page.header_gradient %}data-gradient="{{ page.header_gradient }}"{% endif %}
