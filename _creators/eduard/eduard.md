@@ -2,7 +2,7 @@
 layout: creator_page
 # Page status: "new" (default), "claimed" (opt-in), "skip" (opt-out/redirect)
 page_status: "skip"
-permalink: https://n8n.io/creators/eduard/
+redirect_to: https://n8n.io/creators/eduard/
 # Required: Username for the creator (used for URL and data lookup)
 creator_username: "eduard"
 
