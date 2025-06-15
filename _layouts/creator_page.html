@@ -606,13 +606,7 @@ collapsed_header: true
 <div class="content-container">
 	<header class="creator-profile-header" 
 	  {% if page.header_gradient %}data-gradient="{{ page.header_gradient }}"{% endif %}
-	  {% if page.header_image and page.page_status == "claimed" %}
-	  style="background-image: {% if page.header_gradient %}var(--gradient-{{ page.header_gradient }}){% else %}linear-gradient(135deg, rgba(32, 182, 158, 0.85) 0%, rgba(72, 76, 153, 0.85) 100%){% endif %}, url('{{ page.header_image | relative_url }}'); 
-	  background-blend-mode: overlay;
-	  background-size: cover; 
-	  background-position: center;"
-	  {% else %}
-	  style="background-image: {% if page.header_gradient %}var(--gradient-{{ page.header_gradient }}){% else %}linear-gradient(135deg, rgba(32, 182, 158, 0.85) 0%, rgba(72, 76, 153, 0.85) 100%){% endif %}; 
+	  style="background-image: {% if page.header_gradient %}var(--gradient-{{ page.header_gradient }}){% else %}linear-gradient(135deg, rgba(32, 182, 158, 0.85) 0%, rgba(72, 76, 153, 0.85) 100%){% endif %}{% if page.header_image and page.page_status == "claimed" %}, url('{{ page.header_image | relative_url }}'){% endif %}; 
 	  background-blend-mode: overlay;
 	  background-size: cover; 
 	  background-position: center;"
@@ -664,7 +658,9 @@ collapsed_header: true
       {% endif %}
     </div>
     
-    <p class="creator-bio" {% unless page.bio and page.page_status == "claimed" %}style="display: none;"{% endunless %}>{{ page.bio | markdownify }}</p>
+    {% if page.bio and page.page_status == "claimed" %}
+    <p class="creator-bio">{{ page.bio | markdownify }}</p>
+    {% endif %}
   </div>
 
   <section class="creator-ratings">
