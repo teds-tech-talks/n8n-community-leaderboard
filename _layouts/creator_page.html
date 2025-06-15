@@ -748,8 +748,10 @@ collapsed_header: true
     <p id="no-workflows-message" style="display: none;"><em>No workflows found for {{ page.creator_name }}.</em></p>
   </section>
   
+  {% if page.page_status == "claimed" %}
   <script src="{{ '/assets/js/creator-ratings.js' | relative_url }}"></script>
   <script src="{{ '/assets/js/creator-workflows.js' | relative_url }}"></script>
+  {% endif %}
 </div>
 
 {% if page.page_status != "claimed" %}
@@ -775,11 +777,15 @@ collapsed_header: true
     display: none !important;
   }
   
-  /* Blur the tables content */
-  .creator-ratings table, 
-  .creator-workflows table {
-    filter: blur(5px);
-    pointer-events: none;
+  /* Empty tables with placeholder text */
+  .creator-ratings table tbody tr td,
+  #creator-workflows-table tbody tr td {
+    display: none;
+  }
+  
+  .creator-ratings table thead,
+  #creator-workflows-table thead {
+    opacity: 0.5;
   }
   
   /* Overlay for tables */
@@ -794,13 +800,15 @@ collapsed_header: true
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
     color: #555;
     z-index: 10;
+    text-align: center;
+    padding: 20px;
   }
   
   /* Claim profile banner */
@@ -826,6 +834,21 @@ collapsed_header: true
   
   .claim-profile-banner .btn:hover {
     background-color: #e65100;
+  }
+  
+  /* Hide verification badge */
+  .verified-badge {
+    display: none !important;
+  }
+  
+  /* Hide ratings explanation text */
+  .creator-ratings > p {
+    display: none;
+  }
+  
+  /* Hide no workflows message */
+  #no-workflows-message {
+    display: none !important;
   }
 </style>
 
@@ -862,6 +885,18 @@ collapsed_header: true
         <a href="https://github.com/n8n-arena/n8n-arena.github.io/issues/new?template=claim_profile.md&title=Claim%20profile:%20{{ page.creator_username }}" class="btn">Claim this profile</a>
       `;
       mainContent.appendChild(banner);
+    }
+    
+    // Clear any data that might have been loaded
+    document.querySelectorAll('#creator-ratings-table td.rating-position').forEach(td => {
+      td.textContent = '-';
+      td.className = 'rating-position';
+    });
+    
+    // Clear workflows table
+    const workflowsTable = document.getElementById('creator-workflows-table');
+    if (workflowsTable && workflowsTable.tBodies && workflowsTable.tBodies[0]) {
+      workflowsTable.tBodies[0].innerHTML = '';
     }
   });
 </script>
