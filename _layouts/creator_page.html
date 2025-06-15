@@ -636,10 +636,9 @@ collapsed_header: true
 <div class="content-container">
 	<header class="creator-profile-header" 
 	  {% if page.header_gradient %}data-gradient="{{ page.header_gradient }}"{% endif %}
+	  {% assign bg_image = "" %}
 	  {% if page.header_image and page.page_status == "claimed" %}
 	    {% capture bg_image %}, url('{{ page.header_image | relative_url }}'){% endcapture %}
-	  {% else %}
-	    {% assign bg_image = "" %}
 	  {% endif %}
 	  style="background-image: {% if page.header_gradient %}var(--gradient-{{ page.header_gradient }}){% else %}linear-gradient(135deg, rgba(32, 182, 158, 0.85) 0%, rgba(72, 76, 153, 0.85) 100%){% endif %}{{ bg_image }}; 
 	  background-blend-mode: overlay;
