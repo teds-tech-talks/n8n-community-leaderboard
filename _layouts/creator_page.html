@@ -609,8 +609,7 @@ collapsed_header: true
 	  style="background-image: {% if page.header_gradient %}var(--gradient-{{ page.header_gradient }}){% else %}linear-gradient(135deg, rgba(32, 182, 158, 0.85) 0%, rgba(72, 76, 153, 0.85) 100%){% endif %}{% if page.header_image and page.page_status == "claimed" %}, url('{{ page.header_image | relative_url }}'){% endif %}; 
 	  background-blend-mode: overlay;
 	  background-size: cover; 
-	  background-position: center;"
-	  {% endif %}>
+	  background-position: center;">
 	  <div class="noise-texture"></div>
 	</header>
 
