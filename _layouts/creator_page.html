@@ -826,6 +826,13 @@ collapsed_header: true
   #no-workflows-message {
     display: none !important;
   }
+  
+  /* Countdown styles */
+  .countdown {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ff6d00;
+  }
 </style>
 
 <!-- Modify content for unclaimed profiles -->
@@ -840,13 +847,34 @@ collapsed_header: true
     if (mainContent) {
       const banner = document.createElement('div');
       banner.className = 'claim-profile-banner';
+      
+      // Set up countdown
+      let seconds = 15;
+      const defaultRedirect = "https://n8n.io/creators/{{ page.creator_username }}/";
+      
       banner.innerHTML = `
         <h3>@{{ page.creator_username }} profile is not yet claimed</h3>
         <p>Creator ratings and published workflows are hidden until the creator explicitly opts in to n8n Arena.</p>
         <p>Are you @{{ page.creator_username }}?</p>
         <a href="https://github.com/n8n-arena/n8n-arena.github.io/issues/new?template=claim_profile.md&title=Claim%20profile:%20{{ page.creator_username }}" class="btn">Claim this profile</a>
+        <p style="margin-top: 20px;">Redirecting to n8n.io in <span class="countdown">${seconds}</span> seconds...</p>
+        <p><a href="${defaultRedirect}">Go to n8n.io now</a></p>
       `;
+      
       mainContent.appendChild(banner);
+      
+      // Start countdown
+      const countdownElement = banner.querySelector('.countdown');
+      const timer = setInterval(function() {
+        seconds--;
+        if (countdownElement) {
+          countdownElement.textContent = seconds;
+        }
+        if (seconds <= 0) {
+          clearInterval(timer);
+          window.location.href = defaultRedirect;
+        }
+      }, 1000);
     }
     
     // Clear any data that might have been loaded
