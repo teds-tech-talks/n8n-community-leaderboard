@@ -633,8 +633,8 @@ collapsed_header: true
   
   <div class="creator-card-main-content">
     <div class="creator-info">
-      <h1>{{ page.creator_name }}</h1>
-      {% if page.creator_username %}
+      <h1>{% if page.page_status == "claimed" %}{{ page.creator_name }}{% else %}@{{ page.creator_username }}{% endif %}</h1>
+      {% if page.creator_username and page.page_status == "claimed" %}
         <p class="creator-username">
           @{{ page.creator_username }}
           {% if page.verified %}
@@ -664,7 +664,7 @@ collapsed_header: true
       {% endif %}
     </div>
     
-    <p class="creator-bio" {% unless page.bio %}style="display: none;"{% endunless %}>{{ page.bio | markdownify }}</p>
+    <p class="creator-bio" {% unless page.bio and page.page_status == "claimed" %}style="display: none;"{% endunless %}>{{ page.bio | markdownify }}</p>
   </div>
 
   <section class="creator-ratings">
@@ -860,11 +860,7 @@ collapsed_header: true
 <!-- Modify content for unclaimed profiles -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Only show username, not real name
-    const nameElement = document.querySelector('.creator-info h1');
-    if (nameElement) {
-      nameElement.textContent = '@{{ page.creator_username }}';
-    }
+    // Username is already set in the template
     
     // Add overlay to tables
     const ratingsSection = document.querySelector('.creator-ratings');
