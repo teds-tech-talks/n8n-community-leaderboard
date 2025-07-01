@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Prepare data for DataTable
             let tableData = creatorWorkflows.map((item) => {
                 return [
+                    item.price && item.price !== "" ? Math.round(parseFloat(item.price)) : "",
                     `<a href="${item.template_url}" target="_blank" data-umami-event="workflow" data-umami-event-workflow="${item.wf_detais.id}">${item.wf_detais.name}</a>`,
                     item.unique_visitors || 0,
                     item.unique_inserters || 0,
@@ -40,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
             $('#creator-workflows-table').DataTable({
                 data: tableData,
                 pageLength: 25,
-                order: [[1, 'desc']], // Sort by total views by default
+                order: [[2, 'desc']], // Sort by total views by default
                 responsive: true
             });
         })
