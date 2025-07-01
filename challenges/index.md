@@ -138,6 +138,7 @@ async function loadCreatorsData() {
             <th class="number-column"></th>
             <th></th>
             <th>Creator</th>
+            <th>$</th>
             <th>Workflow</th>
             <th>Created</th>
             <th>Views</th>
@@ -157,6 +158,7 @@ async function loadWorkflowsData() {
                 "",
                 `<img src="${item.creator_avatar}" alt="${item.creator_username}" class="user-avatar" width="40">`,
                 `<a href="${item.creator_url}" class="creator-link" target="_blank" data-umami-event="creator_profile" data-umami-event-creator="${item.creator_username}">${item.creator_username}</a>`,
+                item.price && item.price !== "" ? Math.round(parseFloat(item.price)) : "",
                 `<a href="${item.workflow_url}" class="workflow-link" target="_blank" data-umami-event="workflow_view" data-umami-event-workflow="${item.workflow_name}">${item.workflow_name}</a>`,
                 item.created_at,
                 item.views,
@@ -168,11 +170,12 @@ async function loadWorkflowsData() {
             data: tableData,
             pageLength: 25,
             lengthMenu: [[10, 25, 50], [10, 25, 50]],
-            order: [[6, 'desc']], // Sort by inserts by default
+            order: [[7, 'desc']], // Sort by inserts by default
             columns: [
                 { title: "", searchable: false, orderable: false },
                 { title: "", orderable: false, searchable: false },
                 { title: "Creator" },
+                { title: "$" },
                 { title: "Workflow" },
                 { title: "Created" },
                 { title: "Views" },
@@ -182,10 +185,11 @@ async function loadWorkflowsData() {
                 { targets: 0, className: 'dt-body-center number', responsivePriority: 1 },
                 { targets: 1, className: 'dt-body-center', width: "64px", responsivePriority: 1 },
                 { targets: 2, className: 'dt-body-left creator-column', responsivePriority: 10001 },
-                { targets: 3, className: 'dt-body-left', responsivePriority: 2 },  // workflow name column
-                { targets: 4, className: 'dt-body-center', width: "130px", responsivePriority: 5 },  // date column
-                { targets: 5, className: 'dt-body-center', responsivePriority: 5 },
-                { targets: 6, className: 'dt-body-center', responsivePriority: 4 }
+                { targets: 3, className: 'dt-body-center', width: "40px", responsivePriority: 6 },  // price column
+                { targets: 4, className: 'dt-body-left', responsivePriority: 2 },  // workflow name column
+                { targets: 5, className: 'dt-body-center', width: "130px", responsivePriority: 5 },  // date column
+                { targets: 6, className: 'dt-body-center', responsivePriority: 5 },
+                { targets: 7, className: 'dt-body-center', responsivePriority: 4 }
             ],
             dom: '<"table-controls-wrapper"lB>frtip',
             searching: false,
