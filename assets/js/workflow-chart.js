@@ -31,7 +31,7 @@ function initChart() {
         // Get selected workflow data
         const selectedData = [];
         selectedRows.each(function(row) {
-            const workflowName = row[4].match(/>([^<]+)</)[1]; // Extract name from anchor tag
+            const workflowName = row[5].match(/>([^<]+)</)[1]; // Extract name from anchor tag
             const matchingData = historic.find(h => h.wf_name === workflowName);
             if (matchingData) {
                 selectedData.push({
