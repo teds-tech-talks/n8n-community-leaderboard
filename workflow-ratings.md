@@ -29,6 +29,7 @@ show_last_updated: true
             <th class="number-column"></th> <!-- Index column -->
             <th></th> <!-- Avatar column -->
             <th>Creator</th>
+            <th>$</th>
             <th>Workflow Name</th>
             <th>Total Unique Views</th>
             <th>Total Unique Inserters</th>

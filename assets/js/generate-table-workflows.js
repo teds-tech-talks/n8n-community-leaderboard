@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     "",
                     `<img src="${item.user.avatar}" alt="${item.user.username}" class="user-avatar" width="128">`,
                     creatorLink,
+                    item.price && item.price !== "" ? Math.round(parseFloat(item.price)) : "",
                     //item.wf_detais.id,
                     `<a href="${item.template_url}" target="_blank" data-umami-event="workflow" data-umami-event-workflow="${item.wf_detais.id}">${item.wf_detais.name}</a>`,
                     item.unique_visitors || 0,
@@ -59,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     { title: "", searchable: false, orderable: false },
                     { title: "", orderable: false, searchable: false },
                     { title: "Creator" },
+                    { title: "$" },
                     { title: "Workflow Name" },
                     { title: "Total<br/>Views" },
                     { title: "Total<br/>Inserters" },
@@ -98,8 +100,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     { targets: 1, className: 'dt-body-center number', responsivePriority: 1 },  // Number
                     { targets: 2, className: 'dt-body-center', width: "64px", responsivePriority: 1 },  // Avatar
                     { targets: 3, className: 'dt-body-left creator-column', responsivePriority: 3 },  // Creator
-                    { targets: 4, className: 'dt-body-left', responsivePriority: 2 },  // Workflow Name
-                    { targets: [5,6,7,8,9,10,11], className: 'dt-body-center' }  // Other columns - default priority
+                    { targets: 4, className: 'dt-body-center', width: "40px", responsivePriority: 4 },  // Price
+                    { targets: 5, className: 'dt-body-left', responsivePriority: 2 },  // Workflow Name
+                    { targets: [6,7,8,9,10,11,12], className: 'dt-body-center' }  // Other columns - default priority
                 ],
                 select: {
                     style: 'multi',
@@ -119,8 +122,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     {
                         extend: 'colvisGroup',
                         text: 'Total Stats',
-                        show: [0,1,2,3,4,5,6,11],
-                        hide: [7,8,9,10],
+                        show: [0,1,2,3,4,5,6,7,12],
+                        hide: [8,9,10,11],
                         className: 'active',
                         attr: {
                             'data-umami-event': 'table_button',
@@ -130,8 +133,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     {
                         extend: 'colvisGroup',
                         text: 'Monthly Stats',
-                        show: [0,1,2,3,4,7,8,11],
-                        hide: [5,6,9,10],
+                        show: [0,1,2,3,4,5,8,9,12],
+                        hide: [6,7,10,11],
                         attr: {
                             'data-umami-event': 'table_button',
                             'data-umami-event-table': 'monthly'
@@ -140,8 +143,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     {
                         extend: 'colvisGroup',
                         text: 'Weekly Stats',
-                        show: [0,1,2,3,4,9,10,11],
-                        hide: [5,6,7,8],
+                        show: [0,1,2,3,4,5,10,11,12],
+                        hide: [6,7,8,9],
                         attr: {
                             'data-umami-event': 'table_button',
                             'data-umami-event-table': 'weekly'
