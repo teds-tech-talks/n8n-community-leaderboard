@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     { title: "Weekly<br/>Inserters", visible: false },
                     { title: "Creation Date" }
                 ],
-                order: [[5, 'desc']],
+                order: [[6, 'desc']],
                 pageLength: 50,
 				bFilter: true,
                 responsive: {
