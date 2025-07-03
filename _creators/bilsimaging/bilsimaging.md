@@ -4,25 +4,25 @@ layout: creator_page
 creator_username: "bilsimaging"
 
 # Page status: "new" (default), "claimed" (show full creator data), "skip" (opt-out - do not show creator page)
-page_status: "new"
+page_status: "claimed"
 
 # Optional: Override the creator's name (otherwise fetched from JSON)
-creator_name: ""
+creator_name: "Bilel Aroua"
 
 # Optional: Override the creator's avatar (otherwise fetched from JSON)
-avatar: ""
+avatar: "/_creators/bilsimaging/Bils_Profile%20-%20Copie.jpg"
 
 # Optional: Override the creator's bio (otherwise fetched from JSON)
-bio: ""
+bio: "Expert AI Gen, Audio, Music and Multimedia Services. But we do so much more!"
 
 # Optional: Background image for the header
 header_image: ""
 
 # Optional: Background gradient for the header (can be used with or without header_image)
 # Options: ocean, sunset, forest, golden, twilight
-header_gradient: "golden"
+header_gradient: "sunset"
 
 # Optional: Override the creator's social links (otherwise fetched from JSON)
-links: []
+links: ["https://bilsimaging.com/", "https://www.linkedin.com/in/bilelaroua/"]
 
 ---
