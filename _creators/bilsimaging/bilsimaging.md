@@ -20,7 +20,7 @@ header_image: ""
 
 # Optional: Background gradient for the header (can be used with or without header_image)
 # Options: ocean, sunset, forest, golden, twilight
-header_gradient: "golden"
+header_gradient: "sunset"
 
 # Optional: Override the creator's social links (otherwise fetched from JSON)
 links: ["https://bilsimaging.com/", "https://www.linkedin.com/in/bilelaroua/"]
