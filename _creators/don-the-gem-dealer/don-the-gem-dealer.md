@@ -1,27 +1,29 @@
 ---
 layout: creator_page
-# Page status: "new" (default), "claimed" (opt-in), "skip" (opt-out)
-page_status: "new"
-# Required: Username for the creator (used for URL and data lookup)
 creator_username: "don-the-gem-dealer"
+page_status: "claimed"
 
-# Optional: Override the creator's name (otherwise fetched from JSON)
-creator_name: ""
+creator_name: "Don Jayamaha Jr"
+avatar: "/_creators/don-the-gem-dealer/avatar.jpg"  # Upload your avatar image
+bio: "Blockchain Strategist & Web3 Architect with 12+ years of experience bridging traditional industries and decentralized technologies.<br>My n8n workflows and AI agents specialize in helping build the Web3 space for the masses. I believe Web4 will harness agentic AI to make Web3 services accessible to all."
 
-# Optional: Override the creator's avatar (otherwise fetched from JSON)
-avatar: ""
+header_image: "/_creators/don-the-gem-dealer/banner.jpg"  # Optional: upload a banner image or remove this line
+header_gradient: "ocean"
 
-# Optional: Override the creator's bio (otherwise fetched from JSON)
-bio: ""
+links:
+  - "https://www.linkedin.com/in/donjayamahajr/"
 
-# Optional: Background image for the header
-header_image: ""
+offer1:
+  title: "Launch Your Web3 Project"
+  image: "/_creators/don-the-gem-dealer/offer1.jpg"  # Upload an image or adjust the path
+  description: "Consulting services to help you design and deploy blockchain, DeFi, NFT, and AI-powered solutions."
+  link: "https://www.linkedin.com/in/donjayamahajr/"
+  cta: "Connect Now"
 
-# Optional: Background gradient for the header (can be used with or without header_image)
-# Options: ocean, sunset, forest, golden, twilight
-header_gradient: "twilight"
-
-# Optional: Override the creator's social links (otherwise fetched from JSON)
-links: []
-
+offer2:
+  title: "AI-Driven Web3 Automation"
+  image: "/_creators/don-the-gem-dealer/offer2.jpg"  # Upload an image or adjust the path
+  description: "Discover how to automate your Web3 processes using n8n + AI agents for DeFi, NFTs, and crypto payments."
+  link: "https://n8n.io/creators/don-the-gem-dealer/"
+  cta: "View My Creator Page"
 ---
