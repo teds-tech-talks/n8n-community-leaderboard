@@ -4,10 +4,10 @@ layout: creator_page
 creator_username: "duv"
 
 # Page status: "new" (default), "claimed" (show full creator data), "skip" (opt-out - do not show creator page)
-page_status: "new"
+page_status: "claimed"
 
 # Optional: Override the creator's name (otherwise fetched from JSON)
-creator_name: ""
+creator_name: "Guillaume Duvernay"
 
 # Optional: Override the creator's avatar (otherwise fetched from JSON)
 avatar: ""
@@ -20,7 +20,7 @@ header_image: ""
 
 # Optional: Background gradient for the header (can be used with or without header_image)
 # Options: ocean, sunset, forest, golden, twilight
-header_gradient: "twilight"
+header_gradient: "sunset"
 
 # Optional: Override the creator's social links (otherwise fetched from JSON)
 links: []
