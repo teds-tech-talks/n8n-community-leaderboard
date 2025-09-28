@@ -23,13 +23,13 @@ links:
 # offers
 offer1:
   title: "Generate & Publish Social Media Conten (Late)"
-  description_html: "End-to-end automation for content creation and publishing with <b>Gemini</b> and <b>Late API</b>. Fast setup and full support."
+  description: "End-to-end automation for content creation and publishing with <b>Gemini</b> and <b>Late API</b>. Fast setup and full support."
   link: "mailto:ulmeanu.a@gmail.com"
   cta: "Get in touch"
 
 offer2:
   title: "WhatsApp Assistant with Memory (Pinecone)"
-  description_html: "Conversational assistant powered by <b>Gemini AI</b>, CRM integration, and persistent memory. Demo available on request."
+  description: "Conversational assistant powered by <b>Gemini AI</b>, CRM integration, and persistent memory. Demo available on request."
   link: "mailto:ulmeanu.a@gmail.com"
   cta: "Request a demo"
 ---
