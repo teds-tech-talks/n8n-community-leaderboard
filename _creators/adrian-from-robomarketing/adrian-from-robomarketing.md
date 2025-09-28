@@ -1,28 +1,35 @@
 ---
 layout: creator_page
-# Required: Username for the creator (used for URL and data lookup)
+
 creator_username: "adrian-from-robomarketing"
 
-# Page status: "new" (default), "claimed" (show full creator data), "skip" (opt-out - do not show creator page)
-page_status: "new"
+# mark the page as active
+page_status: "claimed"
 
-# Optional: Override the creator's name (otherwise fetched from JSON)
-creator_name: ""
+# public info
+creator_name: "Adrian Ulmeanu"
+bio: "I provide efficient solutions that deliver measurable added value."
 
-# Optional: Override the creator's avatar (otherwise fetched from JSON)
-avatar: ""
+# gradient header instead of image
+header_gradient: "linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%)"
 
-# Optional: Override the creator's bio (otherwise fetched from JSON)
-bio: ""
+# useful links
+links:
+  - "https://n8n.io/creators/adrian-from-robomarketing"
+  - "mailto:ulmeanu.a@gmail.com"
+  - "https://github.com/ulmeanuadrian"
+  - "https://www.linkedin.com/in/ulmeanuadrian/"
 
-# Optional: Background image for the header
-header_image: ""
+# offers
+offer1:
+  title: "Generate & Publish Social Media Conten (Late)"
+  description_html: "End-to-end automation for content creation and publishing with <b>Gemini</b> and <b>Late API</b>. Fast setup and full support."
+  link: "mailto:ulmeanu.a@gmail.com"
+  cta: "Get in touch"
 
-# Optional: Background gradient for the header (can be used with or without header_image)
-# Options: ocean, sunset, forest, golden, twilight
-header_gradient: "ocean"
-
-# Optional: Override the creator's social links (otherwise fetched from JSON)
-links: []
-
+offer2:
+  title: "WhatsApp Assistant with Memory (Pinecone)"
+  description_html: "Conversational assistant powered by <b>Gemini AI</b>, CRM integration, and persistent memory. Demo available on request."
+  link: "mailto:ulmeanu.a@gmail.com"
+  cta: "Request a demo"
 ---
