@@ -1,12 +1,12 @@
 ---
 layout: creator_page
 # Page status: "new" (default), "claimed" (opt-in), "skip" (opt-out)
-page_status: "new"
+page_status: "claimed"
 # Required: Username for the creator (used for URL and data lookup)
 creator_username: "samirsaci"
 
 # Optional: Override the creator's name (otherwise fetched from JSON)
-creator_name: ""
+creator_name: "Samir Saci"
 
 # Optional: Override the creator's avatar (otherwise fetched from JSON)
 avatar: ""
