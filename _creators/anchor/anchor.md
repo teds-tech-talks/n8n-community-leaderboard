@@ -14,10 +14,10 @@ avatar: "https://avatars.githubusercontent.com/guillim"
 
 # Optional: Override the creator's bio (otherwise fetched from JSON)
 bio: "15+ years of crafting solutions to help companies. Feel free to reach out to explore new ideas !  
-
-✅ CTO of successful SaaS companies  
-🚀 Dedicated to user satisfaction  
-⚒️ LinkedIn automation specialist  " 
+<br><br>
+<br>✅ CTO of successful SaaS companies  
+<br>🚀 Dedicated to user satisfaction  
+<br>⚒️ LinkedIn automation specialist  " 
 
 # Optional: Background image for the header
 header_image: ""
