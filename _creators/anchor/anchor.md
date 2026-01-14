@@ -29,4 +29,10 @@ header_gradient: "ocean"
 # Optional: Override the creator's social links (otherwise fetched from JSON)
 links: ["https://www.linkedin.com/in/guillaumelancrenon/", "https://anchorhq.eu/", "https://guillim.github.io/"]
 
+offer1:
+  title: "Need Linkedin data ?"
+  image: "https://i.postimg.cc/qMXTymjy/Clean_Shot_2025_11_22_at_23_55_31_2x.png"
+  description: "Extract live LinkedIn profile and company data at scale. No cookies required. Perfect for lead gen, prospecting, and recruitment automation."
+  link: "https://anchorhq.eu/products/linkedin-profile-enrichment"
+  cta: "Start for free"
 ---
